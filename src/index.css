@@ -2,16 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles below */
+/* Custom styles to match La Pietra website */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: #333;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,11 +17,13 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #004299; /* La Pietra blue */
   text-decoration: inherit;
+  transition: color 0.2s;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #0056c7;
 }
 
 body {
@@ -34,44 +33,102 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.5rem;
+  font-weight: 700;
   line-height: 1.1;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #004299;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #004299;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #004299;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #004299;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: #0056c7;
+  border-color: #0056c7;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid rgba(0, 66, 153, 0.3);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
 }
 
+/* La Pietra styles for components */
 @layer components {
   .btn {
-    @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors;
+    @apply px-4 py-2 bg-[#004299] text-white rounded hover:bg-[#0056c7] transition-colors font-medium;
   }
+
+  .section-divider {
+    @apply w-full h-px bg-gray-200 my-8;
+  }
+
+  .content-card {
+    @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4;
+  }
+
+  .event-header {
+    @apply text-2xl font-bold text-center text-[#004299] mb-1;
+  }
+
+  .event-subheader {
+    @apply text-lg font-medium text-gray-700 text-center mb-6;
+  }
+}
+
+/* Dark mode styles for active navigation */
+.nav-item-active {
+  @apply bg-[#004299] text-white rounded-md;
+}
+
+/* La Pietra button styles */
+.la-pietra-button {
+  @apply inline-block py-2 px-6 bg-[#004299] text-white text-center font-medium rounded hover:bg-[#0056c7] transition-colors;
+}
+
+/* Custom container width to match La Pietra site */
+.la-pietra-container {
+  @apply mx-auto px-4 max-w-6xl;
 }

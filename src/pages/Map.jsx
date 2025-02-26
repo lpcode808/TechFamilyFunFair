@@ -1,24 +1,87 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 import MapMarker from '../components/MapMarker';
 import mapData from '../assets/data/map.json';
 import scheduleData from '../assets/data/schedule.json';
 
+// Memoize the MapMarker component
+const MemoizedMapMarker = memo(MapMarker);
+
 export default function Map() {
   const [selectedMarker, setSelectedMarker] = useState(null);
-  const [eventDetails, setEventDetails] = useState({});
   
-  useEffect(() => {
-    // Create a mapping of event IDs to their details
+  // Convert to useMemo to avoid recalculating on each render
+  const eventDetails = useMemo(() => {
     const eventMap = {};
     scheduleData.forEach(event => {
       eventMap[event.id] = event;
     });
-    setEventDetails(eventMap);
+    return eventMap;
   }, []);
   
   const handleMarkerClick = (id) => {
     setSelectedMarker(selectedMarker === id ? null : id);
   };
+  
+  // Memoize zone elements to prevent re-renders
+  const zoneElements = useMemo(() => {
+    return Object.keys(mapData.zones).map(key => {
+      const zone = mapData.zones[key];
+      return (
+        <div 
+          key={key}
+          className="absolute bg-blue-200 bg-opacity-40 rounded border border-blue-300 flex items-center justify-center"
+          style={{
+            left: zone.x,
+            top: zone.y,
+            width: zone.width,
+            height: zone.height
+          }}
+        >
+          <span className="text-xs font-medium text-blue-800 p-1 bg-white bg-opacity-70 rounded">
+            {zone.name}
+          </span>
+        </div>
+      );
+    });
+  }, []);
+  
+  // Memoize attraction markers
+  const attractionMarkers = useMemo(() => {
+    return mapData.attractions.map(attraction => {
+      const event = eventDetails[attraction.id] || {};
+      return (
+        <MemoizedMapMarker
+          key={attraction.id}
+          x={attraction.x}
+          y={attraction.y}
+          icon={attraction.icon}
+          title={event.title || 'Unknown Event'}
+          onClick={() => handleMarkerClick(attraction.id)}
+          isActive={selectedMarker === attraction.id}
+        />
+      );
+    });
+  }, [eventDetails, selectedMarker]);
+  
+  // Memoize selected event details
+  const selectedEventElement = useMemo(() => {
+    if (!selectedMarker || !eventDetails[selectedMarker]) return null;
+    
+    const event = eventDetails[selectedMarker];
+    return (
+      <div className="mt-4 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        <h3 className="font-medium">{event.title}</h3>
+        <p className="text-sm text-gray-600 mt-1">
+          {event.time} at {event.location}
+        </p>
+        {event.speaker && (
+          <p className="text-sm text-gray-600 mt-1">
+            Speaker: {event.speaker}
+          </p>
+        )}
+      </div>
+    );
+  }, [selectedMarker, eventDetails]);
   
   return (
     <div className="container mx-auto px-4 pb-20">
@@ -37,57 +100,14 @@ export default function Map() {
             </div>
             
             {/* Zone overlays */}
-            {Object.keys(mapData.zones).map(key => {
-              const zone = mapData.zones[key];
-              return (
-                <div 
-                  key={key}
-                  className="absolute bg-blue-200 bg-opacity-40 rounded border border-blue-300 flex items-center justify-center"
-                  style={{
-                    left: zone.x,
-                    top: zone.y,
-                    width: zone.width,
-                    height: zone.height
-                  }}
-                >
-                  <span className="text-xs font-medium text-blue-800 p-1 bg-white bg-opacity-70 rounded">
-                    {zone.name}
-                  </span>
-                </div>
-              );
-            })}
+            {zoneElements}
             
             {/* Event markers */}
-            {mapData.attractions.map(attraction => {
-              const event = eventDetails[attraction.id] || {};
-              return (
-                <MapMarker
-                  key={attraction.id}
-                  x={attraction.x}
-                  y={attraction.y}
-                  icon={attraction.icon}
-                  title={event.title || 'Unknown Event'}
-                  onClick={() => handleMarkerClick(attraction.id)}
-                  isActive={selectedMarker === attraction.id}
-                />
-              );
-            })}
+            {attractionMarkers}
           </div>
           
           {/* Selected event details */}
-          {selectedMarker && eventDetails[selectedMarker] && (
-            <div className="mt-4 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="font-medium">{eventDetails[selectedMarker].title}</h3>
-              <p className="text-sm text-gray-600 mt-1">
-                {eventDetails[selectedMarker].time} at {eventDetails[selectedMarker].location}
-              </p>
-              {eventDetails[selectedMarker].speaker && (
-                <p className="text-sm text-gray-600 mt-1">
-                  Speaker: {eventDetails[selectedMarker].speaker}
-                </p>
-              )}
-            </div>
-          )}
+          {selectedEventElement}
         </div>
       </div>
     </div>
