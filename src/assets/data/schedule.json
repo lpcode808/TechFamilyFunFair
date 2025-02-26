@@ -1,0 +1,32 @@
+[
+  {
+    "id": "talk-1",
+    "title": "Intro to Robotics",
+    "time": "10:00 AM",
+    "location": "Tech Hall A",
+    "speaker": "Dr. Smith",
+    "type": "tech-talk"
+  },
+  {
+    "id": "activity-1", 
+    "title": "Petting Zoo Opens",
+    "time": "9:00 AM",
+    "location": "Outdoor Field",
+    "type": "activity"
+  },
+  {
+    "id": "talk-2",
+    "title": "AI for Families",
+    "time": "11:30 AM",
+    "location": "Workshop Room B",
+    "speaker": "Professor Jones",
+    "type": "tech-talk"
+  },
+  {
+    "id": "activity-2", 
+    "title": "Drone Racing Demo",
+    "time": "1:00 PM",
+    "location": "Main Field",
+    "type": "activity"
+  }
+] 
