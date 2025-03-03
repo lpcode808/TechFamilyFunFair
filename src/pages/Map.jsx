@@ -7,20 +7,52 @@ const MemoizedMapMarker = memo(MapMarker);
 export default function Map() {
   const [mapData, setMapData] = useState({ zones: {}, attractions: [] });
   const [scheduleData, setScheduleData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   
   useEffect(() => {
+    console.log('Fetching map and schedule data...');
+    
+    // Determine the base URL based on the environment
+    const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
+    const mapUrl = `${baseUrl}assets/data/map.json`;
+    const scheduleUrl = `${baseUrl}assets/data/schedule.json`;
+    
+    console.log('Fetching from URLs:', mapUrl, scheduleUrl);
+    
     // Fetch map data
-    fetch('/assets/data/map.json')
-      .then(response => response.json())
-      .then(data => setMapData(data))
-      .catch(error => console.error('Error loading map data:', error));
+    const fetchMapData = fetch(mapUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      });
     
     // Fetch schedule data
-    fetch('/assets/data/schedule.json')
-      .then(response => response.json())
-      .then(data => setScheduleData(data))
-      .catch(error => console.error('Error loading schedule data:', error));
+    const fetchScheduleData = fetch(scheduleUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      });
+    
+    // Wait for both fetches to complete
+    Promise.all([fetchMapData, fetchScheduleData])
+      .then(([mapDataResult, scheduleDataResult]) => {
+        console.log('Map data loaded:', mapDataResult);
+        console.log('Schedule data loaded:', scheduleDataResult.length, 'items');
+        setMapData(mapDataResult);
+        setScheduleData(scheduleDataResult);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading data:', error);
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
   
   // Convert to useMemo to avoid recalculating on each render
@@ -102,27 +134,47 @@ export default function Map() {
       <div className="py-6">
         <h1 className="text-2xl font-bold">Event Map</h1>
         
-        <div className="mt-4 bg-gray-100 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-2">
-            Tap on markers to see event details. Pan and zoom to navigate the map.
-          </p>
-          
-          <div className="relative bg-blue-50 border border-blue-200 rounded-lg overflow-hidden" style={{ height: '60vh' }}>
-            {/* This would be replaced with a real map or SVG in production */}
-            <div className="absolute inset-0 p-4 text-center flex items-center justify-center text-gray-400">
-              <span className="text-sm">Interactive venue map would appear here</span>
+        {loading && (
+          <div className="text-center py-8">
+            <p>Loading map data...</p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="text-center py-8 text-red-500">
+            <p>Error loading map data: {error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+        
+        {!loading && !error && (
+          <div className="mt-4 bg-gray-100 rounded-lg p-4">
+            <p className="text-sm text-gray-600 mb-2">
+              Tap on markers to see event details. Pan and zoom to navigate the map.
+            </p>
+            
+            <div className="relative bg-blue-50 border border-blue-200 rounded-lg overflow-hidden" style={{ height: '60vh' }}>
+              {/* This would be replaced with a real map or SVG in production */}
+              <div className="absolute inset-0 p-4 text-center flex items-center justify-center text-gray-400">
+                <span className="text-sm">Interactive venue map would appear here</span>
+              </div>
+              
+              {/* Zone overlays */}
+              {zoneElements}
+              
+              {/* Event markers */}
+              {attractionMarkers}
             </div>
             
-            {/* Zone overlays */}
-            {zoneElements}
-            
-            {/* Event markers */}
-            {attractionMarkers}
+            {/* Selected event details */}
+            {selectedEventElement}
           </div>
-          
-          {/* Selected event details */}
-          {selectedEventElement}
-        </div>
+        )}
       </div>
     </div>
   );

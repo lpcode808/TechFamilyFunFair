@@ -2,17 +2,42 @@ import { useParams, Link } from 'react-router-dom';
 import { useMemo, useEffect, useState } from 'react';
 import { ArrowLeftIcon, ClockIcon, UserIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 // MapIcon import removed
+import BackButton from '../components/BackButton';
 
 export default function ExperienceDetail() {
   const { id } = useParams();
   const [experienceData, setExperienceData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   useEffect(() => {
-    // Fetch the experiences data from the public directory
-    fetch('/assets/data/experiences.json')
-      .then(response => response.json())
-      .then(data => setExperienceData(data))
-      .catch(error => console.error('Error loading experiences:', error));
+    console.log('Fetching experiences data for detail page...');
+    
+    // Determine the base URL based on the environment
+    const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
+    const dataUrl = `${baseUrl}assets/data/experiences.json`;
+    
+    console.log('Fetching from URL:', dataUrl);
+    
+    // Fetch the experiences data
+    fetch(dataUrl)
+      .then(response => {
+        console.log('Response status:', response.status);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Experiences data loaded:', data.length, 'items');
+        setExperienceData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading experiences:', error);
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
   
   // Find the experience based on ID
@@ -29,20 +54,44 @@ export default function ExperienceDetail() {
     return experienceData.filter(exp => keepIds.includes(exp.id));
   }, [experienceData]);
   
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <BackButton to="/experiences" label="Back to Experiences" />
+        <div className="text-center py-8">
+          <p>Loading experience details...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <BackButton to="/experiences" label="Back to Experiences" />
+        <div className="text-center py-8 text-red-500">
+          <p>Error loading experience details: {error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+  
   if (!experience.id) {
     return (
-      <div className="container mx-auto px-4 py-8 pb-20">
-        <Link to="/experiences" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4">
-          <ArrowLeftIcon className="w-4 h-4 mr-1" />
-          Back to Experiences
-        </Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-          <ExclamationCircleIcon className="w-12 h-12 text-red-500 mx-auto mb-3" />
-          <h1 className="text-xl font-bold text-red-700">Experience Not Found</h1>
-          <p className="text-gray-700 mt-2">The experience you're looking for doesn't exist or has been removed.</p>
-          <Link to="/experiences" className="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">
-            Return to Experiences
-          </Link>
+      <div className="container mx-auto px-4 py-8">
+        <BackButton to="/experiences" label="Back to Experiences" />
+        <div className="text-center py-8">
+          <p className="text-red-500">Experience not found</p>
+          <p className="mt-2 text-sm">The experience with ID "{id}" could not be found.</p>
+          <pre className="mt-4 text-xs text-left bg-gray-100 p-2 rounded overflow-auto">
+            Available IDs: {experienceData.map(exp => exp.id).join(', ')}
+          </pre>
         </div>
       </div>
     );
@@ -50,10 +99,7 @@ export default function ExperienceDetail() {
   
   return (
     <div className="container mx-auto px-4 py-8 pb-20">
-      <Link to="/experiences" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4">
-        <ArrowLeftIcon className="w-4 h-4 mr-1" />
-        Back to Experiences
-      </Link>
+      <BackButton to="/experiences" label="Back to Experiences" />
       
       <div className="bg-white rounded-lg shadow-sm p-6 border-t-4 border-t-[#004299]">
         <div className="flex items-center mb-4">

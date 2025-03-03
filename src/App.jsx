@@ -7,6 +7,8 @@ const Home = lazy(() => import('./pages/Home'));
 const Schedule = lazy(() => import('./pages/Schedule'));
 const Map = lazy(() => import('./pages/Map'));
 const Vendors = lazy(() => import('./pages/Vendors'));
+const Experiences = lazy(() => import('./pages/Experiences'));
+const ExperienceDetail = lazy(() => import('./pages/ExperienceDetail'));
 
 // Loading fallback
 const LoadingFallback = () => (
@@ -26,6 +28,8 @@ function App() {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/map" element={<Map />} />
               <Route path="/vendors" element={<Vendors />} />
+              <Route path="/experiences" element={<Experiences />} />
+              <Route path="/experience/:id" element={<ExperienceDetail />} />
             </Routes>
           </Suspense>
         </main>
