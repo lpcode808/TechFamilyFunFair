@@ -23,7 +23,8 @@ git commit -m "Update Tech Family Fun Fair app - $(date '+%Y-%m-%d %H:%M:%S')"
 # Add remote if it doesn't exist
 if ! git remote | grep -q "origin"; then
   echo "Adding remote..."
-  # You'll need to replace this with your actual GitHub repository URL
+  # TODO: Replace the URL below with your actual GitHub repository URL
+  # Example: https://github.com/yourusername/TechFamilyFunFair.git
   git remote add origin https://github.com/yourusername/TechFamilyFunFair.git
 else
   echo "Remote 'origin' already exists."
