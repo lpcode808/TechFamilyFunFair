@@ -16,27 +16,27 @@ fi
 echo "Adding files to Git..."
 git add .
 
-# Commit the changes
+# Commit the changes with timestamp
 echo "Committing changes..."
-git commit -m "Initial commit of Tech Family Fun Fair app"
+git commit -m "Update Tech Family Fun Fair app - $(date '+%Y-%m-%d %H:%M:%S')"
 
 # Add remote if it doesn't exist
 if ! git remote | grep -q "origin"; then
   echo "Adding remote..."
-  git remote add origin https://github.com/lpcode808/TechFamilyFunFair.git
+  # You'll need to replace this with your actual GitHub repository URL
+  git remote add origin https://github.com/yourusername/TechFamilyFunFair.git
 else
   echo "Remote 'origin' already exists."
-  # Update the remote URL to ensure it's correct
-  git remote set-url origin https://github.com/lpcode808/TechFamilyFunFair.git
 fi
 
 # Push to GitHub
 echo "Pushing to GitHub..."
 git push -u origin main
 
-# Deploy to GitHub Pages
-echo "Deploying to GitHub Pages..."
-npm run deploy
+# Build the project
+echo "Building the project..."
+cd tech-family-fun-fair
+npm run build
 
 echo "Deployment process completed!"
-echo "Your application should now be available at: https://lpcode808.github.io/TechFamilyFunFair/" 
+echo "Your application has been built and pushed to GitHub." 
