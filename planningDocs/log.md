@@ -482,3 +482,27 @@ Based on user feedback and space considerations, we've further simplified the ap
 - Optimized layout for smaller screens by removing non-essential UI elements
 
 These changes create a more streamlined user experience that focuses on the most important content while reducing cognitive load for users. The application now has a clearer information architecture with food vendors on the home page and merchandise in a dedicated section.
+
+## Git Repository Setup and File Organization (March 4)
+
+To improve version control and deployment capabilities, we've implemented the following changes:
+
+### Git Repository Configuration
+- Initialized a Git repository in the root directory (`/Users/justinlai/Coding/TechFamilyFunFair`)
+- Removed the nested Git repository in the `tech-family-fun-fair` directory to resolve conflicts
+- Added all project files to the main repository for unified version tracking
+- Created a commit with the simplified layout changes across components and pages
+
+### File Organization
+- Ensured consistent file structure between the repository and the application
+- Copied modified files from the nested directory to maintain all recent changes
+- Updated paths and references to maintain proper functionality
+- Organized files to support easier deployment and version control
+
+### Deployment Preparation
+- Updated the repository structure to support GitHub Pages deployment
+- Ensured all necessary files are tracked in the repository
+- Prepared for future deployments with a cleaner repository structure
+- Resolved conflicts between different versions of configuration files
+
+These changes establish a solid foundation for version control and deployment, making it easier to track changes, collaborate, and deploy updates to the application. The simplified repository structure will support more efficient workflows for future development.
