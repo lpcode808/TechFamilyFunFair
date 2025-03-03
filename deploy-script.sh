@@ -23,9 +23,7 @@ git commit -m "Update Tech Family Fun Fair app - $(date '+%Y-%m-%d %H:%M:%S')"
 # Add remote if it doesn't exist
 if ! git remote | grep -q "origin"; then
   echo "Adding remote..."
-  # TODO: Replace the URL below with your actual GitHub repository URL
-  # Example: https://github.com/yourusername/TechFamilyFunFair.git
-  git remote add origin https://github.com/yourusername/TechFamilyFunFair.git
+  git remote add origin https://github.com/lpcode808/TechFamilyFunFair.git
 else
   echo "Remote 'origin' already exists."
 fi
@@ -34,10 +32,11 @@ fi
 echo "Pushing to GitHub..."
 git push -u origin main
 
-# Build the project
-echo "Building the project..."
+# Deploy to GitHub Pages
+echo "Deploying to GitHub Pages..."
 cd tech-family-fun-fair
 npm run build
+npm run deploy
 
 echo "Deployment process completed!"
-echo "Your application has been built and pushed to GitHub." 
+echo "Your application should now be available at: https://lpcode808.github.io/TechFamilyFunFair/"

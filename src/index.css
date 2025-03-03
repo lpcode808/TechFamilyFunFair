@@ -1,0 +1,293 @@
+/* 
+  Google Fonts Integration
+  Google Fonts have been added to index.html:
+  - Montserrat: For headings
+  - Open Sans: For body text
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles to match La Pietra website */
+:root {
+  /* La Pietra brand colors - adjust these to your preference */
+  --primary-blue: #004299;
+  --secondary-blue: #0056c7;
+  --dark-blue: #003580;
+  --gray-nav: #3D4055;
+  --black: #333333;
+  
+  /* Font families */
+  --heading-font: 'Montserrat', sans-serif;
+  --body-font: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  color: #333;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #004299; /* La Pietra blue */
+  text-decoration: inherit;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0056c7;
+}
+
+body {
+  margin: 0;
+  @apply text-gray-800 bg-gray-50;
+  font-family: var(--body-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--heading-font);
+  @apply font-semibold;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #004299;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #004299;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid #004299;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #004299;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+button:hover {
+  background-color: #0056c7;
+  border-color: #0056c7;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 3px solid rgba(0, 66, 153, 0.3);
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* La Pietra styles for components */
+@layer components {
+  .btn {
+    @apply px-4 py-2 bg-[#004299] text-white rounded hover:bg-[#0056c7] transition-colors font-medium;
+  }
+
+  .section-divider {
+    @apply w-full h-px bg-gray-200 my-8;
+  }
+
+  .content-card {
+    @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4;
+  }
+
+  .event-header {
+    @apply text-2xl font-bold text-center text-[#004299] mb-1;
+  }
+
+  .event-subheader {
+    @apply text-lg font-medium text-gray-700 text-center mb-6;
+  }
+
+  /* Enhanced card styles with top border accent */
+  .la-pietra-card {
+    @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4 border-t-4 border-t-[#004299];
+  }
+  
+  /* Button styles that match La Pietra site */
+  .la-pietra-button {
+    @apply inline-block py-2 px-6 bg-[#004299] text-white text-center font-medium rounded 
+           hover:bg-[#0056c7] transition-colors shadow-sm;
+  }
+}
+
+/* Shadow for text on dark backgrounds */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* La Pietra navigation styles */
+.la-pietra-nav {
+  @apply bg-[#3D4055] text-white py-2;
+}
+
+.la-pietra-nav-item {
+  @apply px-3 py-1 text-sm font-medium hover:underline;
+}
+
+/* Custom header with the correct blue tone */
+.la-pietra-header {
+  @apply bg-[#004299] text-white py-4;
+}
+
+/* Dark mode styles for active navigation */
+.nav-item-active {
+  @apply bg-[#004299] text-white rounded-md;
+}
+
+/* Custom container width to match La Pietra site */
+.la-pietra-container {
+  @apply mx-auto px-4 max-w-6xl;
+}
+
+/* Sidebar styles */
+.sidebar-link {
+  @apply block py-2 px-1 border-b border-gray-200 text-[#004299] 
+         hover:text-[#0056c7] transition-colors;
+}
+
+/* Footer styles similar to La Pietra site */
+.la-pietra-footer {
+  @apply bg-[#3D4055] text-white py-6;
+}
+
+/* Header sizing adjustments for mobile */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important; 
+  }
+  
+  .la-pietra-header {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+}
+
+/* Text shadow utility */
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* La Pietra branded content cards */
+@layer components {
+  .la-pietra-card {
+    @apply bg-white rounded-sm shadow-sm p-4 border-t-4 border-t-[#004299];
+  }
+  
+  .la-pietra-button {
+    @apply py-1.5 px-4 bg-[#004299] text-white text-center font-medium rounded text-sm 
+           hover:bg-[#0056c7] transition-colors focus:outline-none focus:ring-2 
+           focus:ring-[#004299] focus:ring-opacity-50;
+  }
+  
+  .la-pietra-header {
+    @apply bg-[#004299] text-white text-center;
+  }
+  
+  .la-pietra-nav {
+    @apply bg-[#3D4055] text-white py-1 shadow-md;
+  }
+  
+  .la-pietra-nav-item {
+    @apply px-2 py-1 hover:underline whitespace-nowrap text-xs font-medium;
+  }
+  
+  .sidebar-link {
+    @apply text-[#004299] hover:text-[#0056c7] border-b border-gray-200 pb-1 block;
+  }
+  
+  .la-pietra-footer {
+    @apply bg-[#3D4055] text-white py-4;
+  }
+}
+
+/* Make hero banner more compact on mobile */
+@media (max-width: 640px) {
+  .hero-banner {
+    height: 120px !important;
+  }
+}
+
+/* Responsive image handling */
+.responsive-img {
+  @apply w-full h-auto;
+  max-width: 100%;
+}
+
+/* Content card improvements */
+.content-card {
+  @apply bg-white rounded-sm shadow-sm mb-4;
+}
+
+/* Navigation styling for bottom nav */
+.nav-item {
+  @apply flex flex-col items-center justify-center text-xs;
+}
+
+.nav-item svg {
+  @apply w-5 h-5 mb-1;
+}
+
+/* Active nav indicator */
+.active-nav {
+  @apply text-blue-600;
+}
+
+.nav-item.active svg {
+  @apply text-blue-600;
+}

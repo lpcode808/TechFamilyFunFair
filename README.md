@@ -1,30 +1,35 @@
 # Tech & Family Fun Fair App
 
-A mobile-friendly web application for the Tech & Family Fun Fair event at La Pietra Hawaiʻi School For Girls. This app helps attendees navigate the event, explore experiences, find food vendors, and access event details.
+A mobile-first web application for the Tech & Family Fun Fair 2025 event at La Pietra – Hawai'i School for Girls.
 
 ## Features
 
-- **Simplified Experience Listings**: Browse through VR experiences, flight simulators, and claw machines
-- **Food Vendors**: Find information about available food options
-- **Merchandise**: Explore merchandise available at the event
-- **Event Details**: Access important information about the event
-- **Mobile-Optimized**: Designed for easy use on mobile devices
+- 📱 Mobile-friendly interface with bottom navigation
+- 🎮 Simplified Experience Listings: Browse through VR experiences, flight simulators, and claw machines
+- 🍔 Food vendor and merchandise listings
+- 📅 Event details and information
+- 📴 Offline capabilities (coming soon)
 
-## Project Structure
+## Recent Updates
 
-The application is built using React and Vite, with a focus on performance and mobile compatibility. The main components include:
+- Simplified experience listings for better mobile compatibility
+- Enhanced navigation with back buttons
+- Reorganized content for improved user experience
+- Updated food vendor and merchandise information
+- Changed "Vendors" to "Merchandise" in navigation
 
-- Home page with event highlights
-- Experiences page with interactive activities
-- Food vendors section
-- Merchandise listings
-- Event details and information
+## Getting Started
 
-## Installation
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm (v7 or higher)
+
+### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/TechFamilyFunFair.git
+   git clone https://github.com/lpcode808/TechFamilyFunFair.git
    cd TechFamilyFunFair/tech-family-fun-fair
    ```
 
@@ -38,28 +43,73 @@ The application is built using React and Vite, with a focus on performance and m
    npm run dev
    ```
 
-4. Build for production:
-   ```bash
-   npm run build
+4. Open your browser and navigate to:
    ```
+   http://localhost:5173/
+   ```
+
+## Local Development
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
 
 ## Deployment
 
-The application can be deployed using the included deploy script:
+This project is configured for GitHub Pages deployment.
 
-```bash
-./deploy-script.sh
+1. Update the `homepage` field in `package.json` to match your repository.
+2. Deploy to GitHub Pages:
+   ```bash
+   npm run deploy
+   ```
+
+## Built With
+
+- [React](https://reactjs.org/) - UI Framework
+- [Vite](https://vitejs.dev/) - Build Tool
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [React Router](https://reactrouter.com/) - Routing
+- [Heroicons](https://heroicons.com/) - Icons
+- [Zustand](https://zustand-demo.pmnd.rs/) - State Management
+
+## Project Structure
+
 ```
-
-Make sure to update the GitHub repository URL in the deploy script before running it.
-
-## Recent Updates
-
-- Simplified experience listings for better mobile compatibility
-- Enhanced navigation with back buttons
-- Reorganized content for improved user experience
-- Updated food vendor and merchandise information
+/tech-family-fun-fair
+  ├── public/               # Static assets
+  ├── src/
+  │   ├── assets/
+  │   │   └── data/         # JSON data files
+  │   │       ├── schedule.json
+  │   │       ├── map.json
+  │   │       └── vendors.json
+  │   ├── components/       # Reusable components
+  │   │   ├── BottomNav.jsx
+  │   │   ├── BackButton.jsx
+  │   │   ├── MapMarker.jsx
+  │   │   └── ScheduleItem.jsx
+  │   ├── pages/            # Page components
+  │   │   ├── Home.jsx
+  │   │   ├── Schedule.jsx
+  │   │   ├── Experiences.jsx
+  │   │   ├── ExperienceDetail.jsx
+  │   │   ├── Map.jsx
+  │   │   └── Vendors.jsx
+  │   ├── App.jsx           # Main app component
+  │   ├── main.jsx          # Entry point
+  │   └── index.css         # Global styles
+  ├── index.html            # Entry HTML
+  ├── tailwind.config.js    # Tailwind configuration
+  ├── postcss.config.js     # PostCSS configuration
+  └── vite.config.js        # Vite configuration
+```
 
 ## License
 
-This project is proprietary and developed for La Pietra Hawaiʻi School For Girls. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- La Pietra – Hawai'i School for Girls for hosting the Tech & Family Fun Fair event
+- All contributors to the open-source libraries used in this project
