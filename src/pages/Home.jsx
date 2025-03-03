@@ -1,17 +1,25 @@
 import { Link } from 'react-router-dom';
-import { CalendarIcon, MapIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
+import vendorsData from '../assets/data/vendors.json';
+import { lazy, Suspense } from 'react';
+
+// Lazily load food vendor data
+const foodVendors = vendorsData.filter(vendor => vendor.type === 'food');
 
 export default function Home() {
   return (
     <div className="pb-20">
-      {/* Hero Banner with VR Image */}
+      {/* Hero Banner - Temporarily hidden 
       <div className="w-full relative mb-6">
-        {/* Hero Image - Replace the URL with the actual path once image is saved to your project */}
-        <div className="w-full h-[50vh] md:h-[60vh] bg-cover bg-center" 
-             style={{ 
-               backgroundImage: "url('/assets/hero-vr-girl.jpg')", 
-               backgroundPosition: "center 20%" 
-             }}>
+        <div 
+          className="w-full h-[50vh] md:h-[60vh] bg-cover bg-center" 
+          style={{ 
+            backgroundImage: "url('/assets/hero-vr-girl.jpg')", 
+            backgroundPosition: "center 20%" 
+          }}
+          loading="lazy"
+          aria-label="Tech Family Fun Fair - VR Experience"
+        >
           <div className="absolute inset-0 bg-blue-900/30"></div>
           <div className="absolute bottom-0 left-0 w-full p-4 md:p-8 text-white">
             <div className="max-w-3xl">
@@ -25,31 +33,13 @@ export default function Home() {
           </div>
         </div>
       </div>
+      */}
 
       <div className="container mx-auto px-4">
         <div className="py-6">
           <h1 className="text-2xl font-bold mb-2">Tech & Family Fun Fair</h1>
           <p className="text-gray-600 mb-6">La Pietra Hawaiʻi School For Girls</p>
           
-          {/* Quick Links Section */}
-          <div className="bg-white rounded-lg shadow-sm p-5 mb-6 border-t-4 border-t-[#004299]">
-            <h2 className="text-xl font-semibold text-[#004299] mb-4">Quick Links</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Link to="/schedule" className="flex items-center justify-center p-3 bg-gray-100 hover:bg-gray-200 text-[#004299] font-medium rounded transition-colors">
-                <CalendarIcon className="w-5 h-5 mr-2" />
-                Event Schedule
-              </Link>
-              <Link to="/map" className="flex items-center justify-center p-3 bg-gray-100 hover:bg-gray-200 text-[#004299] font-medium rounded transition-colors">
-                <MapIcon className="w-5 h-5 mr-2" />
-                Interactive Map
-              </Link>
-              <Link to="/vendors" className="flex items-center justify-center p-3 bg-gray-100 hover:bg-gray-200 text-[#004299] font-medium rounded transition-colors">
-                <ShoppingBagIcon className="w-5 h-5 mr-2" />
-                Browse Vendors
-              </Link>
-            </div>
-          </div>
-
           {/* Event Details Grid */}
           <div className="bg-white rounded-lg shadow-sm p-5 mb-6 border-t-4 border-t-[#004299]">
             <h2 className="text-xl font-semibold text-[#004299] mb-4">Event Details</h2>
@@ -90,34 +80,38 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Featured Highlights */}
+          {/* Food Vendors Section */}
           <div className="bg-white rounded-lg shadow-sm p-5 mb-6 border-t-4 border-t-[#004299]">
-            <h2 className="text-xl font-semibold text-[#004299] mb-4">Event Highlights</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="border border-gray-200 rounded p-4">
-                <h3 className="text-lg font-semibold mb-2">Technology Exhibits</h3>
-                <p className="text-sm text-gray-700">
-                  Explore cutting-edge technology displays and interactive exhibits from local companies and student projects.
-                </p>
-              </div>
-              <div className="border border-gray-200 rounded p-4">
-                <h3 className="text-lg font-semibold mb-2">Hands-on Workshops</h3>
-                <p className="text-sm text-gray-700">
-                  Participate in coding, robotics, and creative workshops suitable for all skill levels and ages.
-                </p>
-              </div>
-              <div className="border border-gray-200 rounded p-4">
-                <h3 className="text-lg font-semibold mb-2">Food & Refreshments</h3>
-                <p className="text-sm text-gray-700">
-                  Enjoy a variety of food options from local vendors throughout the event.
-                </p>
-              </div>
-              <div className="border border-gray-200 rounded p-4">
-                <h3 className="text-lg font-semibold mb-2">Community Showcase</h3>
-                <p className="text-sm text-gray-700">
-                  See demonstrations and performances from community groups and student organizations.
-                </p>
-              </div>
+            <h2 className="text-xl font-semibold text-[#004299] mb-4">Food Vendors</h2>
+            <p className="mb-4">Enjoy delicious food and treats from these amazing local vendors:</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {foodVendors.map(vendor => (
+                <div key={vendor.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">{vendor.emoji}</span>
+                    <h3 className="text-lg font-semibold">{vendor.name}</h3>
+                  </div>
+                  <p className="text-gray-700 mb-3">{vendor.description}</p>
+                  <div className="text-sm space-y-1 text-gray-600">
+                    {vendor.location && (
+                      <p><span className="font-semibold">Location:</span> {vendor.location}</p>
+                    )}
+                    {vendor.phone && (
+                      <p><span className="font-semibold">Phone:</span> {vendor.phone}</p>
+                    )}
+                    {vendor.website && (
+                      <p><span className="font-semibold">Website:</span> <a href={vendor.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{vendor.website.replace('https://www.', '').replace('https://', '')}</a></p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-4 text-center">
+              <Link to="/vendors" className="inline-block text-[#004299] font-medium hover:underline">
+                View all merchandise →
+              </Link>
             </div>
           </div>
 
