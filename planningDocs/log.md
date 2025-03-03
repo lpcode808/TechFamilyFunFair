@@ -542,3 +542,36 @@ During our repository setup, we encountered several challenges that provided val
 - Utilizing `git gc` to clean up and optimize the repository
 
 These lessons will help us maintain cleaner, more efficient repositories in future projects, avoiding common pitfalls that can lead to deployment issues and repository bloat.
+
+## 2025-03-05 15:30:00 HST - Fixed JSON Data Loading for Deployment
+
+### Issue
+After deploying to GitHub Pages, we discovered that the JSON data files (experiences.json, vendors.json, schedule.json, map.json) were not being properly included in the build, causing empty pages in the deployed application.
+
+### Solution
+1. Created a public/assets/data directory to store JSON files for static serving
+2. Copied all JSON data files from src/assets/data to public/assets/data
+3. Updated all components to fetch JSON data from the public directory:
+   - Modified Experiences.jsx to fetch experiences.json via fetch API
+   - Modified ExperienceDetail.jsx to fetch experiences.json via fetch API
+   - Modified Home.jsx to fetch vendors.json via fetch API
+   - Modified Vendors.jsx to fetch vendors.json via fetch API
+   - Modified Map.jsx to fetch map.json and schedule.json via fetch API
+   - Modified Schedule.jsx to fetch schedule.json via fetch API
+
+### Technical Details
+- Replaced direct imports like `import data from '../assets/data/file.json'` with dynamic fetching
+- Added state variables and useEffect hooks to handle asynchronous data loading
+- Implemented error handling for fetch operations
+- Updated dependency arrays in useMemo hooks to react to data changes
+
+### Benefits
+- JSON data files are now properly included in the build and served as static assets
+- The application can now access the data files in both development and production environments
+- Improved error handling for data loading failures
+- More robust approach to data fetching that works with GitHub Pages deployment
+
+### Next Steps
+1. Test the deployment to ensure all data is loading correctly
+2. Consider adding loading indicators while data is being fetched
+3. Implement caching strategies for the fetched data if needed

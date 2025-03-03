@@ -1,12 +1,22 @@
 import { Link } from 'react-router-dom';
 import { CalendarIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
-import vendorsData from '../assets/data/vendors.json';
-import { lazy, Suspense } from 'react';
-
-// Lazily load food vendor data
-const foodVendors = vendorsData.filter(vendor => vendor.type === 'food');
+import { lazy, Suspense, useState, useEffect } from 'react';
 
 export default function Home() {
+  const [foodVendors, setFoodVendors] = useState([]);
+  
+  useEffect(() => {
+    // Fetch the vendors data from the public directory
+    fetch('/assets/data/vendors.json')
+      .then(response => response.json())
+      .then(data => {
+        // Filter for food vendors
+        const foodVendorsData = data.filter(vendor => vendor.type === 'food');
+        setFoodVendors(foodVendorsData);
+      })
+      .catch(error => console.error('Error loading vendors:', error));
+  }, []);
+
   return (
     <div className="pb-20">
       {/* Hero Banner - Temporarily hidden 
@@ -96,6 +106,9 @@ export default function Home() {
                   <div className="text-sm space-y-1 text-gray-600">
                     {vendor.location && (
                       <p><span className="font-semibold">Location:</span> {vendor.location}</p>
+                    )}
+                    {vendor.address && (
+                      <p><span className="font-semibold">Address:</span> {vendor.address}</p>
                     )}
                     {vendor.phone && (
                       <p><span className="font-semibold">Phone:</span> {vendor.phone}</p>

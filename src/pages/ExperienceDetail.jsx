@@ -1,16 +1,24 @@
 import { useParams, Link } from 'react-router-dom';
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { ArrowLeftIcon, ClockIcon, UserIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 // MapIcon import removed
-import experienceData from '../assets/data/experiences.json';
 
 export default function ExperienceDetail() {
   const { id } = useParams();
+  const [experienceData, setExperienceData] = useState([]);
+  
+  useEffect(() => {
+    // Fetch the experiences data from the public directory
+    fetch('/assets/data/experiences.json')
+      .then(response => response.json())
+      .then(data => setExperienceData(data))
+      .catch(error => console.error('Error loading experiences:', error));
+  }, []);
   
   // Find the experience based on ID
   const experience = useMemo(() => {
     return experienceData.find(exp => exp.id === id) || {};
-  }, [id]);
+  }, [id, experienceData]);
 
   // Filter to keep only the experiences we're displaying
   const filteredExperiences = useMemo(() => {
@@ -19,7 +27,7 @@ export default function ExperienceDetail() {
       'hpu', 'looopsie', 'lp-laser', 'lp-robotics', 'mit-lenovo', 'racing-sim'
     ];
     return experienceData.filter(exp => keepIds.includes(exp.id));
-  }, []);
+  }, [experienceData]);
   
   if (!experience.id) {
     return (
@@ -118,7 +126,7 @@ export default function ExperienceDetail() {
               {/* Optional social media sharing buttons could go here */}
             </div>
             
-            {experience.id.includes('vr') && (
+            {experience.id && experience.id.includes('vr') && (
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <h3 className="font-semibold text-yellow-800 mb-2">Note</h3>
                 <p className="text-sm text-yellow-800">

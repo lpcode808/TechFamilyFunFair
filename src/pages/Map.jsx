@@ -1,13 +1,27 @@
 import { useState, useEffect, useMemo, memo } from 'react';
 import MapMarker from '../components/MapMarker';
-import mapData from '../assets/data/map.json';
-import scheduleData from '../assets/data/schedule.json';
 
 // Memoize the MapMarker component
 const MemoizedMapMarker = memo(MapMarker);
 
 export default function Map() {
+  const [mapData, setMapData] = useState({ zones: {}, attractions: [] });
+  const [scheduleData, setScheduleData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
+  
+  useEffect(() => {
+    // Fetch map data
+    fetch('/assets/data/map.json')
+      .then(response => response.json())
+      .then(data => setMapData(data))
+      .catch(error => console.error('Error loading map data:', error));
+    
+    // Fetch schedule data
+    fetch('/assets/data/schedule.json')
+      .then(response => response.json())
+      .then(data => setScheduleData(data))
+      .catch(error => console.error('Error loading schedule data:', error));
+  }, []);
   
   // Convert to useMemo to avoid recalculating on each render
   const eventDetails = useMemo(() => {
@@ -16,7 +30,7 @@ export default function Map() {
       eventMap[event.id] = event;
     });
     return eventMap;
-  }, []);
+  }, [scheduleData]);
   
   const handleMarkerClick = (id) => {
     setSelectedMarker(selectedMarker === id ? null : id);
@@ -43,7 +57,7 @@ export default function Map() {
         </div>
       );
     });
-  }, []);
+  }, [mapData.zones]);
   
   // Memoize attraction markers
   const attractionMarkers = useMemo(() => {
@@ -61,7 +75,7 @@ export default function Map() {
         />
       );
     });
-  }, [eventDetails, selectedMarker]);
+  }, [eventDetails, selectedMarker, mapData.attractions]);
   
   // Memoize selected event details
   const selectedEventElement = useMemo(() => {

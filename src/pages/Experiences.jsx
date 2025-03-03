@@ -1,9 +1,18 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import experienceData from '../assets/data/experiences.json';
 import BackButton from '../components/BackButton';
 
 export default function Experiences() {
+  const [experienceData, setExperienceData] = useState([]);
+  
+  useEffect(() => {
+    // Fetch the experiences data from the public directory
+    fetch('/assets/data/experiences.json')
+      .then(response => response.json())
+      .then(data => setExperienceData(data))
+      .catch(error => console.error('Error loading experiences:', error));
+  }, []);
+
   // Filter to single items for duplicate categories and sort alphabetically
   const filteredExperiences = useMemo(() => {
     const keepIds = [
@@ -14,7 +23,7 @@ export default function Experiences() {
     return experienceData
       .filter(exp => keepIds.includes(exp.id))
       .sort((a, b) => a.title.localeCompare(b.title));
-  }, []);
+  }, [experienceData]);
 
   return (
     <div className="container mx-auto px-4 py-8 pb-20">

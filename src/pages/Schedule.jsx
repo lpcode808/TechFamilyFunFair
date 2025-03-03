@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
 import ScheduleItem from '../components/ScheduleItem';
-import scheduleData from '../assets/data/schedule.json';
 
 export default function Schedule() {
   const [schedule, setSchedule] = useState([]);
   const [filter, setFilter] = useState('all');
   
   useEffect(() => {
-    // Sort schedule by time
-    const sortedSchedule = [...scheduleData].sort((a, b) => {
-      // Convert time strings to comparable values (simple version)
-      const timeA = a.time;
-      const timeB = b.time;
-      return timeA.localeCompare(timeB);
-    });
-    
-    setSchedule(sortedSchedule);
+    // Fetch schedule data from public directory
+    fetch('/assets/data/schedule.json')
+      .then(response => response.json())
+      .then(data => {
+        // Sort schedule by time
+        const sortedSchedule = [...data].sort((a, b) => {
+          // Convert time strings to comparable values (simple version)
+          const timeA = a.time;
+          const timeB = b.time;
+          return timeA.localeCompare(timeB);
+        });
+        
+        setSchedule(sortedSchedule);
+      })
+      .catch(error => console.error('Error loading schedule:', error));
   }, []);
   
   const filteredSchedule = schedule.filter(item => {

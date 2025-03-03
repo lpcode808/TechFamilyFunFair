@@ -1,11 +1,20 @@
-import { useMemo } from 'react';
-import vendorsData from '../assets/data/vendors.json';
+import { useMemo, useState, useEffect } from 'react';
 
 export default function Vendors() {
+  const [vendorsData, setVendorsData] = useState([]);
+  
+  useEffect(() => {
+    // Fetch the vendors data from the public directory
+    fetch('/assets/data/vendors.json')
+      .then(response => response.json())
+      .then(data => setVendorsData(data))
+      .catch(error => console.error('Error loading vendors:', error));
+  }, []);
+
   // Filter to only show merchandise vendors
   const merchandiseVendors = useMemo(() => {
     return vendorsData.filter(vendor => vendor.type === 'merchandise');
-  }, []);
+  }, [vendorsData]);
   
   return (
     <div className="container mx-auto px-4 pb-20">
