@@ -1,0 +1,10 @@
+{
+  "name": "tech-family-fun-fair",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://lpcode808.github.io/TechFamilyFunFair",
+  "dependencies": {
+    "vite-plugin-compression2": "^1.3.3"
+  }
+}
