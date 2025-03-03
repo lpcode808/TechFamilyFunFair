@@ -506,3 +506,39 @@ To improve version control and deployment capabilities, we've implemented the fo
 - Resolved conflicts between different versions of configuration files
 
 These changes establish a solid foundation for version control and deployment, making it easier to track changes, collaborate, and deploy updates to the application. The simplified repository structure will support more efficient workflows for future development.
+
+## Git Repository Management Lessons Learned (March 4)
+
+During our repository setup, we encountered several challenges that provided valuable lessons for future projects:
+
+### Issues Encountered
+- Large files in the repository causing push failures (HTTP 400 errors)
+- Nested Git repository creating conflicts with the parent repository
+- Unintentional tracking of large data files and build artifacts
+- Repository size exceeding GitHub's recommended push limits
+
+### Diagnostic Strategies
+- Using `git status` to identify uncommitted changes and untracked files
+- Running `find . -type f -size +1M` to locate large files in the repository
+- Checking `git remote -v` to verify remote repository configuration
+- Using `git ls-files | grep pattern` to identify specific files being tracked
+- Examining `git count-objects -v` to assess repository size and object count
+
+### Prevention Strategies for Future Projects
+- Create a comprehensive `.gitignore` file at the beginning of the project
+- Add common exclusions for build artifacts, dependencies, and large data files:
+  - `node_modules/`, `dist/`, `build/`, `*.log`, etc.
+  - Data directories containing large files (`data/`, `assets/raw/`, etc.)
+  - IDE-specific files (`.vscode/`, `.idea/`, etc.)
+- Avoid creating nested Git repositories within a project
+- Use Git LFS (Large File Storage) for managing large binary files when necessary
+- Regularly audit repository size with `git count-objects -v`
+- Consider using shallow clones for large repositories with extensive history
+
+### Repository Cleanup Techniques
+- Creating a clean repository with only essential files
+- Using `git rm --cached` to remove tracked files without deleting them
+- Implementing `git filter-branch` or BFG Repo-Cleaner for removing large files from history
+- Utilizing `git gc` to clean up and optimize the repository
+
+These lessons will help us maintain cleaner, more efficient repositories in future projects, avoiding common pitfalls that can lead to deployment issues and repository bloat.
