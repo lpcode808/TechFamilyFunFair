@@ -1,0 +1,76 @@
+[
+  {
+    "id": "food-1",
+    "name": "Chubbies Burgers",
+    "type": "food",
+    "emoji": "🍔",
+    "description": "Sink your teeth into juicy, flavor-packed burgers and fries.",
+    "location": "Food Court A",
+    "phone": "(808) 291-7867",
+    "website": "https://www.chubbiesburgers.com",
+    "address": "CLOSED as of Feb 1, 2025 (Was: 1145C 12th Ave, Honolulu, HI 96816)"
+  },
+  {
+    "id": "food-2",
+    "name": "Milky Way Shave Ice",
+    "type": "food",
+    "emoji": "🍧",
+    "description": "Cool off with a delicious and unique take on shave ice with boba drinks.",
+    "location": "Food Court B",
+    "phone": "(808) 463-8110 & (808) 200-1448",
+    "address": "710 Pohukaina St, Honolulu, HI 96813 & 2130 N King St, Honolulu, HI 96819"
+  },
+  {
+    "id": "food-3",
+    "name": "Cookie Box of Gems",
+    "type": "food",
+    "emoji": "🍪",
+    "description": "Satisfy your sweet tooth with gourmet cookies.",
+    "location": "Food Court A",
+    "website": "https://cookieboxofgems.com",
+    "address": "Heeia Pier general store (46-499 Kamehameha Hwy)"
+  },
+  {
+    "id": "food-4",
+    "name": "Sabrozon",
+    "type": "food",
+    "emoji": "🌮",
+    "description": "Enjoy mouthwatering Mexican flavors.",
+    "location": "Food Court B",
+    "phone": "(808) 482-9445",
+    "address": "Food Truck serving Honolulu Area"
+  },
+  {
+    "id": "food-5",
+    "name": "Papi's Empanadas",
+    "type": "food",
+    "emoji": "🥟",
+    "description": "Indulge in savory empanadas.",
+    "location": "Food Court A",
+    "phone": "(917) 797-8678",
+    "website": "https://www.papisempanadas.com",
+    "address": "KCC Farmers Market (4303 Diamond Head Rd) & Kailua Farmers Market (609 Kailua Rd)"
+  },
+  {
+    "id": "food-6",
+    "name": "All of the Above Bakery",
+    "type": "food",
+    "emoji": "🧁",
+    "description": "Delight in irresistible baked goods.",
+    "location": "Food Court B"
+  },
+  {
+    "id": "merch-1",
+    "name": "Gadget Galaxy",
+    "type": "merchandise",
+    "location": "Vendor Hall",
+    "items": ["Tech T-shirts", "Coding Books", "Robot Kits"]
+  },
+  {
+    "id": "merch-2",
+    "name": "Digital Dreams",
+    "type": "merchandise",
+    "location": "Vendor Hall",
+    "items": ["VR Accessories", "Smart Watches", "STEM Toys"]
+  }
+] 
