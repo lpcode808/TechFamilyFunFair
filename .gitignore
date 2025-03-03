@@ -43,3 +43,6 @@ coverage
 .temp
 .tmp
 .cache
+
+# Project specific
+data/
