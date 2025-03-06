@@ -8,7 +8,10 @@
     "location": "Food Court A",
     "phone": "(808) 291-7867",
     "website": "https://www.chubbiesburgers.com",
-    "address": "CLOSED as of Feb 1, 2025 (Was: 1145C 12th Ave, Honolulu, HI 96816)"
+    "address": "CLOSED as of Feb 1, 2025 (Was: 1145C 12th Ave, Honolulu, HI 96816)",
+    "googleUrl": "https://www.google.com/maps/place/Chubbies+Burgers",
+    "yelpUrl": "https://www.yelp.com/biz/chubbies-burgers-honolulu",
+    "instagramUrl": "https://www.instagram.com/chubbiesburgers"
   },
   {
     "id": "food-2",
@@ -18,7 +21,9 @@
     "description": "Cool off with a delicious and unique take on shave ice with boba drinks.",
     "location": "Food Court B",
     "phone": "(808) 463-8110 & (808) 200-1448",
-    "address": "710 Pohukaina St, Honolulu, HI 96813 & 2130 N King St, Honolulu, HI 96819"
+    "address": "710 Pohukaina St, Honolulu, HI 96813 & 2130 N King St, Honolulu, HI 96819",
+    "googleUrl": "https://www.google.com/maps/place/Milky+Way+Shave+Ice",
+    "instagramUrl": "https://www.instagram.com/milkyway.hawaii"
   },
   {
     "id": "food-3",
@@ -28,7 +33,9 @@
     "description": "Satisfy your sweet tooth with gourmet cookies.",
     "location": "Food Court A",
     "website": "https://cookieboxofgems.com",
-    "address": "Heeia Pier general store (46-499 Kamehameha Hwy)"
+    "address": "Heeia Pier general store (46-499 Kamehameha Hwy)",
+    "googleUrl": "https://www.google.com/maps/place/Cookie+Box+of+Gems",
+    "instagramUrl": "https://www.instagram.com/cookieboxofgems"
   },
   {
     "id": "food-4",
@@ -38,7 +45,9 @@
     "description": "Enjoy mouthwatering Mexican flavors.",
     "location": "Food Court B",
     "phone": "(808) 482-9445",
-    "address": "Food Truck serving Honolulu Area"
+    "address": "Food Truck serving Honolulu Area",
+    "googleUrl": "https://www.google.com/maps/place/Sabrozon+Food+Truck",
+    "yelpUrl": "https://www.yelp.com/biz/sabrozon-honolulu"
   },
   {
     "id": "food-5",
@@ -49,7 +58,10 @@
     "location": "Food Court A",
     "phone": "(917) 797-8678",
     "website": "https://www.papisempanadas.com",
-    "address": "KCC Farmers Market (4303 Diamond Head Rd) & Kailua Farmers Market (609 Kailua Rd)"
+    "address": "KCC Farmers Market (4303 Diamond Head Rd) & Kailua Farmers Market (609 Kailua Rd)",
+    "googleUrl": "https://www.google.com/maps/place/Papi's+Empanadas",
+    "yelpUrl": "https://www.yelp.com/biz/papis-empanadas-honolulu",
+    "instagramUrl": "https://www.instagram.com/papisempanadas"
   },
   {
     "id": "food-6",
@@ -57,7 +69,8 @@
     "type": "food",
     "emoji": "🧁",
     "description": "Delight in irresistible baked goods.",
-    "location": "Food Court B"
+    "location": "Food Court B",
+    "googleUrl": "https://www.google.com/maps/place/All+of+the+Above+Bakery"
   },
   {
     "id": "merch-1",
