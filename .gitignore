@@ -48,3 +48,31 @@ coverage
 data/
 tech-family-fun-fair/dist/
 tech-family-fun-fair/node_modules/
+
+# Large media files - consider using Git LFS for these if needed
+*.mp4
+*.mov
+*.tiff
+*.avi
+*.flv
+*.ogv
+*.webm
+*.jpeg
+*.jpg
+*.gif
+*.png
+*.ico
+*.svg
+*.pdf
+!public/favicon.ico
+!src/assets/icons/**/*.svg
+!public/logo*.png
+
+# Allow tracked images in specific directories
+!public/assets/data/**/*.json
+!public/images/**/*.png
+!public/images/**/*.jpg
+!public/images/**/*.svg
+!src/assets/images/**/*.png
+!src/assets/images/**/*.jpg
+!src/assets/images/**/*.svg

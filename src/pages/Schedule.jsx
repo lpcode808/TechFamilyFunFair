@@ -53,12 +53,14 @@ export default function Schedule() {
   return (
     <div className="container mx-auto px-4 pb-20">
       <div className="py-6">
-        <h1 className="text-2xl font-bold">Event Schedule</h1>
+        <h1 className="text-2xl font-bold dark:text-dark-text">Event Schedule</h1>
         
         <div className="flex overflow-x-auto py-4 space-x-2">
           <button 
             className={`px-4 py-2 rounded-full text-sm font-medium ${
-              filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+              filter === 'all' 
+                ? 'bg-blue-600 dark:bg-dark-primary text-white' 
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'
             }`}
             onClick={() => setFilter('all')}
           >
@@ -66,7 +68,9 @@ export default function Schedule() {
           </button>
           <button 
             className={`px-4 py-2 rounded-full text-sm font-medium ${
-              filter === 'tech-talk' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+              filter === 'tech-talk' 
+                ? 'bg-blue-600 dark:bg-dark-primary text-white' 
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'
             }`}
             onClick={() => setFilter('tech-talk')}
           >
@@ -74,7 +78,9 @@ export default function Schedule() {
           </button>
           <button 
             className={`px-4 py-2 rounded-full text-sm font-medium ${
-              filter === 'activity' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+              filter === 'activity' 
+                ? 'bg-blue-600 dark:bg-dark-primary text-white' 
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'
             }`}
             onClick={() => setFilter('activity')}
           >
@@ -84,7 +90,7 @@ export default function Schedule() {
         
         {loading && (
           <div className="text-center py-8">
-            <p>Loading schedule...</p>
+            <p className="dark:text-dark-text">Loading schedule...</p>
           </div>
         )}
         
@@ -93,7 +99,7 @@ export default function Schedule() {
             <p>Error loading schedule: {error}</p>
             <button 
               onClick={() => window.location.reload()} 
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+              className="mt-4 px-4 py-2 bg-blue-500 dark:bg-dark-primary text-white rounded"
             >
               Retry
             </button>
@@ -107,9 +113,9 @@ export default function Schedule() {
                 <ScheduleItem key={item.id} item={item} />
               ))
             ) : (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-gray-500 dark:text-gray-400">
                 <p>No events matching the selected filter.</p>
-                <pre className="mt-4 text-xs text-left bg-gray-100 p-2 rounded overflow-auto">
+                <pre className="mt-4 text-xs text-left bg-gray-100 dark:bg-dark-secondary dark:text-gray-300 p-2 rounded overflow-auto">
                   Available types: {[...new Set(schedule.map(item => item.type))].join(', ')}
                 </pre>
               </div>

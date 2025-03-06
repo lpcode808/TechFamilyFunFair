@@ -18,6 +18,14 @@
   --gray-nav: #3D4055;
   --black: #333333;
   
+  /* Dark mode colors */
+  --dark-bg: #121628;
+  --dark-card: #1E293B;
+  --dark-text: #E2E8F0;
+  --dark-primary: #3B82F6;
+  --dark-primary-hover: #60A5FA;
+  --dark-secondary: #374151;
+  
   /* Font families */
   --heading-font: 'Montserrat', sans-serif;
   --body-font: 'Open Sans', sans-serif;
@@ -32,6 +40,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Add transition for dark mode changes */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode background and text colors */
+.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 a {
@@ -41,8 +58,16 @@ a {
   transition: color 0.2s;
 }
 
+.dark a {
+  color: var(--dark-primary);
+}
+
 a:hover {
   color: #0056c7;
+}
+
+.dark a:hover {
+  color: var(--dark-primary-hover);
 }
 
 body {
@@ -51,6 +76,11 @@ body {
   font-family: var(--body-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  @apply bg-dark-bg text-dark-text;
 }
 
 h1, h2, h3, h4 {
@@ -126,21 +156,41 @@ ul {
   .btn {
     @apply px-4 py-2 bg-[#004299] text-white rounded hover:bg-[#0056c7] transition-colors font-medium;
   }
+  
+  .dark .btn {
+    @apply bg-dark-primary hover:bg-dark-primary-hover;
+  }
 
   .section-divider {
     @apply w-full h-px bg-gray-200 my-8;
+  }
+  
+  .dark .section-divider {
+    @apply bg-dark-secondary;
   }
 
   .content-card {
     @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4;
   }
+  
+  .dark .content-card {
+    @apply bg-dark-card border-dark-secondary;
+  }
 
   .event-header {
     @apply text-2xl font-bold text-center text-[#004299] mb-1;
   }
+  
+  .dark .event-header {
+    @apply text-dark-primary;
+  }
 
   .event-subheader {
     @apply text-lg font-medium text-gray-700 text-center mb-6;
+  }
+  
+  .dark .event-subheader {
+    @apply text-gray-300;
   }
 
   /* Enhanced card styles with top border accent */
@@ -148,10 +198,18 @@ ul {
     @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4 border-t-4 border-t-[#004299];
   }
   
+  .dark .la-pietra-card {
+    @apply bg-dark-card border-gray-700 border-t-dark-primary;
+  }
+  
   /* Button styles that match La Pietra site */
   .la-pietra-button {
     @apply inline-block py-2 px-6 bg-[#004299] text-white text-center font-medium rounded 
            hover:bg-[#0056c7] transition-colors shadow-sm;
+  }
+  
+  .dark .la-pietra-button {
+    @apply bg-dark-primary hover:bg-dark-primary-hover;
   }
 }
 
@@ -174,9 +232,17 @@ ul {
   @apply bg-[#004299] text-white py-4;
 }
 
+.dark .la-pietra-header {
+  @apply bg-dark-secondary;
+}
+
 /* Dark mode styles for active navigation */
 .nav-item-active {
   @apply bg-[#004299] text-white rounded-md;
+}
+
+.dark .nav-item-active {
+  @apply bg-dark-primary;
 }
 
 /* Custom container width to match La Pietra site */
@@ -190,9 +256,17 @@ ul {
          hover:text-[#0056c7] transition-colors;
 }
 
+.dark .sidebar-link {
+  @apply border-dark-secondary text-dark-primary hover:text-dark-primary-hover;
+}
+
 /* Footer styles similar to La Pietra site */
 .la-pietra-footer {
   @apply bg-[#3D4055] text-white py-6;
+}
+
+.dark .la-pietra-footer {
+  @apply bg-dark-secondary;
 }
 
 /* Header sizing adjustments for mobile */

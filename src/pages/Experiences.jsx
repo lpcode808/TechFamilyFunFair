@@ -58,11 +58,11 @@ export default function Experiences() {
     <div className="container mx-auto px-4 py-8 pb-20">
       <BackButton to="/" label="Back to Home" />
       
-      <h1 className="text-2xl font-bold text-[#004299] mb-6">All Experiences</h1>
+      <h1 className="text-2xl font-bold text-[#004299] dark:text-dark-primary mb-6">All Experiences</h1>
       
       {loading && (
         <div className="text-center py-8">
-          <p>Loading experiences...</p>
+          <p className="dark:text-dark-text">Loading experiences...</p>
         </div>
       )}
       
@@ -71,7 +71,7 @@ export default function Experiences() {
           <p>Error loading experiences: {error}</p>
           <button 
             onClick={() => window.location.reload()} 
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            className="mt-4 px-4 py-2 bg-blue-500 dark:bg-dark-primary text-white rounded"
           >
             Retry
           </button>
@@ -86,33 +86,33 @@ export default function Experiences() {
               <Link
                 key={experience.id}
                 to={`/experience/${experience.id}`}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow p-4 flex flex-col"
+                className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col"
               >
                 <div className="flex items-start mb-2">
                   <div className="text-3xl mr-3">{experience.icon}</div>
                   <div>
-                    <h3 className="font-semibold text-[#004299]">{experience.title}</h3>
-                    <p className="text-sm text-gray-600">{experience.provider}</p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <h3 className="font-semibold text-[#004299] dark:text-dark-primary">{experience.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{experience.provider}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       {experience.location}
                     </p>
                   </div>
                 </div>
                 
                 {experience.description && (
-                  <p className="text-sm text-gray-700 mt-2 line-clamp-3">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mt-2 line-clamp-3">
                     {experience.description}
                   </p>
                 )}
                 
                 <div className="mt-auto pt-3 flex flex-wrap gap-2">
                   {experience.ageRestriction && (
-                    <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+                    <span className="text-xs bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2 py-1 rounded">
                       Age: {experience.ageRestriction}
                     </span>
                   )}
                   {experience.duration && (
-                    <span className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded">
+                    <span className="text-xs bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 px-2 py-1 rounded">
                       {experience.duration}
                     </span>
                   )}

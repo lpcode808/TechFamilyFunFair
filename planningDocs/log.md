@@ -575,3 +575,126 @@ After deploying to GitHub Pages, we discovered that the JSON data files (experie
 1. Test the deployment to ensure all data is loading correctly
 2. Consider adding loading indicators while data is being fetched
 3. Implement caching strategies for the fetched data if needed
+
+## 2025-03-05 15:45:00 HST - Social Media Button UI Update
+
+We've updated the social media links in the food vendor cards from icons to text-based buttons:
+
+### Changes Made
+- Created a new `SocialButton` component in `Home.jsx` to replace the icon-based implementation
+- Implemented rounded rectangular buttons with:
+  - Blue background (#004299)
+  - White text
+  - Consistent minimum width (90px)
+  - Proper padding and hover effects
+- Created a backup of the original icon implementation in `SocialIconBackup.jsx`
+- Updated the food vendor cards to use the new button style
+- Maintained all existing functionality including:
+  - Conditional rendering based on URL availability
+  - External link handling with proper security attributes
+  - Centered alignment based on number of buttons shown
+
+### Benefits
+- Improved readability with text labels instead of icons
+- More consistent visual appearance across different screen sizes
+- Better touch targets for mobile users
+- Clearer indication of available social media links
+- Easier maintenance with simpler markup
+
+The original icon implementation remains available in `SocialIconBackup.jsx` for potential future use.
+
+## 2025-03-05 16:30:00 HST - Dark Mode Implementation
+
+We've implemented a comprehensive dark mode for the Tech Family Fun Fair application:
+
+### Dark Mode Architecture
+- Created a `ThemeContext` provider for managing theme state
+- Added theme toggle button with sun/moon icons
+- Implemented localStorage persistence for user theme preference
+- Added smooth transitions between light and dark themes
+
+### Color Palette and Design
+- Developed a consistent color palette for dark mode:
+  - Dark navy background (#121628)
+  - Darker card backgrounds (#1E293B)
+  - Light text for better readability (#E2E8F0)
+  - Bright blue accents for interactive elements (#3B82F6)
+  - Carefully adjusted hover states for all interactive elements
+
+### Component Updates
+- Enhanced all components with dark mode styles:
+  - Updated the Header component with dark mode styling
+  - Added dark mode support to the BottomNav component
+  - Modified all page components with dark mode alternatives
+  - Ensured proper contrast for text and interactive elements
+  - Updated all vendor cards and social buttons
+
+### Implementation Approach
+- Used Tailwind's `dark:` variant for applying dark mode styles
+- Leveraged CSS variables for theme-specific colors
+- Employed `classList` manipulation for theme switching
+- Added transitions for smooth theme changes
+
+This implementation ensures a consistent and visually pleasing experience in both light and dark modes, with proper consideration for accessibility and user preference persistence.
+
+## 2025-03-05 17:00:00 HST - UI Refinements
+
+Based on user feedback, we've made several refinements to the application UI:
+
+### Header Simplification
+- Removed the full header component for a cleaner interface
+- Replaced it with a floating theme toggle button in the top-right corner
+- Enhanced the toggle button with a dark background and shadow for better visibility
+- This change streamlines the UI by eliminating redundant navigation options
+
+### Theme Toggle Improvements
+- Repositioned the theme toggle as a fixed floating button
+- Added proper background color contrast for both light and dark modes
+- Improved the icon visibility with better color choices
+- Enhanced accessibility with appropriate aria labels
+
+### Layout Adjustments
+- Added additional top padding to the Home page content to accommodate the removed header
+- Ensured proper spacing around all page elements
+- Maintained consistent visibility of the theme toggle across all pages
+
+### Dark Mode Refinements
+- Fixed contrast issues with social media buttons
+- Ensured text remains white for maximum readability in both modes
+- Maintained visual consistency throughout the application
+
+These changes create a more streamlined and focused user interface while maintaining all the functionality and enhancing the dark mode experience.
+
+## 2025-03-05 17:30:00 HST - Dark Mode Consistency Across All Pages
+
+Following our initial dark mode implementation, we've completed updates to ensure consistency across all application pages:
+
+### Complete Dark Mode Implementation
+- Extended dark mode styling to all pages and components:
+  - Merchandise page
+  - Experiences page
+  - Experience details page
+  - Schedule page
+  - All related components (ScheduleItem, BackButton, etc.)
+
+### Dark Mode Card Styling
+- Ensured consistent card styling in dark mode across all pages with:
+  - Dark navy backgrounds (#1E293B) for card elements
+  - Proper text contrast with light colors for readability
+  - Consistent hover states and interactive elements
+  - Special treatment for tags and status indicators
+
+### UI Element Improvements
+- Refined UI elements for better visibility in dark mode:
+  - Updated all buttons and interactive elements with appropriate colors
+  - Enhanced information sections like warnings with theme-appropriate colors
+  - Improved readability of lists, details, and descriptions
+  - Added dark backgrounds to tags and indicators
+
+### Accessibility Considerations
+- Maintained strong color contrast for all text elements
+- Ensured proper distinction between interactive and static elements
+- Preserved visual hierarchy through careful color choices
+- Maintained consistent styling across all sections
+
+The application now provides a complete and consistent dark mode experience across all pages, which is toggled by the floating button in the top-right corner of the screen.

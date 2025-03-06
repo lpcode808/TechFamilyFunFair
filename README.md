@@ -1,6 +1,84 @@
-# Tech & Family Fun Fair App
+# Tech Family Fun Fair
 
-A mobile-first web application for the Tech & Family Fun Fair 2025 event at La Pietra – Hawai'i School for Girls.
+A mobile-friendly web application for the Tech & Family Fun Fair at La Pietra Hawai'i School for Girls.
+
+## Overview
+
+This application provides:
+- Interactive exploration of tech experiences at the fair
+- Food vendor information with social media links
+- Merchandise vendors information
+- Schedule of events and activities
+
+## Development Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## Deployment Process
+
+### Option 1: Using the Deployment Script (Recommended)
+
+Our repository includes a deployment script that handles both committing small changes and deploying to GitHub Pages:
+
+```bash
+# Run the deployment script
+./deploy-script.sh
+```
+
+The script will:
+1. Try to commit small files (JS, JSX, JSON, etc.)
+2. Copy necessary assets to the public directory
+3. Deploy to GitHub Pages using the gh-pages package
+
+### Option 2: Manual Deployment
+
+If you need to deploy manually:
+
+```bash
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+### Handling Large Files
+
+When dealing with large files (images, videos, etc.):
+
+1. Place them in the `public` directory rather than `src/assets`
+2. Don't commit them directly to Git if possible
+3. Consider using a CDN for very large assets
+
+## Repository Maintenance
+
+To maintain a healthy repository size:
+
+```bash
+# View the largest files in the repository
+git ls-files | xargs du -h | sort -hr | head -20
+
+# Remove large files from Git history (be careful!)
+# git filter-branch --tree-filter 'rm -rf path/to/large/file' HEAD
+```
+
+## Troubleshooting
+
+If you encounter HTTP 400 errors when pushing:
+
+1. Try using the deployment script instead of pushing directly
+2. Make smaller, more frequent commits
+3. Ensure you're not tracking large binary files in Git
+
+## Live Site
+
+The application is deployed at: https://lpcode808.github.io/TechFamilyFunFair/
 
 ## Features
 

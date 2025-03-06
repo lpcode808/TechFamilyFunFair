@@ -59,7 +59,7 @@ export default function ExperienceDetail() {
       <div className="container mx-auto px-4 py-8">
         <BackButton to="/experiences" label="Back to Experiences" />
         <div className="text-center py-8">
-          <p>Loading experience details...</p>
+          <p className="dark:text-dark-text">Loading experience details...</p>
         </div>
       </div>
     );
@@ -73,7 +73,7 @@ export default function ExperienceDetail() {
           <p>Error loading experience details: {error}</p>
           <button 
             onClick={() => window.location.reload()} 
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            className="mt-4 px-4 py-2 bg-blue-500 dark:bg-dark-primary text-white rounded"
           >
             Retry
           </button>
@@ -88,8 +88,8 @@ export default function ExperienceDetail() {
         <BackButton to="/experiences" label="Back to Experiences" />
         <div className="text-center py-8">
           <p className="text-red-500">Experience not found</p>
-          <p className="mt-2 text-sm">The experience with ID "{id}" could not be found.</p>
-          <pre className="mt-4 text-xs text-left bg-gray-100 p-2 rounded overflow-auto">
+          <p className="mt-2 text-sm dark:text-dark-text">The experience with ID "{id}" could not be found.</p>
+          <pre className="mt-4 text-xs text-left bg-gray-100 dark:bg-dark-secondary dark:text-gray-300 p-2 rounded overflow-auto">
             Available IDs: {experienceData.map(exp => exp.id).join(', ')}
           </pre>
         </div>
@@ -101,59 +101,70 @@ export default function ExperienceDetail() {
     <div className="container mx-auto px-4 py-8 pb-20">
       <BackButton to="/experiences" label="Back to Experiences" />
       
-      <div className="bg-white rounded-lg shadow-sm p-6 border-t-4 border-t-[#004299]">
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border-t-4 border-t-[#004299] dark:border-t-dark-primary dark:border-gray-700">
         <div className="flex items-center mb-4">
           <div className="text-4xl mr-3">{experience.icon}</div>
-          <h1 className="text-2xl font-bold text-[#004299]">{experience.title}</h1>
+          <h1 className="text-2xl font-bold text-[#004299] dark:text-dark-primary">{experience.title}</h1>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
-            <div className="bg-blue-50 rounded-lg p-4 mb-4">
-              <p className="text-gray-800">{experience.description}</p>
+            <div className="bg-blue-50 dark:bg-dark-secondary rounded-lg p-4 mb-4">
+              <p className="text-gray-800 dark:text-gray-200">{experience.description}</p>
             </div>
             
-            <h2 className="text-lg font-semibold text-[#004299] mb-2">Details</h2>
+            <h2 className="text-lg font-semibold text-[#004299] dark:text-dark-primary mb-2">Details</h2>
             <ul className="space-y-2 mb-6">
               {experience.provider && (
                 <li className="flex items-start">
-                  <span className="text-gray-700 font-medium w-32">Provider:</span>
-                  <span className="text-gray-800">{experience.provider}</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Provider:</span>
+                  <span className="text-gray-800 dark:text-gray-200">{experience.provider}</span>
                 </li>
               )}
               {experience.location && (
                 <li className="flex items-start">
-                  <span className="text-gray-700 font-medium w-32">Location:</span>
-                  <span className="text-gray-800">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Location:</span>
+                  <span className="text-gray-800 dark:text-gray-200">
                     {experience.location}
                   </span>
                 </li>
               )}
               {experience.duration && (
                 <li className="flex items-start">
-                  <span className="text-gray-700 font-medium w-32">Duration:</span>
-                  <span className="text-gray-800 flex items-center">
-                    <ClockIcon className="w-4 h-4 mr-1 text-gray-500" />
+                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Duration:</span>
+                  <span className="text-gray-800 dark:text-gray-200 flex items-center">
+                    <ClockIcon className="w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" />
                     {experience.duration}
                   </span>
                 </li>
               )}
               {experience.ageRestriction && (
                 <li className="flex items-start">
-                  <span className="text-gray-700 font-medium w-32">Age:</span>
-                  <span className="text-gray-800 flex items-center">
-                    <UserIcon className="w-4 h-4 mr-1 text-gray-500" />
+                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Age:</span>
+                  <span className="text-gray-800 dark:text-gray-200 flex items-center">
+                    <UserIcon className="w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" />
                     {experience.ageRestriction}
                   </span>
                 </li>
               )}
               {experience.cost && (
                 <li className="flex items-start">
-                  <span className="text-gray-700 font-medium w-32">Cost:</span>
-                  <span className="text-gray-800">{experience.cost}</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Cost:</span>
+                  <span className="text-gray-800 dark:text-gray-200">{experience.cost}</span>
                 </li>
               )}
             </ul>
+            
+            {/* Warnings or special requirements */}
+            {experience.warnings && (
+              <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 mt-4">
+                <h3 className="flex items-center text-yellow-800 dark:text-yellow-300 font-semibold mb-2">
+                  <ExclamationCircleIcon className="w-5 h-5 mr-1" />
+                  Important Information
+                </h3>
+                <p className="text-yellow-700 dark:text-yellow-200">{experience.warnings}</p>
+              </div>
+            )}
           </div>
           
           <div className="order-first md:order-last">
