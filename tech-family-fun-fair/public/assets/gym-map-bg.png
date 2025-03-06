@@ -1,0 +1,15 @@
+/* 
+This is a placeholder for the gym-map-bg.png image.
+
+The actual image should be a layout of the gym as shown in the provided diagram,
+including the seating area, projector screen, VR experience stations, and other exhibits.
+
+For production use, create a simple diagram or floor plan with:
+1. White or light background
+2. Thin grid lines for reference
+3. Simple outlines for major areas
+4. Dimensions of approximately 1200x800px
+5. PNG format with transparency where needed
+
+The map component will overlay interactive markers on top of this image.
+*/ 
