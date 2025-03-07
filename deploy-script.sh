@@ -49,10 +49,21 @@ if [ ! -d "public/assets/data" ]; then
   mkdir -p public/assets/data
 fi
 
-# Copy all JSON files to ensure they're in the build
-cp -r src/assets/data/*.json public/assets/data/ || echo "No JSON files to copy"
+# 5. Build the project again to ensure latest changes are included
+echo -e "${YELLOW}Rebuilding to ensure latest data is included...${NC}"
+npm run build
 
-# 5. Deploy to GitHub Pages
+# Verify that the dist/assets/data directory exists and has the JSON files
+if [ ! -d "dist/assets/data" ]; then
+  echo -e "${YELLOW}Creating data directory in dist...${NC}"
+  mkdir -p dist/assets/data
+fi
+
+# Force copy the data files from public to dist to ensure they're included
+echo -e "${YELLOW}Forcing copy of data files to dist directory...${NC}"
+cp -f public/assets/data/*.json dist/assets/data/ || echo "No JSON files to copy"
+
+# 6. Deploy to GitHub Pages
 echo -e "${GREEN}Deploying to GitHub Pages...${NC}"
 npm run deploy
 
