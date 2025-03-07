@@ -51,8 +51,8 @@
     "id": "racing-sim",
     "title": "Racing Simulator",
     "category": "experience",
-    "provider": "CWN",
-    "description": "Experience the thrill of professional racing with our high-fidelity racing simulator. Feel every bump and turn with force feedback steering, premium racing seat, and triple-screen setup.",
+    "provider": "Racing Evolution",
+    "description": "Feel the rush of professional racing in our high-fidelity racing simulator. With force feedback wheels, professional pedals, and triple screens, you'll experience what it's like to race at speeds over 200mph.",
     "ageRestriction": "8+",
     "duration": "10 minutes",
     "location": "Gaming Zone",
@@ -190,5 +190,65 @@
     "location": "Entertainment Zone",
     "waitTime": "Typically 5-10 minutes",
     "icon": "📸"
+  },
+  {
+    "id": "petting-zoo",
+    "title": "Petting Zoo",
+    "category": "activity",
+    "provider": "Happy Tails Farm",
+    "description": "Get up close with friendly farm animals including rabbits, goats, sheep, and more! Pet, feed, and learn about these gentle creatures in our supervised petting zoo area.",
+    "ageRestriction": "All ages",
+    "duration": "No time limit",
+    "location": "Outdoor Area",
+    "waitTime": "Minimal wait",
+    "icon": "🐑"
+  },
+  {
+    "id": "pony-rides",
+    "title": "Pony Rides",
+    "category": "activity",
+    "provider": "Happy Tails Farm",
+    "description": "Take a gentle ride on our friendly ponies! Each child is led by an experienced handler around our safely enclosed riding area for a magical experience.",
+    "ageRestriction": "3-10 years",
+    "duration": "5 minutes",
+    "location": "Outdoor Area",
+    "waitTime": "Typically 10-15 minutes",
+    "icon": "🐴"
+  },
+  {
+    "id": "bounce-houses",
+    "title": "Bounce Houses",
+    "category": "activity",
+    "provider": "Jump Around",
+    "description": "Jump, bounce and play in our collection of inflatable bounce houses! We have different themes and sizes suitable for various age groups.",
+    "ageRestriction": "3-12 years",
+    "duration": "15 minutes sessions",
+    "location": "Outdoor Activity Area",
+    "waitTime": "Varies by time of day",
+    "icon": "🏰"
+  },
+  {
+    "id": "carnival-games",
+    "title": "Carnival-Style Games",
+    "category": "activity",
+    "provider": "Fun Fair Attractions",
+    "description": "Test your skills at classic carnival games! Try ring toss, balloon pop, ball throw, and more to win exciting prizes. Great for all skill levels.",
+    "ageRestriction": "All ages",
+    "duration": "Varies by game",
+    "location": "Games Alley",
+    "waitTime": "Minimal wait",
+    "icon": "🎯"
+  },
+  {
+    "id": "crafts",
+    "title": "Crafts",
+    "category": "activity",
+    "provider": "Creative Minds",
+    "description": "Express your creativity at our crafts station! Make personalized keepsakes, art projects, and take-home crafts with guidance from our helpful staff.",
+    "ageRestriction": "All ages",
+    "duration": "15-30 minutes",
+    "location": "Creative Corner",
+    "waitTime": "Minimal wait",
+    "icon": "✂️"
   }
 ] 
