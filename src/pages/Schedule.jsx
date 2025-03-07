@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import ScheduleItem from '../components/ScheduleItem';
 
 export default function Schedule() {
   const [schedule, setSchedule] = useState([]);
-  const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -45,48 +43,37 @@ export default function Schedule() {
       });
   }, []);
   
-  const filteredSchedule = schedule.filter(item => {
-    if (filter === 'all') return true;
-    return item.type === filter;
-  });
+  // Group events by location
+  const stage1Events = schedule.filter(item => item.location.includes('Stage 1'));
+  const stage2Events = schedule.filter(item => item.location.includes('Stage 2'));
+  
+  // Simple schedule item component
+  const ScheduleItem = ({ item }) => (
+    <div className="border rounded-lg mb-3 overflow-hidden bg-white dark:bg-dark-card dark:border-gray-700 p-4">
+      <div className="flex items-center">
+        <div className="flex-shrink-0 w-20 text-center">
+          <span className="font-medium text-gray-900 dark:text-white">{item.time}</span>
+        </div>
+        <div className="ml-4 flex-1">
+          <h3 className="font-medium text-gray-900 dark:text-white">{item.title}</h3>
+          <div className="mt-1">
+            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+              item.type === 'performance' 
+                ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200' 
+                : 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
+            }`}>
+              {item.type === 'performance' ? 'Performance' : 'Activity'}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
   
   return (
     <div className="container mx-auto px-4 pb-20">
       <div className="py-6">
-        <h1 className="text-2xl font-bold dark:text-dark-text">Event Schedule</h1>
-        
-        <div className="flex overflow-x-auto py-4 space-x-2">
-          <button 
-            className={`px-4 py-2 rounded-full text-sm font-medium ${
-              filter === 'all' 
-                ? 'bg-blue-600 dark:bg-dark-primary text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'
-            }`}
-            onClick={() => setFilter('all')}
-          >
-            All Events
-          </button>
-          <button 
-            className={`px-4 py-2 rounded-full text-sm font-medium ${
-              filter === 'tech-talk' 
-                ? 'bg-blue-600 dark:bg-dark-primary text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'
-            }`}
-            onClick={() => setFilter('tech-talk')}
-          >
-            Tech Talks
-          </button>
-          <button 
-            className={`px-4 py-2 rounded-full text-sm font-medium ${
-              filter === 'activity' 
-                ? 'bg-blue-600 dark:bg-dark-primary text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'
-            }`}
-            onClick={() => setFilter('activity')}
-          >
-            Activities
-          </button>
-        </div>
+        <h1 className="text-2xl font-bold dark:text-dark-text mb-6">Event Schedule</h1>
         
         {loading && (
           <div className="text-center py-8">
@@ -107,19 +94,34 @@ export default function Schedule() {
         )}
         
         {!loading && !error && (
-          <div className="mt-4">
-            {filteredSchedule.length > 0 ? (
-              filteredSchedule.map(item => (
-                <ScheduleItem key={item.id} item={item} />
-              ))
-            ) : (
-              <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-                <p>No events matching the selected filter.</p>
-                <pre className="mt-4 text-xs text-left bg-gray-100 dark:bg-dark-secondary dark:text-gray-300 p-2 rounded overflow-auto">
-                  Available types: {[...new Set(schedule.map(item => item.type))].join(', ')}
-                </pre>
-              </div>
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Stage 1 Section */}
+            <div>
+              <h2 className="text-xl font-bold text-[#004299] dark:text-white mb-4 pb-2 border-b dark:border-gray-700">
+                Stage 1 (Gym)
+              </h2>
+              {stage1Events.length > 0 ? (
+                stage1Events.map(item => (
+                  <ScheduleItem key={item.id} item={item} />
+                ))
+              ) : (
+                <p className="text-gray-500 dark:text-gray-400">No events scheduled for Stage 1.</p>
+              )}
+            </div>
+            
+            {/* Stage 2 Section */}
+            <div>
+              <h2 className="text-xl font-bold text-[#004299] dark:text-white mb-4 pb-2 border-b dark:border-gray-700">
+                Stage 2 (Great Lawn)
+              </h2>
+              {stage2Events.length > 0 ? (
+                stage2Events.map(item => (
+                  <ScheduleItem key={item.id} item={item} />
+                ))
+              ) : (
+                <p className="text-gray-500 dark:text-gray-400">No events scheduled for Stage 2.</p>
+              )}
+            </div>
           </div>
         )}
       </div>

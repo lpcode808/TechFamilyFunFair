@@ -871,3 +871,165 @@ We encountered challenges with the GitHub Actions automated deployment workflow:
 - **Fallback Options**: Having a manual deployment process as a fallback ensures changes can still be published
 
 This experience highlights the importance of understanding the entire project structure, including build configurations and deployment processes, when making changes to a codebase.
+
+## 2025-03-07 22:30:00 HST - Schedule Update with Event Program
+
+We've updated the event schedule with a comprehensive program for both stages:
+
+### Schedule Data Updates
+- Replaced the placeholder schedule data with actual event programming:
+  - **Stage 1 (Gym)**: Magic Shows at 12:00 PM, 2:00 PM, 4:00 PM, and 6:00 PM
+  - **Stage 2 (Great Lawn)**: 
+    - Jan Ken Po Tournaments at 12:00 PM and 3:00 PM
+    - Travis Alcos performances at 1:00 PM and 2:00 PM
+    - Gabriel Miller performances at 4:00 PM and 5:00 PM
+    - Final Giveaways at 6:00 PM
+- Organized events by location and time for easy navigation
+- Added appropriate event types for filtering (performance, activity)
+
+### Schedule Component Enhancements
+- Updated the filter buttons to match the new event types:
+  - Replaced "Tech Talks" filter with "Performances" filter
+  - Maintained the "Activities" filter for non-performance events
+  - Kept the "All Events" filter for comprehensive viewing
+- Ensured consistent styling across all filter options
+- Maintained the time-based sorting for chronological display
+
+### User Experience Improvements
+- Events are now clearly categorized by stage location
+- The schedule provides a complete timeline of the day's activities
+- Users can easily filter to find specific types of events
+- The chronological organization helps attendees plan their day
+
+These updates provide attendees with a clear and comprehensive view of the event program, helping them navigate between stages and plan their experience at the Tech & Family Fun Fair.
+
+## 2025-03-07 23:00:00 HST - Schedule Page Redesign
+
+We've completely redesigned the Schedule page to provide a clearer, more straightforward view of the event program:
+
+### Two-Column Layout
+- Reorganized the schedule into two distinct sections:
+  - **Stage 1 (Gym)**: Displays all events happening at the gym stage
+  - **Stage 2 (Great Lawn)**: Shows all events taking place at the great lawn stage
+- Implemented a responsive grid layout that displays as:
+  - Two columns on larger screens for side-by-side comparison
+  - Single column on mobile for easy scrolling
+
+### Simplified Event Display
+- Removed the expandable/collapsible functionality for event items
+  - All event information is now visible at a glance
+  - No need to click to see additional details
+- Eliminated filter buttons since the two-column layout already provides clear categorization
+- Added color-coded tags to distinguish between performances and activities:
+  - Purple for performances
+  - Green for activities
+
+### User Experience Improvements
+- Events are chronologically ordered within each stage section
+- Each event clearly displays:
+  - Time
+  - Title
+  - Event type (Performance or Activity)
+- Clean, consistent styling with proper spacing and borders
+- Maintained dark mode compatibility throughout
+
+This redesign significantly improves the usability of the Schedule page by presenting all information in a clear, organized manner without requiring user interaction to view details. The side-by-side layout makes it easy for attendees to plan their day and navigate between stages.
+
+## 2025-03-07 23:30:00 HST - Experiences Page Enhancement and Content Expansion
+
+We've reorganized the Experiences page and expanded the content to include more attractions:
+
+### Experiences Page Restructuring
+- Divided the page into two distinct sections:
+  - **Tech Exhibits**: Contains all the original technology-focused experiences
+  - **Games & Activities**: Features new family-friendly attractions
+- Maintained consistent styling across both sections
+- Added clear section headings with subtle separators for visual distinction
+- Implemented responsive grid layout throughout both sections
+
+### New Games & Activities Content
+- Added five new family-oriented attractions:
+  - **Petting Zoo**: Supervised animal interaction area with friendly farm animals
+  - **Pony Rides**: Guided pony rides for young children
+  - **Bounce Houses**: Inflatable play structures for kids to jump and play
+  - **Carnival-Style Games**: Traditional fair games with prizes
+  - **Crafts Station**: Creative activities for making take-home souvenirs
+- Created detailed descriptions for each attraction
+- Added appropriate age recommendations and duration information
+- Included representative emojis as visual identifiers
+
+### Experience Card Refactoring
+- Created a reusable ExperienceCard component to maintain consistency
+- Applied the same card styling to both tech exhibits and activities
+- Ensured proper display of all metadata (location, provider, age restrictions)
+- Maintained a uniform visual appearance while highlighting the unique attributes of each experience
+
+### User Experience Benefits
+- Broader appeal to different age groups and interests
+- Clear categorization helps users find experiences that match their preferences
+- Consistent presentation makes it easy to compare different activities
+- Expanded content showcases the diverse offerings at the Tech & Family Fun Fair
+
+These enhancements significantly expand the event's appeal to families with children of all ages, providing a better balance between technology-focused exhibits and traditional family fun activities.
+
+## 2025-03-08 09:00:00 HST - Merchandise Vendor Expansion
+
+We've enhanced the merchandise offerings with the addition of three new local vendors:
+
+### New Merchandise Vendors
+- Added three detailed vendor entries:
+  - **Island Art & Jewelry**: Local handcrafted jewelry and art pieces
+  - **Hawaiian Print Gift Bags by Jeannie Diaz**: Eco-friendly gift bags with Hawaiian prints
+  - **Joys and Delights**: Unique gifts, trinkets, and novelty items
+
+### Vendor Data Enhancements
+- Enriched vendor data with:
+  - Descriptive emoji icons for visual identification
+  - Detailed descriptions of each vendor's offerings
+  - Operating hours information
+  - Categorized merchandise items 
+  - Social media and website links where available
+  - Location information within the fair
+
+### Merchandise Presentation Improvements
+- Vendor cards now display more comprehensive information:
+  - Item categories displayed as visual tags
+  - Contact information including websites and phone numbers
+  - Clear operating hours to help visitors plan their shopping
+  - Consistent styling with other aspects of the application
+
+These additions provide a more diverse shopping experience at the fair, with a focus on local Hawaiian artisans and unique merchandise options for visitors to discover.
+
+## 2025-03-08 10:30:00 HST - Media Integration Preparation
+
+We've added support for rich media content with placeholders for images and videos:
+
+### Image Integration
+- Added commented-out code for a featured image section on the home page
+- Created a dedicated `public/assets/images/` directory for storing event photos
+- Implemented proper image loading attributes:
+  - `loading="lazy"` for improved performance
+  - Width and height attributes to prevent layout shifts
+  - Alt text for accessibility
+  - Responsive sizing with appropriate CSS classes
+
+### YouTube Video Integration
+- Added commented-out placeholders for embedding YouTube videos
+- Implemented a responsive two-column video layout:
+  - Maintains proper 16:9 aspect ratio on all screen sizes
+  - Adapts to a single column on mobile devices
+  - Contains descriptive titles and explanatory text
+- Optimized for performance:
+  - Uses lazy loading to delay video resource loading
+  - Includes a note explaining the optimization approach
+  - Minimizes impact on initial page load time
+
+### Implementation Approach
+- Used commented-out code blocks with clear documentation:
+  - Step-by-step instructions for implementation
+  - Placeholder markers clearly visible with section dividers
+  - Detailed comments explaining each component
+- Created a modular design that can be easily activated when media content is ready
+- Made all sections fully compatible with dark mode
+
+These additions provide a foundation for enriching the website with visual content while maintaining performance. When event photos and videos become available, they can be easily added by following the documented steps in the code comments.

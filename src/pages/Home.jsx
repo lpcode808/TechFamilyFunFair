@@ -210,6 +210,97 @@ export default function Home() {
           flight simulators, and more! Perfect for all ages.
         </p>
       </div>
+
+      {/* 
+      ============================================================
+      FEATURED IMAGE SECTION - UNCOMMENT TO USE
+      ============================================================
+      
+      Instructions:
+      1. Create a directory at: public/assets/images/
+      2. Add your image (e.g., "tech-fair-highlight.jpg") to that directory
+      3. Uncomment this section
+      4. Adjust the alt text, width, and height as needed
+      
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Featured Highlight</h2>
+        </div>
+        <div className="flex justify-center">
+          <img 
+            src="/assets/images/tech-fair-highlight.jpg" 
+            alt="Tech & Family Fun Fair Highlight" 
+            className="rounded-lg max-w-full h-auto shadow-md"
+            width="800"
+            height="450"
+            loading="lazy"
+          />
+        </div>
+        <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 text-center">
+          Caption: Highlights from our previous Tech & Family Fun Fair
+        </p>
+      </div>
+      */}
+
+      {/* 
+      ============================================================
+      YOUTUBE EMBEDS SECTION - UNCOMMENT TO USE
+      ============================================================
+      
+      Instructions:
+      1. Replace the YouTube video IDs in the src URLs below
+      2. Uncomment this section
+      3. Adjust titles and descriptions as needed
+      
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Featured Videos</h2>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+          <div>
+            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Tech Fair Overview</h3>
+            <div className="relative" style={{ paddingBottom: "56.25%" }}>
+              <iframe 
+                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
+                src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_1" 
+                title="Tech Fair Overview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Get a quick overview of what to expect at this year's Tech & Family Fun Fair.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Last Year's Highlights</h3>
+            <div className="relative" style={{ paddingBottom: "56.25%" }}>
+              <iframe 
+                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
+                src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_2" 
+                title="Last Year's Highlights"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              See the excitement and fun from our previous Tech & Family Fun Fair event.
+            </p>
+          </div>
+        </div>
+        
+        <div className="text-center mt-2">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Note: These videos are loaded only when played to minimize impact on page load time.
+          </p>
+        </div>
+      </div>
+      */}
+      
     </div>
   );
 } 
