@@ -3,22 +3,27 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - clean-branch  # Changed from 'main' to 'clean-branch'
+      - clean-branch
   # Allow manual triggering
   workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Use the Node.js version your project requires
+        node-version: '18'
 
     - name: Install dependencies
       run: npm install
@@ -36,4 +41,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist  # The directory where your build output is located 
+        publish_dir: ./dist
