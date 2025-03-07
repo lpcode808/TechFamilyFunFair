@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this to your default branch if it's not 'main'
+      - clean-branch  # Changed from 'main' to 'clean-branch'
 
 jobs:
   build-and-deploy:
