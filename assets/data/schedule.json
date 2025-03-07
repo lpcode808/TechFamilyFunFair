@@ -1,32 +1,79 @@
 [
   {
-    "id": "talk-1",
-    "title": "Intro to Robotics",
-    "time": "10:00 AM",
-    "location": "Tech Hall A",
-    "speaker": "Dr. Smith",
-    "type": "tech-talk"
+    "id": "stage1-12pm",
+    "title": "Magic Show",
+    "time": "12:00 PM",
+    "location": "Stage 1 (Gym)",
+    "type": "performance"
   },
   {
-    "id": "activity-1", 
-    "title": "Petting Zoo Opens",
-    "time": "9:00 AM",
-    "location": "Outdoor Field",
+    "id": "stage1-2pm",
+    "title": "Magic Show",
+    "time": "2:00 PM",
+    "location": "Stage 1 (Gym)",
+    "type": "performance"
+  },
+  {
+    "id": "stage1-4pm",
+    "title": "Magic Show",
+    "time": "4:00 PM",
+    "location": "Stage 1 (Gym)",
+    "type": "performance"
+  },
+  {
+    "id": "stage1-6pm",
+    "title": "Magic Show",
+    "time": "6:00 PM",
+    "location": "Stage 1 (Gym)",
+    "type": "performance"
+  },
+  {
+    "id": "stage2-12pm",
+    "title": "Jan Ken Po Tournament",
+    "time": "12:00 PM",
+    "location": "Stage 2 (Great Lawn)",
     "type": "activity"
   },
   {
-    "id": "talk-2",
-    "title": "AI for Families",
-    "time": "11:30 AM",
-    "location": "Workshop Room B",
-    "speaker": "Professor Jones",
-    "type": "tech-talk"
+    "id": "stage2-1pm",
+    "title": "Travis Alcos (Solo Artist, Local/Reggae and Country)",
+    "time": "1:00 PM",
+    "location": "Stage 2 (Great Lawn)",
+    "type": "performance"
   },
   {
-    "id": "activity-2", 
-    "title": "Drone Racing Demo",
-    "time": "1:00 PM",
-    "location": "Main Field",
+    "id": "stage2-2pm",
+    "title": "Travis Alcos (Solo Artist, Local/Reggae and Country)",
+    "time": "2:00 PM",
+    "location": "Stage 2 (Great Lawn)",
+    "type": "performance"
+  },
+  {
+    "id": "stage2-3pm",
+    "title": "Jan Ken Po Tournament",
+    "time": "3:00 PM",
+    "location": "Stage 2 (Great Lawn)",
+    "type": "activity"
+  },
+  {
+    "id": "stage2-4pm",
+    "title": "Gabriel Miller (Solo Artist, Local/Reggae and Country)",
+    "time": "4:00 PM",
+    "location": "Stage 2 (Great Lawn)",
+    "type": "performance"
+  },
+  {
+    "id": "stage2-5pm",
+    "title": "Gabriel Miller (Solo Artist, Local/Reggae and Country)",
+    "time": "5:00 PM",
+    "location": "Stage 2 (Great Lawn)",
+    "type": "performance"
+  },
+  {
+    "id": "stage2-6pm",
+    "title": "Final Giveaways!",
+    "time": "6:00 PM",
+    "location": "Stage 2 (Great Lawn)",
     "type": "activity"
   }
 ] 
