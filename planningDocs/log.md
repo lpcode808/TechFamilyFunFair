@@ -733,3 +733,101 @@ To streamline the deployment process, we've implemented a GitHub Actions workflo
 - Monitor deployment status in the GitHub Actions tab
 
 This automation significantly streamlines the development workflow by eliminating manual deployment steps, allowing developers to focus on implementing features and improvements rather than managing deployment logistics.
+
+## 2025-03-07 10:30:00 HST - UI Simplification and Dark Mode Improvements
+
+Based on user feedback and usability testing, we've implemented several UI simplifications and dark mode improvements:
+
+### UI Simplification
+- Removed the "Browse Experiences" and "Browse Merchandise" buttons from the Home page
+  - Streamlined navigation by relying on the bottom navigation icons instead
+  - Reduced visual clutter and eliminated redundant navigation elements
+  - Simplified the user flow and mental model for navigating the application
+- Removed "View all experiences" and "View all merchandise" links
+  - Eliminated duplicate navigation paths to the same destinations
+  - Created a more focused interface with clearer navigation intent
+
+### Dark Mode Enhancements
+- Fixed contrast issues with buttons and interactive elements:
+  - Changed button colors from `dark:bg-blue-500` to `dark:bg-[#3B82F6]` for consistent styling
+  - Updated hover states from `dark:hover:bg-blue-600` to `dark:hover:bg-[#60A5FA]` for better visibility
+  - Ensured proper contrast between text and background colors throughout the app
+- Improved section and card styling for better dark mode readability:
+  - Enhanced border colors with `dark:border-gray-700` for subtle separation
+  - Updated text colors with a consistent hierarchy of light shades
+  - Used semantic color naming in the Tailwind config for easier theme adjustments
+
+### Dark Mode Best Practices for Future Development
+1. **Color Contrast Guidelines**:
+   - Maintain a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text
+   - Use the WebAIM contrast checker to verify color combinations
+   - Avoid low-contrast combinations like dark blue on black or light gray on white
+
+2. **Theme-Appropriate UI Elements**:
+   - Design interactive elements to be visually distinct in both modes
+   - Avoid relying solely on color to indicate interaction states
+   - Use additional visual cues like borders, shadows, or icons
+
+3. **Consistent Color System**:
+   - Define a comprehensive color system with light/dark variants
+   - Use Tailwind's dark mode variant consistently (`dark:`) 
+   - Leverage CSS variables for dynamic theme colors when needed
+
+4. **Dark Mode Testing Protocol**:
+   - Test all components in both light and dark modes
+   - Verify text readability at different screen sizes
+   - Check interactive elements for proper hover and active states
+   - Ensure proper contrast between foreground and background elements
+
+These changes have significantly improved the app's usability and visual coherence while maintaining a clean, intuitive interface that works well in both light and dark modes.
+
+## 2025-03-07 20:45:00 HST - Data File Organization and Social Media Button Improvements
+
+We've made several improvements to the project organization and user interface:
+
+### Data File Organization
+- Removed duplicate JSON data files from `src/assets/data/` directory
+  - Eliminated confusion about which files to edit
+  - Removed JSON files with comments that were causing linter errors
+  - Simplified the project structure with a single source of truth
+- Added clear documentation in both directories
+  - Created README.md files explaining the data file structure
+  - Provided explicit instructions for updating data
+  - Documented the rationale behind the changes
+
+### Social Media Button Improvements
+- Enhanced the hover behavior for social media buttons
+  - Previous hover state had poor contrast in dark mode
+  - Updated hover effects to be subtle but noticeable
+  - Implemented a slight scale transform for a "pop" effect
+  - Added a subtle shadow on hover for depth
+  - Maintained consistent behavior across light and dark modes
+
+### Benefits of These Changes
+- **Simplified Workflow**: Developers now have a clear understanding of which files to edit
+- **Reduced Errors**: Eliminated the possibility of making changes to unused files
+- **Improved User Experience**: Social media buttons now provide clear visual feedback on interaction
+- **Better Accessibility**: Enhanced hover states make interactive elements more distinguishable
+- **Consistent Design Language**: Hover effects now align with modern UI expectations
+
+These changes continue our focus on creating a maintainable codebase and an intuitive user interface that works well across all devices and in both light and dark modes.
+
+## 2025-03-07 21:15:00 HST - Navigation Streamlining
+
+We've further streamlined the navigation experience by removing redundant UI elements:
+
+### Experiences Page Simplification
+- Removed the "Back to Home" button from the Experiences page
+  - The bottom navigation bar already provides a way to navigate back to the home page
+  - Eliminates redundant navigation paths and reduces visual clutter
+- Removed the "All Experiences" heading
+  - The context is already clear from the page content and bottom navigation
+  - Creates a cleaner, more focused interface
+
+### Benefits of Navigation Streamlining
+- **Reduced Cognitive Load**: Users don't need to choose between multiple navigation options
+- **Cleaner Interface**: More content-focused with fewer distracting elements
+- **Consistent Navigation Pattern**: Users can rely on the bottom navigation bar for all primary navigation
+- **Mobile-Optimized**: Better use of limited screen space on mobile devices
+
+These changes align with our ongoing efforts to simplify the user interface and create a more intuitive, focused experience that works well across all devices.

@@ -1,6 +1,5 @@
 import { useMemo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import BackButton from '../components/BackButton';
 
 export default function Experiences() {
   const [experienceData, setExperienceData] = useState([]);
@@ -56,10 +55,6 @@ export default function Experiences() {
 
   return (
     <div className="container mx-auto px-4 py-8 pb-20">
-      <BackButton to="/" label="Back to Home" />
-      
-      <h1 className="text-2xl font-bold text-[#004299] dark:text-dark-primary mb-6">All Experiences</h1>
-      
       {loading && (
         <div className="text-center py-8">
           <p className="dark:text-dark-text">Loading experiences...</p>
