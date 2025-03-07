@@ -88,7 +88,9 @@ export default function Home() {
         <h2 className="text-xl font-bold text-[#004299] dark:text-white mb-2">Event Details</h2>
         <p className="text-gray-700 dark:text-gray-300">
           Join us for a day of technology, fun, and learning! Explore interactive exhibits, 
-          try out VR experiences, enjoy delicious food, and connect with tech enthusiasts.
+          try out VR experiences, enjoy delicious food, and connect with tech enthusiasts. 
+        <br />
+          <a href="https://www.lapietra.edu/giving/tech-family-fun-fair/" className="text-blue-600 dark:text-blue-400 hover:underline">Register</a> to stay updated on Technology at La Pietra.
         </p>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* <div>

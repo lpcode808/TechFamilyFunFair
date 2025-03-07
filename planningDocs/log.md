@@ -831,3 +831,43 @@ We've further streamlined the navigation experience by removing redundant UI ele
 - **Mobile-Optimized**: Better use of limited screen space on mobile devices
 
 These changes align with our ongoing efforts to simplify the user interface and create a more intuitive, focused experience that works well across all devices.
+
+## 2025-03-07 22:00:00 HST - GitHub Actions Troubleshooting and Deployment Strategy
+
+We encountered challenges with the GitHub Actions automated deployment workflow:
+
+### GitHub Actions Troubleshooting
+- Identified multiple issues with the automated deployment workflow:
+  - Initial configuration was targeting the `main` branch instead of `clean-branch`
+  - Updated workflow file to trigger on pushes to `clean-branch`
+  - Discovered build failures related to missing JSON files
+  - Found a hidden dependency in Vite configuration that was looking for JSON files in the removed `src/assets/data/` directory
+  - Updated Vite configuration to use files from `public/assets/data/` instead
+  - Added error handling to prevent build failures if files are missing
+- Despite these fixes, the GitHub Actions workflow continues to fail with exit code 1
+
+### Alternative Deployment Strategy
+- Implemented a two-step manual deployment process as a reliable alternative:
+  1. Commit and push changes to the `clean-branch` for version control:
+     ```bash
+     git add .
+     git commit -m "Description of changes"
+     git push origin clean-branch
+     ```
+  2. Deploy to GitHub Pages using the gh-pages package:
+     ```bash
+     npm run build
+     npx gh-pages -d dist
+     ```
+- This approach separates version control from deployment:
+  - The `clean-branch` maintains the source code history
+  - The `gh-pages` branch contains only the built application
+  - Manual deployment provides more control and visibility into the process
+
+### Lessons Learned
+- **Hidden Dependencies**: Build configurations can create dependencies that aren't obvious from the application code
+- **Configuration Complexity**: Modern web applications often have multiple layers of configuration that need to be aligned
+- **Testing Before Deployment**: Always test builds locally before attempting to deploy
+- **Fallback Options**: Having a manual deployment process as a fallback ensures changes can still be published
+
+This experience highlights the importance of understanding the entire project structure, including build configurations and deployment processes, when making changes to a codebase.
