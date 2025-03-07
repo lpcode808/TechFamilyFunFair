@@ -1033,3 +1033,76 @@ We've added support for rich media content with placeholders for images and vide
 - Made all sections fully compatible with dark mode
 
 These additions provide a foundation for enriching the website with visual content while maintaining performance. When event photos and videos become available, they can be easily added by following the documented steps in the code comments.
+
+## 2025-03-08 14:45:00 HST - GitHub Actions Deployment Resolution
+
+After troubleshooting the GitHub Actions workflow deployment issues, we've successfully implemented a solution that ensures vendor data is properly included in the build and deployed to GitHub Pages:
+
+### Fixed GitHub Actions Workflow
+1. Updated the GitHub Actions workflow configuration to include proper permissions:
+   ```yaml
+   # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+   permissions:
+     contents: write
+     pages: write
+     id-token: write
+   ```
+
+2. Modernized the workflow with current actions versions:
+   - Upgraded from `actions/checkout@v2` to `actions/checkout@v3`
+   - Upgraded from `actions/setup-node@v2` to `actions/setup-node@v3`
+   - Updated Node.js version from 16 to 18
+
+3. Added a critical step to ensure data files are copied to the build directory:
+   ```yaml
+   - name: Ensure data files are copied
+     run: |
+       mkdir -p dist/assets/data
+       cp -f public/assets/data/*.json dist/assets/data/
+       ls -la dist/assets/data/
+   ```
+
+### Alternative Deployment Strategy
+For situations where GitHub Actions might not be the preferred approach, we've also implemented a simpler npm script solution:
+
+1. Added a custom script to package.json that handles the data copying and deployment:
+   ```json
+   "scripts": {
+     "deploy-with-data": "npm run build && mkdir -p dist/assets/data && cp -f public/assets/data/*.json dist/assets/data/ && npm run deploy"
+   }
+   ```
+
+2. This script can be run with a simple command:
+   ```bash
+   npm run deploy-with-data
+   ```
+
+### Deployment Best Practices
+From our troubleshooting experience, we've established these best practices for future deployments:
+
+1. **Data File Organization**:
+   - Keep all data files in the `public/assets/data` directory
+   - Avoid duplicating data files across multiple locations
+   - Use clear README files to document the data structure
+
+2. **Build Process Verification**:
+   - Always check that the build process includes all necessary static assets
+   - Verify the contents of the `dist` directory before deployment
+   - Use `ls -la dist/assets/data/` to confirm data files are present
+
+3. **Permissions Management**:
+   - Ensure GitHub Actions workflows have the correct permissions
+   - Use `contents: write` permission for repository operations
+   - Use `pages: write` permission for GitHub Pages deployments
+
+4. **Error Handling**:
+   - Add error handling to file operations using `|| echo "No JSON files to copy"`
+   - Check build logs for errors related to missing files or permissions
+   - Implement fallback strategies (like our npm script) for when automatic deployments fail
+
+5. **Workflow Maintenance**:
+   - Regularly update GitHub Actions versions to use the latest features and security fixes
+   - Keep Node.js and other dependencies up to date
+   - Test workflow changes in a development environment before pushing to production
+
+This successful resolution ensures that all vendor data is consistently deployed to GitHub Pages, whether using GitHub Actions or our custom npm script approach. The application now displays the correct vendor information in both local development and production environments.
