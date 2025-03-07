@@ -7,7 +7,9 @@ const Header = () => {
     <header className="w-full">
       {/* Top gray bar */}
       <div className="bg-gray-800 dark:bg-dark-secondary text-white text-sm py-1 px-4 flex justify-between items-center">
-        <span>808.922.2744</span>
+        <a href="https://www.lapietra.edu" target="_blank" rel="noopener noreferrer" className="hover:underline">
+          808.922.2744
+        </a>
         <ThemeToggle />
       </div>
       

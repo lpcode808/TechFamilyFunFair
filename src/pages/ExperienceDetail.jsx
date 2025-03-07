@@ -17,10 +17,16 @@ export default function ExperienceDetail() {
     const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
     const dataUrl = `${baseUrl}assets/data/experiences.json`;
     
-    console.log('Fetching from URL:', dataUrl);
+    // Alternative URL construction that works better with HashRouter
+    // Use window.location.origin to get the protocol, hostname, and port
+    // Then add the path to our application and data file
+    const origin = window.location.origin;
+    const altDataUrl = `${origin}${baseUrl}assets/data/experiences.json`;
+    
+    console.log('Fetching from URL:', altDataUrl);
     
     // Fetch the experiences data
-    fetch(dataUrl)
+    fetch(altDataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {

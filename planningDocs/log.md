@@ -1106,3 +1106,157 @@ From our troubleshooting experience, we've established these best practices for 
    - Test workflow changes in a development environment before pushing to production
 
 This successful resolution ensures that all vendor data is consistently deployed to GitHub Pages, whether using GitHub Actions or our custom npm script approach. The application now displays the correct vendor information in both local development and production environments.
+
+## 2025-03-09 09:15:00 HST - WebP Image Optimization
+
+We've implemented WebP image format conversion to optimize loading performance:
+
+### WebP Conversion Implementation
+- Converted JPG images to WebP format for better compression and faster loading
+- Achieved a 36% size reduction (340KB JPG → 218KB WebP) while maintaining visual quality
+- Implemented a fallback mechanism for browsers that don't support WebP:
+  ```jsx
+  <picture>
+    <source srcSet={`${baseUrl}assets/images/tech-fair-highlight.webp`} type="image/webp" />
+    <img 
+      src={`${baseUrl}assets/images/tech-fair-highlight.jpg`} 
+      alt="Tech & Family Fun Fair Highlight" 
+      className="rounded-lg max-w-full h-auto shadow-md"
+      width="800"
+      height="450"
+      loading="lazy"
+    />
+  </picture>
+  ```
+- Created a standardized conversion workflow using cwebp:
+  ```bash
+  cwebp -q 85 input.jpg -o output.webp
+  ```
+
+### Home Component Refactoring
+- Fixed scope issue with the `baseUrl` variable in Home.jsx:
+  - Moved `baseUrl` declaration from inside useEffect to component level
+  - Ensures the variable is available throughout the component
+  - Resolved "baseUrl is not defined" error when loading images
+- Enhanced image elements with best practices:
+  - Added proper width and height attributes to prevent layout shifts
+  - Implemented lazy loading for non-critical images
+  - Included descriptive alt text for accessibility
+
+### Performance Benefits
+- Reduced initial page load time by optimizing image assets
+- Decreased bandwidth usage for mobile users
+- Improved LCP (Largest Contentful Paint) metric for better Core Web Vitals
+- Maintained backward compatibility with browsers that don't support WebP
+
+## 2025-03-09 11:30:00 HST - Map Integration and Help Section Updates
+
+We've enhanced the site with improved map access and streamlined help information:
+
+### Event Map Integration
+- Added a prominent Map button at the bottom of the Home page:
+  ```jsx
+  <a 
+    href="https://www.lapietra.edu/uploads/files/la-pietra-tfff-map-2025.pdf?v=1741044934751"
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="block w-full py-4 px-6 bg-[#004299] hover:bg-[#003580] transition-all duration-300 
+               text-white text-center text-xl font-bold rounded-lg shadow-lg 
+               hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+  >
+    <div className="flex items-center justify-center space-x-3">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+      </svg>
+      <span>Event Map</span>
+    </div>
+  </a>
+  ```
+- Map button features:
+  - Full-width design for maximum visibility
+  - Interactive hover and active states
+  - Clean, focused UI with descriptive icon
+  - Opens PDF in new tab for easy reference
+
+### Help Section Simplification
+- Replaced detailed help section with a streamlined information area:
+  - Condensed multiple help topics into a single, clear direction
+  - Focused on directing visitors to the Information/Volunteer Booth
+  - Maintained visual consistency with the rest of the application
+  - Improved readability with icon and clear typography
+- Simplified UI increases focus on the most important help information
+- Reduced cognitive load for users seeking assistance
+
+## 2025-03-09 14:00:00 HST - Content Structure and Information Display Improvements
+
+Based on feedback, we've implemented several improvements to content organization and display:
+
+### Merchandise Vendor Simplification
+- Removed phone numbers and hours from merchandise vendor listings:
+  - Creates a cleaner, more focused display
+  - Maintains essential information while reducing visual clutter
+  - Provides a consistent experience across vendor displays
+  - Keeps website links for further information
+
+### Experience Page Restructuring
+- Moved "Prospective Families" section to the top of the Experiences page:
+  - Gives higher visibility to admissions information
+  - Prioritizes content for prospective students and alumni
+  - Maintains all existing content while improving information hierarchy
+  - Creates a more logical flow from institutional information to exhibits
+
+### Schedule Data Accuracy and Sorting
+- Updated the schedule data to match the official event program:
+  - Added complete program for Stage 1 and Stage 2
+  - Ensured accurate timing and descriptions for all performances and activities
+  - Maintained consistent data structure for filtering and display
+- Fixed time sorting logic in Schedule component:
+  - Implemented proper time conversion for AM/PM format
+  - Created a `convertTimeToMinutes` function for accurate chronological sorting
+  - Ensures 12:00 PM appears before 1:00 PM in listings
+  - Provides a logical, time-based view of the day's events
+
+These improvements enhance the user experience by providing more accurate, better organized information throughout the application, with special attention to the needs of different user groups (prospective families, merchandise shoppers, and event attendees).
+
+## 2025-03-09 16:30:00 HST - Video Content Integration and Interactive Media Support
+
+We've expanded the application's media capabilities with video content integration:
+
+### YouTube Video Integration
+- Added a responsive video gallery to the Home page:
+  - Organized in a grid layout that adapts from 1 to 3 columns based on screen size
+  - Implemented with YouTube's privacy-enhanced domain (youtube-nocookie.com)
+  - Added performance attributes for optimal loading:
+    ```jsx
+    <iframe 
+      className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
+      src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0" 
+      title="Video Title"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowFullScreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+    ```
+
+### Video Content Organization
+- Structured video content with clear categorization:
+  - "Robotics Overview" video highlighting tech experiences
+  - "Last Year's Highlights" showcasing past events
+  - "DIY Robot Workshop" demonstrating hands-on activities
+- Added descriptive context for each video:
+  - Concise title and description
+  - Clear visual presentation
+  - Consistent styling across all video elements
+
+### Privacy and Performance Enhancements
+- Implemented YouTube privacy-enhanced mode:
+  - Uses youtube-nocookie.com domain to limit tracking
+  - Added referrerpolicy attribute for improved privacy
+  - Included rel=0 parameter to disable related videos at the end
+- Added performance optimizations:
+  - Applied lazy loading to defer resource fetching
+  - Used responsive container technique for proper aspect ratio
+  - Added user note explaining loading behavior
+
+These enhancements provide rich media content to showcase the event while maintaining performance and respecting user privacy. The video gallery offers prospective attendees a visual preview of what to expect at the Tech & Family Fun Fair.

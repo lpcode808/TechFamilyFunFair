@@ -12,10 +12,16 @@ export default function Vendors() {
     const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
     const dataUrl = `${baseUrl}assets/data/vendors.json`;
     
-    console.log('Fetching from URL:', dataUrl);
+    // Alternative URL construction that works better with HashRouter
+    // Use window.location.origin to get the protocol, hostname, and port
+    // Then add the path to our application and data file
+    const origin = window.location.origin;
+    const altDataUrl = `${origin}${baseUrl}assets/data/vendors.json`;
+    
+    console.log('Fetching from URL:', altDataUrl);
     
     // Fetch the vendors data
-    fetch(dataUrl)
+    fetch(altDataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
@@ -99,24 +105,12 @@ export default function Vendors() {
                   )}
                   
                   <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                    {vendor.phone && (
-                      <div className="text-gray-600 dark:text-gray-400">
-                        <span className="font-medium">Phone:</span> {vendor.phone}
-                      </div>
-                    )}
-                    
                     {vendor.website && (
                       <div className="text-gray-600 dark:text-gray-400">
                         <span className="font-medium">Website:</span>{' '}
                         <a href={vendor.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
                           {vendor.website.replace('https://www.', '').replace('https://', '')}
                         </a>
-                      </div>
-                    )}
-                    
-                    {vendor.openTime && vendor.closeTime && (
-                      <div className="text-gray-600 dark:text-gray-400">
-                        <span className="font-medium">Hours:</span> {vendor.openTime} - {vendor.closeTime}
                       </div>
                     )}
                   </div>

@@ -13,10 +13,16 @@ export default function Experiences() {
     const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
     const dataUrl = `${baseUrl}assets/data/experiences.json`;
     
-    console.log('Fetching from URL:', dataUrl);
+    // Alternative URL construction that works better with HashRouter
+    // Use window.location.origin to get the protocol, hostname, and port
+    // Then add the path to our application and data file
+    const origin = window.location.origin;
+    const altDataUrl = `${origin}${baseUrl}assets/data/experiences.json`;
+    
+    console.log('Fetching from URL:', altDataUrl);
     
     // Fetch the experiences data
-    fetch(dataUrl)
+    fetch(altDataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
@@ -128,6 +134,56 @@ export default function Experiences() {
       
       {!loading && !error && (
         <div className="space-y-10">
+          {/* Prospective Families Section - Moved to top */}
+          <div>
+            <h2 className="text-2xl font-bold text-[#004299] dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
+              Prospective Families
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Future Students Card */}
+              <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col">
+                <div className="flex items-start mb-2">
+                  <div className="text-3xl mr-3">🎓</div>
+                  <div>
+                    <h3 className="font-semibold text-[#004299] dark:text-dark-primary">Future Students</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Admissions Information</p>
+                  </div>
+                </div>
+                
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  Discover everything you need to know about applying to our school, from admissions criteria to important deadlines. Learn about our academic programs, extracurricular activities, and what makes our school special.
+                </p>
+                
+                <div className="mt-auto pt-3">
+                  <span className="text-xs bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2 py-1 rounded">
+                    Admissions Office: Bldg C
+                  </span>
+                </div>
+              </div>
+              
+              {/* Alumnae Card */}
+              <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col">
+                <div className="flex items-start mb-2">
+                  <div className="text-3xl mr-3">👥</div>
+                  <div>
+                    <h3 className="font-semibold text-[#004299] dark:text-dark-primary">Alumnae</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Alumni Relations</p>
+                  </div>
+                </div>
+                
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  Stay connected with your alma mater. Learn about alumni events, networking opportunities, and ways to give back to the community. Reconnect with former classmates and share your stories with current students.
+                </p>
+                
+                <div className="mt-auto pt-3">
+                  <span className="text-xs bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 px-2 py-1 rounded">
+                    Alumni Booth: Main Lobby
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           {/* Tech Exhibits Section */}
           <div>
             <h2 className="text-2xl font-bold text-[#004299] dark:text-white mb-6 pb-2 border-b dark:border-gray-700">

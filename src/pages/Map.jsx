@@ -19,10 +19,17 @@ export default function Map() {
     const mapUrl = `${baseUrl}assets/data/map.json`;
     const scheduleUrl = `${baseUrl}assets/data/schedule.json`;
     
-    console.log('Fetching from URLs:', mapUrl, scheduleUrl);
+    // Alternative URL construction that works better with HashRouter
+    // Use window.location.origin to get the protocol, hostname, and port
+    // Then add the path to our application and data file
+    const origin = window.location.origin;
+    const altMapUrl = `${origin}${baseUrl}assets/data/map.json`;
+    const altScheduleUrl = `${origin}${baseUrl}assets/data/schedule.json`;
+    
+    console.log('Fetching from URLs:', altMapUrl, altScheduleUrl);
     
     // Fetch map data
-    const fetchMapData = fetch(mapUrl)
+    const fetchMapData = fetch(altMapUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -31,7 +38,7 @@ export default function Map() {
       });
     
     // Fetch schedule data
-    const fetchScheduleData = fetch(scheduleUrl)
+    const fetchScheduleData = fetch(altScheduleUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

@@ -12,10 +12,16 @@ export default function Schedule() {
     const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
     const dataUrl = `${baseUrl}assets/data/schedule.json`;
     
-    console.log('Fetching from URL:', dataUrl);
+    // Alternative URL construction that works better with HashRouter
+    // Use window.location.origin to get the protocol, hostname, and port
+    // Then add the path to our application and data file
+    const origin = window.location.origin;
+    const altDataUrl = `${origin}${baseUrl}assets/data/schedule.json`;
+    
+    console.log('Fetching from URL:', altDataUrl);
     
     // Fetch schedule data from public directory
-    fetch(dataUrl)
+    fetch(altDataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
@@ -27,10 +33,24 @@ export default function Schedule() {
         console.log('Schedule data loaded:', data.length, 'items');
         // Sort schedule by time
         const sortedSchedule = [...data].sort((a, b) => {
-          // Convert time strings to comparable values (simple version)
-          const timeA = a.time;
-          const timeB = b.time;
-          return timeA.localeCompare(timeB);
+          // Convert time strings like "12:00 PM" to 24-hour numeric values for proper sorting
+          const convertTimeToMinutes = (timeStr) => {
+            const [time, period] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            
+            if (period === 'PM' && hours !== 12) {
+              hours += 12;
+            } else if (period === 'AM' && hours === 12) {
+              hours = 0;
+            }
+            
+            return hours * 60 + minutes;
+          };
+          
+          const timeA = convertTimeToMinutes(a.time);
+          const timeB = convertTimeToMinutes(b.time);
+          
+          return timeA - timeB;
         });
         
         setSchedule(sortedSchedule);
