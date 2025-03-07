@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - clean-branch  # Changed from 'main' to 'clean-branch'
+  # Allow manual triggering
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -23,6 +25,12 @@ jobs:
 
     - name: Build project
       run: npm run build
+      
+    - name: Ensure data files are copied
+      run: |
+        mkdir -p dist/assets/data
+        cp -f public/assets/data/*.json dist/assets/data/ || echo "No JSON files to copy"
+        ls -la dist/assets/data/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
