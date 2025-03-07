@@ -72,18 +72,44 @@
     "location": "Food Court B",
     "googleUrl": "https://www.facebook.com/people/All-of-the-Above-Bakery-LLC/61569787344987/"
   },
+  
+  
   {
-    "id": "merch-1",
-    "name": "Gadget Galaxy",
+    "id": "merch-3",
+    "name": "Island Art & Jewelry",
     "type": "merchandise",
-    "location": "Vendor Hall",
-    "items": ["Tech T-shirts", "Coding Books", "Robot Kits"]
+    "emoji": "🎨",
+    "description": "Browse beautiful handcrafted jewelry, paintings, and sculptures created by local Hawaiian artists. Each piece tells a unique story of the islands.",
+    "location": "Artisan Alley",
+    "items": ["Handcrafted Jewelry", "Original Paintings", "Ceramic Art", "Sculpted Pieces"],
+    "website": "",
+    "instagramUrl": "https://www.instagram.com/islandartjewelry",
+    "openTime": "10:00 AM",
+    "closeTime": "2:00 PM"
   },
   {
-    "id": "merch-2",
-    "name": "Digital Dreams",
+    "id": "merch-4",
+    "name": "Hawaiian Print Gift Bags",
     "type": "merchandise",
+    "emoji": "🎁",
+    "description": "Jeannie Diaz's unique handmade gift bags feature beautiful Hawaiian prints perfect for any occasion. Eco-friendly and reusable alternatives to traditional gift wrapping.",
+    "location": "Artisan Alley",
+    "items": ["Small Gift Bags", "Medium Gift Bags", "Large Gift Bags", "Custom Orders"],
+    "instagramUrl": "https://www.instagram.com/hawaiianprintgiftbags",
+    "openTime": "10:00 AM",
+    "closeTime": "2:00 PM"
+  },
+  {
+    "id": "merch-5",
+    "name": "Joys and Delights",
+    "type": "merchandise",
+    "emoji": "✨",
+    "description": "A treasure trove of unique gifts, trinkets, and novelty items that bring joy and delight to all ages. Discover something special to remember your visit.",
     "location": "Vendor Hall",
-    "items": ["VR Accessories", "Smart Watches", "STEM Toys"]
+    "items": ["Handmade Soaps", "Scented Candles", "Plush Toys", "Novelty Gifts", "Stationery"],
+    "website": "",
+    "phone": "(808) 555-1234",
+    "openTime": "10:00 AM",
+    "closeTime": "2:00 PM"
   }
 ] 
