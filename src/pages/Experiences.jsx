@@ -9,10 +9,10 @@ export default function Experiences() {
   useEffect(() => {
     console.log('Fetching experiences data...');
     
-    // Get the correct base URL for GitHub Pages deployment
-    const isDev = import.meta.env.DEV;
-    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
-    const dataUrl = `${baseUrl}/assets/data/experiences.json`;
+    // Be consistent with the URL construction
+    const dataUrl = import.meta.env.DEV 
+      ? '/assets/data/experiences.json' 
+      : '/TechFamilyFunFair/assets/data/experiences.json';
     
     console.log('Fetching from URL:', dataUrl);
     

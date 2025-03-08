@@ -9,12 +9,16 @@ export default function Home() {
   
   // Define baseUrl at the component level so it can be used throughout the component
   const isDev = import.meta.env.DEV;
+  // Make sure baseUrl has no trailing slash
   const baseUrl = isDev ? '' : '/TechFamilyFunFair';
   
   useEffect(() => {
     console.log('Fetching vendors data...');
     
-    const dataUrl = `${baseUrl}/assets/data/vendors.json`;
+    // Be consistent with the URL construction
+    const dataUrl = isDev 
+      ? '/assets/data/vendors.json' 
+      : '/TechFamilyFunFair/assets/data/vendors.json';
     
     console.log('Fetching from URL:', dataUrl);
     
@@ -248,9 +252,15 @@ export default function Home() {
         </div>
         <div className="flex justify-center">
           <picture>
-            <source srcSet={`${baseUrl}assets/images/tech-fair-highlight.webp`} type="image/webp" />
+            {/* Use the exact same format for constructing URLs as used for data files */}
+            <source srcSet={isDev 
+              ? '/assets/images/tech-fair-highlight.webp'
+              : '/TechFamilyFunFair/assets/images/tech-fair-highlight.webp'} 
+              type="image/webp" />
             <img 
-              src={`${baseUrl}assets/images/tech-fair-highlight.jpg`} 
+              src={isDev 
+                ? '/assets/images/tech-fair-highlight.jpg'
+                : '/TechFamilyFunFair/assets/images/tech-fair-highlight.jpg'} 
               alt="Tech & Family Fun Fair Highlight" 
               className="rounded-lg max-w-full h-auto shadow-md"
               width="800"

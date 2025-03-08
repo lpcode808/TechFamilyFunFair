@@ -14,11 +14,14 @@ export default function Map() {
   useEffect(() => {
     console.log('Fetching map and schedule data...');
     
-    // Get the correct base URL for GitHub Pages deployment
-    const isDev = import.meta.env.DEV;
-    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
-    const mapUrl = `${baseUrl}/assets/data/map.json`;
-    const scheduleUrl = `${baseUrl}/assets/data/schedule.json`;
+    // Be consistent with the URL construction
+    const mapUrl = import.meta.env.DEV 
+      ? '/assets/data/map.json' 
+      : '/TechFamilyFunFair/assets/data/map.json';
+    
+    const scheduleUrl = import.meta.env.DEV 
+      ? '/assets/data/schedule.json' 
+      : '/TechFamilyFunFair/assets/data/schedule.json';
     
     console.log('Fetching from URLs:', mapUrl, scheduleUrl);
     

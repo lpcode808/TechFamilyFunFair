@@ -8,10 +8,10 @@ export default function Schedule() {
   useEffect(() => {
     console.log('Fetching schedule data...');
     
-    // Get the correct base URL for GitHub Pages deployment
-    const isDev = import.meta.env.DEV;
-    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
-    const dataUrl = `${baseUrl}/assets/data/schedule.json`;
+    // Be consistent with the URL construction
+    const dataUrl = import.meta.env.DEV 
+      ? '/assets/data/schedule.json' 
+      : '/TechFamilyFunFair/assets/data/schedule.json';
     
     console.log('Fetching from URL:', dataUrl);
     

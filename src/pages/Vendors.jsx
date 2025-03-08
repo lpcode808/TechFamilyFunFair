@@ -12,10 +12,10 @@ export default function Vendors() {
   useEffect(() => {
     console.log('Fetching vendors data...');
     
-    // Get the correct base URL for GitHub Pages deployment
-    const isDev = import.meta.env.DEV;
-    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
-    const dataUrl = `${baseUrl}/assets/data/vendors.json`;
+    // Be consistent with the URL construction
+    const dataUrl = import.meta.env.DEV 
+      ? '/assets/data/vendors.json' 
+      : '/TechFamilyFunFair/assets/data/vendors.json';
     
     console.log('Fetching from URL:', dataUrl);
     
