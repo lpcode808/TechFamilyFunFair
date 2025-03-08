@@ -7,12 +7,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
+  // Define baseUrl at the component level so it can be used throughout the component
+  const isDev = import.meta.env.DEV;
+  const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+  
   useEffect(() => {
     console.log('Fetching vendors data...');
     
-    // Get the correct base URL for GitHub Pages deployment
-    const isDev = import.meta.env.DEV;
-    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
     const dataUrl = `${baseUrl}/assets/data/vendors.json`;
     
     console.log('Fetching from URL:', dataUrl);
