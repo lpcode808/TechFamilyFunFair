@@ -1,7 +1,7 @@
 [
   {
     "id": "vr-1",
-    "title": "VR Experience #1",
+    "title": "VR Experience",
     "category": "experience",
     "provider": "CWN",
     "description": "Immerse yourself in virtual reality with our state-of-the-art VR headsets. Experience #1 features underwater exploration where you can swim with marine life and discover ocean depths.",
@@ -9,7 +9,8 @@
     "duration": "10 minutes",
     "location": "VR Zone",
     "waitTime": "Typically 15-20 minutes",
-    "icon": "🥽"
+    "icon": "🥽",
+    "website": ""
   },
   {
     "id": "vr-2",
@@ -61,7 +62,7 @@
   },
   {
     "id": "flight-sim-1",
-    "title": "Flight Simulator #1",
+    "title": "Flight Simulator",
     "category": "experience",
     "provider": "CWN",
     "description": "Take control of a commercial aircraft and learn the basics of flight in our realistic cockpit simulator. Perfect for first-time pilots!",
@@ -93,7 +94,8 @@
     "duration": "Ongoing demonstrations",
     "location": "Center Booth",
     "waitTime": "No wait",
-    "icon": "🤖"
+    "icon": "🤖",
+    "website": ""
   },
   {
     "id": "lp-laser",
@@ -129,7 +131,8 @@
     "duration": "Information booth",
     "location": "Career Corner",
     "waitTime": "No wait",
-    "icon": "💼"
+    "icon": "💼",
+    "website": "https://hawaii.jobcorps.gov/"
   },
   {
     "id": "hpu",
@@ -141,14 +144,15 @@
     "duration": "Information booth",
     "location": "Education Row",
     "waitTime": "No wait",
-    "icon": "🎓"
+    "icon": "🎓",
+    "website": "https://www.hpu.edu/"
   },
   {
     "id": "mit-lenovo",
-    "title": "MIT/Lenovo Tech Station",
+    "title": "Mobile IT Force/Lenovo Tech Station",
     "category": "experience",
-    "provider": "MIT & Lenovo",
-    "description": "Explore cutting-edge technology demonstrations from MIT and Lenovo. Try out the latest laptops, educational software, and innovative tech tools designed for learning and creativity.",
+    "provider": "Mobile IT FOrce & Lenovo",
+    "description": "Explore cutting-edge technology demonstrations. Try out the latest laptops, educational software, and innovative tech tools designed for learning and creativity.",
     "ageRestriction": "All ages",
     "duration": "Self-guided exploration",
     "location": "Technology Center",
@@ -189,7 +193,8 @@
     "duration": "3-5 minutes per session",
     "location": "Entertainment Zone",
     "waitTime": "Typically 5-10 minutes",
-    "icon": "📸"
+    "icon": "📸",
+    "website": "https://www.instagram.com/lalalooopsie/?hl=en"
   },
   {
     "id": "petting-zoo",

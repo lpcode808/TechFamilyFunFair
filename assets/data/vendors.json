@@ -107,7 +107,7 @@
     "description": "A treasure trove of unique gifts, trinkets, and novelty items that bring joy and delight to all ages. Discover something special to remember your visit.",
     "location": "Vendor Hall",
     "items": ["Handmade Soaps", "Scented Candles", "Plush Toys", "Novelty Gifts", "Stationery"],
-    "website": "",
+    "website": "https://www.instagram.com/joysanddelightsco/",
     "phone": "(808) 555-1234",
     "openTime": "10:00 AM",
     "closeTime": "2:00 PM"
@@ -121,8 +121,8 @@
     "location": "Artisan Alley",
     "items": ["Small Aloha Bags", "Medium Aloha Bags", "Large Aloha Bags", "Custom Designs"],
     "phone": "(808) 555-6789",
-    "website": "",
-    "instagramUrl": "https://www.instagram.com/lpalohbags",
+    "website": "https://www.lapietra.edu/60th-anniversary/aloha-collection-x-la-pietra",
+    "instagramUrl": "",
     "openTime": "10:00 AM",
     "closeTime": "2:00 PM"
   }
