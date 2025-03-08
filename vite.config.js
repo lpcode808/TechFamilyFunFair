@@ -64,6 +64,10 @@ export default defineConfig({
     // Split chunks for better caching
     rollupOptions: {
       output: {
+        // Ensure all chunks are placed in the assets directory
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         manualChunks: {
           react: ['react', 'react-dom', 'react-router-dom'],
           heroicons: ['@heroicons/react'],
