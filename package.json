@@ -7,10 +7,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-staging": "STAGING=true vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build && mkdir -p dist/assets/data && cp -f public/assets/data/*.json dist/assets/data/",
-    "deploy": "gh-pages -d dist"
+    "predeploy-staging": "npm run build-staging && mkdir -p dist/assets/data && cp -f public/assets/data/*.json dist/assets/data/ && cp -f public/404-staging.html dist/404.html",
+    "deploy": "gh-pages -d dist",
+    "deploy-staging": "gh-pages -d dist -e staging"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

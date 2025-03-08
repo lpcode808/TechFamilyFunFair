@@ -9,16 +9,24 @@ export default function Home() {
   
   // Define baseUrl at the component level so it can be used throughout the component
   const isDev = import.meta.env.DEV;
+  // Check if we're in the staging environment
+  const isStaging = window.location.pathname.includes('/staging/');
   // Make sure baseUrl has no trailing slash
-  const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+  const baseUrl = isDev 
+    ? '' 
+    : isStaging ? '/TechFamilyFunFair/staging' : '/TechFamilyFunFair';
+  
+  // Add a build timestamp to verify deployment time
+  const buildTimestamp = new Date().toISOString();
+  console.log('Build timestamp:', buildTimestamp);
+  console.log('Environment:', isDev ? 'Development' : (isStaging ? 'Staging' : 'Production'));
+  console.log('Base URL:', baseUrl);
   
   useEffect(() => {
     console.log('Fetching vendors data...');
     
     // Be consistent with the URL construction
-    const dataUrl = isDev 
-      ? '/assets/data/vendors.json' 
-      : '/TechFamilyFunFair/assets/data/vendors.json';
+    const dataUrl = `${baseUrl}/assets/data/vendors.json`;
     
     console.log('Fetching from URL:', dataUrl);
     
@@ -84,8 +92,18 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 pb-20">
+      {/* Staging Environment Banner */}
+      {isStaging && (
+        <div className="fixed top-0 left-0 w-full bg-amber-500 text-white py-2 px-4 text-center z-50 shadow-md">
+          <p className="font-bold">
+            STAGING ENVIRONMENT - Testing Only
+            <span className="ml-2 text-sm font-normal">({buildTimestamp})</span>
+          </p>
+        </div>
+      )}
+      
       {/* Hero Section */}
-      <div className="pt-12 py-8 text-center">
+      <div className={`pt-12 py-8 text-center ${isStaging ? 'mt-8' : ''}`}>
         <h1 className="text-3xl font-bold text-[#004299] dark:text-white">Tech & Family Fun Fair</h1>
         <p className="mt-2 text-gray-600 dark:text-gray-300">
           <a href="https://www.lapietra.edu" target="_blank" rel="noopener noreferrer" className="hover:underline">
@@ -93,6 +111,8 @@ export default function Home() {
           </a>
         </p>
         <p className="text-gray-600 dark:text-gray-300">Saturday, March 8, 2025 • 11am - 7pm</p>
+        {/* Hidden timestamp for deployment verification */}
+        <p className="text-xs text-gray-400 mt-2 opacity-50">Last updated: {buildTimestamp}</p>
       </div>
       
       {/* Map PDF Button - Moved up */}

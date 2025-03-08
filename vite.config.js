@@ -6,7 +6,15 @@ import fs from 'fs'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
-  const base = isProd ? '/TechFamilyFunFair/' : '/';
+  // Check if this is a staging build
+  const isStaging = process.env.STAGING === 'true';
+  // Update base path logic to support staging
+  const base = isProd 
+    ? (isStaging ? '/TechFamilyFunFair/staging/' : '/TechFamilyFunFair/') 
+    : '/';
+  
+  console.log(`Building for: ${isProd ? (isStaging ? 'production-staging' : 'production') : 'development'}`);
+  console.log(`Using base path: ${base}`);
   
   return {
     plugins: [
@@ -61,7 +69,7 @@ export default defineConfig(({ mode }) => {
       minify: 'terser',
       terserOptions: {
         compress: {
-          drop_console: true, // Remove console logs in production
+          drop_console: false, // Keep console logs for debugging
           drop_debugger: true
         }
       },
@@ -71,7 +79,15 @@ export default defineConfig(({ mode }) => {
           // Ensure all chunks are placed in the assets directory
           entryFileNames: 'assets/[name].[hash].js',
           chunkFileNames: 'assets/[name].[hash].js',
-          assetFileNames: 'assets/[name].[hash].[ext]',
+          // Preserve data directory structure for JSON files
+          assetFileNames: (assetInfo) => {
+            // Keep data files in their original path without hashing
+            if (assetInfo.name && assetInfo.name.includes('data/') && assetInfo.name.endsWith('.json')) {
+              return assetInfo.name;
+            }
+            // Apply hashing to other assets
+            return 'assets/[name].[hash].[ext]';
+          },
           manualChunks: {
             react: ['react', 'react-dom', 'react-router-dom'],
             heroicons: ['@heroicons/react'],
