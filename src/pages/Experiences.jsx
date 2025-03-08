@@ -74,43 +74,57 @@ export default function Experiences() {
   }, [experienceData]);
   
   // Experience card component (to avoid duplicating code)
-  const ExperienceCard = ({ experience }) => (
-    <Link
-      key={experience.id}
-      to={`/experience/${experience.id}`}
-      className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col"
-    >
-      <div className="flex items-start mb-2">
-        <div className="text-3xl mr-3">{experience.icon}</div>
-        <div>
-          <h3 className="font-semibold text-[#004299] dark:text-dark-primary">{experience.title}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{experience.provider}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-            {experience.location}
-          </p>
+  const ExperienceCard = ({ experience }) => {
+    // Add this function to prevent navigation while keeping the Link component
+    const handleClick = (e) => {
+      e.preventDefault();
+      // When ready to re-enable, just remove or comment out this function
+      console.log('Card clicked:', experience.title);
+      // To re-enable full-screen view later, you can uncomment the line below
+      // window.location.href = `/experience/${experience.id}`;
+    };
+    
+    return (
+      <Link
+        key={experience.id}
+        to={`/experience/${experience.id}`}
+        onClick={handleClick}
+        className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col cursor-pointer"
+      >
+        <div className="flex items-start mb-2">
+          <div className="text-3xl mr-3">{experience.icon}</div>
+          <div>
+            <h3 className="font-semibold text-[#004299] dark:text-dark-primary">{experience.title}</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{experience.provider}</p>
+          </div>
         </div>
-      </div>
-      
-      {experience.description && (
-        <p className="text-sm text-gray-700 dark:text-gray-300 mt-2 line-clamp-3">
-          {experience.description}
-        </p>
-      )}
-      
-      <div className="mt-auto pt-3 flex flex-wrap gap-2">
-        {experience.ageRestriction && (
-          <span className="text-xs bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2 py-1 rounded">
-            Age: {experience.ageRestriction}
-          </span>
+        
+        {experience.description && (
+          <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+            {experience.description}
+          </p>
         )}
-        {experience.duration && (
-          <span className="text-xs bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 px-2 py-1 rounded">
-            {experience.duration}
-          </span>
+        
+        {/* Website link - displayed at the bottom of the card */}
+        {experience.website && (
+          <div className="mt-auto pt-3">
+            <a 
+              href={experience.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()} // Prevent card click handler from triggering
+              className="text-sm text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
+            >
+              <span>Website</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
         )}
-      </div>
-    </Link>
-  );
+      </Link>
+    );
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 pb-20">
@@ -141,11 +155,16 @@ export default function Experiences() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Future Students Card */}
-              <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col">
+              <a 
+                href="https://www.lapietra.edu/admissions/discover-purpose" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col"
+              >
                 <div className="flex items-start mb-2">
                   <div className="text-3xl mr-3">🎓</div>
                   <div>
-                    <h3 className="font-semibold text-[#004299] dark:text-dark-primary">Future Students</h3>
+                    {/* Removed the title as requested */}
                     <p className="text-sm text-gray-600 dark:text-gray-400">Admissions Information</p>
                   </div>
                 </div>
@@ -155,18 +174,26 @@ export default function Experiences() {
                 </p>
                 
                 <div className="mt-auto pt-3">
-                  <span className="text-xs bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2 py-1 rounded">
-                    Admissions Office: Bldg C
+                  <span className="text-sm text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center">
+                    Visit Admissions Page
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </span>
                 </div>
-              </div>
+              </a>
               
               {/* Alumnae Card */}
-              <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col">
+              <a 
+                href="https://www.lapietra.edu/alumnae/overview/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow p-4 flex flex-col"
+              >
                 <div className="flex items-start mb-2">
                   <div className="text-3xl mr-3">👥</div>
                   <div>
-                    <h3 className="font-semibold text-[#004299] dark:text-dark-primary">Alumnae</h3>
+                    {/* Removed the title as requested */}
                     <p className="text-sm text-gray-600 dark:text-gray-400">Alumni Relations</p>
                   </div>
                 </div>
@@ -176,11 +203,14 @@ export default function Experiences() {
                 </p>
                 
                 <div className="mt-auto pt-3">
-                  <span className="text-xs bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 px-2 py-1 rounded">
-                    Alumni Booth: Main Lobby
+                  <span className="text-sm text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center">
+                    Visit Alumnae Page
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
           

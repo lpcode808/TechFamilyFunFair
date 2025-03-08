@@ -1,6 +1,10 @@
 import { useMemo, useState, useEffect } from 'react';
 
 export default function Vendors() {
+  // Flag to control displaying available items - set to false to hide items
+  // To re-enable items display, simply change this to true
+  const showAvailableItems = false;
+  
   const [vendorsData, setVendorsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,10 +45,12 @@ export default function Vendors() {
       });
   }, []);
 
-  // Filter to only show merchandise vendors
+  // Filter to only show merchandise vendors, excluding Island Art & Jewelry
   const merchandiseVendors = useMemo(() => {
     console.log('Filtering vendors from data:', vendorsData.length, 'items');
-    const filtered = vendorsData.filter(vendor => vendor.type === 'merchandise');
+    const filtered = vendorsData.filter(vendor => 
+      vendor.type === 'merchandise' && vendor.id !== 'merch-3' // Exclude Island Art & Jewelry
+    );
     console.log('Filtered merchandise vendors:', filtered.length, 'items');
     return filtered;
   }, [vendorsData]);
@@ -82,7 +88,6 @@ export default function Vendors() {
                       {vendor.emoji && <span className="text-2xl mr-2">{vendor.emoji}</span>}
                       <div>
                         <h3 className="font-medium text-lg dark:text-white">{vendor.name}</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{vendor.location}</p>
                       </div>
                     </div>
                   </div>
@@ -91,7 +96,8 @@ export default function Vendors() {
                     <p className="mt-2 text-gray-700 dark:text-gray-300">{vendor.description}</p>
                   )}
                   
-                  {vendor.items && (
+                  {/* Available Items section - only rendered if showAvailableItems is true */}
+                  {showAvailableItems && vendor.items && (
                     <div className="mt-3">
                       <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Available Items:</h4>
                       <div className="flex flex-wrap gap-1 mt-1">
@@ -104,16 +110,40 @@ export default function Vendors() {
                     </div>
                   )}
                   
-                  <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                    {vendor.website && (
+                  {/* Original code for reference:
+                  {vendor.items && (
+                    <div className="mt-3">
+                      <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Available Items:</h4>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {vendor.items.map((item, i) => (
+                          <span key={i} className="bg-gray-100 dark:bg-dark-secondary px-2 py-1 rounded text-xs dark:text-gray-300">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  */}
+                  
+                  {/* Website section - made more prominent */}
+                  {vendor.website && (
+                    <div className="mt-3">
                       <div className="text-gray-600 dark:text-gray-400">
                         <span className="font-medium">Website:</span>{' '}
-                        <a href={vendor.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <a 
+                          href={vendor.website} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
+                        >
                           {vendor.website.replace('https://www.', '').replace('https://', '')}
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </a>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               ))
             ) : (

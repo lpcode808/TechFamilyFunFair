@@ -95,9 +95,27 @@ export default function Home() {
         <p className="text-gray-600 dark:text-gray-300">Saturday, March 8, 2025 • 11am - 7pm</p>
       </div>
       
-      {/* Event Details */}
+      {/* Map PDF Button - Moved up */}
+      <div className="mb-6">
+        <a 
+          href="https://www.lapietra.edu/uploads/files/la-pietra-tfff-map-2025.pdf?v=1741044934751"
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block w-full py-4 px-6 bg-[#004299] hover:bg-[#003580] dark:bg-dark-primary dark:hover:bg-dark-primary-hover transition-all duration-300 
+                     text-white dark:text-white text-center text-xl font-bold rounded-lg shadow-lg 
+                     hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <div className="flex items-center justify-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+            <span className="dark:text-white">Event Map</span>
+          </div>
+        </a>
+      </div>
+      
+      {/* Event Details - header removed */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
-        <h2 className="text-xl font-bold text-[#004299] dark:text-white mb-2">Event Details</h2>
         <p className="text-gray-700 dark:text-gray-300">
           Join us for a day of technology, fun, and learning! Explore interactive exhibits, 
           try out VR experiences, enjoy delicious food, and connect with tech enthusiasts. 
@@ -314,25 +332,6 @@ Learn about our space that empowers learning            </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
           </p>
         </div>
-      </div>
-      
-      {/* Map PDF Button */}
-      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
-        <a 
-          href="https://www.lapietra.edu/uploads/files/la-pietra-tfff-map-2025.pdf?v=1741044934751"
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block w-full py-4 px-6 bg-[#004299] hover:bg-[#003580] transition-all duration-300 
-                     text-white text-center text-xl font-bold rounded-lg shadow-lg 
-                     hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
-        >
-          <div className="flex items-center justify-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-            <span>Event Map</span>
-          </div>
-        </a>
       </div>
       
       {/* Simplified Help Section */}

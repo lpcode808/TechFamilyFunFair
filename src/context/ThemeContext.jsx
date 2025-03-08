@@ -9,7 +9,8 @@ export const useTheme = () => useContext(ThemeContext);
 export const ThemeProvider = ({ children }) => {
   // Check if user previously set a theme preference
   const storedTheme = localStorage.getItem('theme');
-  const [isDarkMode, setIsDarkMode] = useState(storedTheme === 'dark');
+  // Default to dark mode if no preference is stored
+  const [isDarkMode, setIsDarkMode] = useState(storedTheme ? storedTheme === 'dark' : true);
 
   // Toggle between light and dark modes
   const toggleTheme = () => {

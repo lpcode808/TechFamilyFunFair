@@ -127,14 +127,6 @@ export default function ExperienceDetail() {
                   <span className="text-gray-800 dark:text-gray-200">{experience.provider}</span>
                 </li>
               )}
-              {experience.location && (
-                <li className="flex items-start">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Location:</span>
-                  <span className="text-gray-800 dark:text-gray-200">
-                    {experience.location}
-                  </span>
-                </li>
-              )}
               {experience.duration && (
                 <li className="flex items-start">
                   <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Duration:</span>
@@ -159,6 +151,24 @@ export default function ExperienceDetail() {
                   <span className="text-gray-800 dark:text-gray-200">{experience.cost}</span>
                 </li>
               )}
+              {experience.website && (
+                <li className="flex items-start">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium w-32">Website:</span>
+                  <span className="text-gray-800 dark:text-gray-200">
+                    <a 
+                      href={experience.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
+                    >
+                      {experience.website.replace('https://', '').replace('http://', '').replace('www.', '')}
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </span>
+                </li>
+              )}
             </ul>
             
             {/* Warnings or special requirements */}
@@ -174,20 +184,7 @@ export default function ExperienceDetail() {
           </div>
           
           <div className="order-first md:order-last">
-            <div className="bg-gray-100 rounded-lg p-4 mb-4">
-              <h3 className="font-semibold text-[#004299] mb-2">Quick Actions</h3>
-              {/* Map link commented out due to space constraints
-              <Link 
-                to="/map" 
-                className="flex items-center justify-center p-3 bg-white hover:bg-gray-50 text-[#004299] font-medium rounded shadow-sm transition-colors mb-2 border border-gray-200"
-              >
-                <MapIcon className="w-5 h-5 mr-2" />
-                Show on Map
-              </Link>
-              */}
-              
-              {/* Optional social media sharing buttons could go here */}
-            </div>
+            {/* Quick Actions section removed */}
             
             {experience.id && experience.id.includes('vr') && (
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
