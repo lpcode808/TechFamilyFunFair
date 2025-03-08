@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting... (Staging)</title>
+  <script>
+    // Single Page App routing for GitHub Pages - STAGING VERSION
+    // https://github.com/rafgraph/spa-github-pages
+    const pathSegmentsToKeep = 2; // Keep both /TechFamilyFunFair/ and /staging/
+
+    var l = window.location;
+    var segmentCount = location.pathname.split('/').length;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+  <style>
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      background-color: #fffbeb; /* Amber 50 - subtle staging indicator */
+    }
+    .staging-banner {
+      background-color: #f59e0b; /* Amber 500 */
+      color: white;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    h1 {
+      color: #004299;
+      margin-top: 40px;
+    }
+    p {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #004299;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="staging-banner">
+    <strong>STAGING ENVIRONMENT</strong> - For testing purposes only
+  </div>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, follow this <a href="/TechFamilyFunFair/staging/">link</a> to the staging homepage.</p>
+  <p>The Tech & Family Fun Fair site is a single-page application. This page helps with navigation when accessing pages directly.</p>
+  <p><small>Note: This is the staging version of the site used for testing.</small></p>
+</body>
+</html> 
