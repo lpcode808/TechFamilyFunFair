@@ -8,20 +8,15 @@ export default function Schedule() {
   useEffect(() => {
     console.log('Fetching schedule data...');
     
-    // Determine the base URL based on the environment
-    const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
-    const dataUrl = `${baseUrl}assets/data/schedule.json`;
+    // Get the correct base URL for GitHub Pages deployment
+    const isDev = import.meta.env.DEV;
+    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+    const dataUrl = `${baseUrl}/assets/data/schedule.json`;
     
-    // Alternative URL construction that works better with HashRouter
-    // Use window.location.origin to get the protocol, hostname, and port
-    // Then add the path to our application and data file
-    const origin = window.location.origin;
-    const altDataUrl = `${origin}${baseUrl}assets/data/schedule.json`;
-    
-    console.log('Fetching from URL:', altDataUrl);
+    console.log('Fetching from URL:', dataUrl);
     
     // Fetch schedule data from public directory
-    fetch(altDataUrl)
+    fetch(dataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {

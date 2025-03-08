@@ -9,24 +9,20 @@ export default function Experiences() {
   useEffect(() => {
     console.log('Fetching experiences data...');
     
-    // Determine the base URL based on the environment
-    const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
-    const dataUrl = `${baseUrl}assets/data/experiences.json`;
+    // Get the correct base URL for GitHub Pages deployment
+    const isDev = import.meta.env.DEV;
+    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+    const dataUrl = `${baseUrl}/assets/data/experiences.json`;
     
-    // Alternative URL construction that works better with HashRouter
-    // Use window.location.origin to get the protocol, hostname, and port
-    // Then add the path to our application and data file
-    const origin = window.location.origin;
-    const altDataUrl = `${origin}${baseUrl}assets/data/experiences.json`;
-    
-    console.log('Fetching from URL:', altDataUrl);
+    console.log('Fetching from URL:', dataUrl);
     
     // Fetch the experiences data
-    fetch(altDataUrl)
+    fetch(dataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          console.error('Failed to fetch experiences data:', response);
+          throw new Error(`HTTP error! Status: ${response.status}, URL: ${dataUrl}`);
         }
         return response.json();
       })

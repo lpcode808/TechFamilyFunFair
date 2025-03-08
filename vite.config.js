@@ -75,6 +75,8 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     sourcemap: false
   },
+  // Ensure public directory is properly handled
+  publicDir: 'public',
   // Optimize dependency pre-bundling
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom']

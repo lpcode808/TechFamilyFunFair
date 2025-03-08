@@ -14,22 +14,16 @@ export default function Map() {
   useEffect(() => {
     console.log('Fetching map and schedule data...');
     
-    // Determine the base URL based on the environment
-    const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
-    const mapUrl = `${baseUrl}assets/data/map.json`;
-    const scheduleUrl = `${baseUrl}assets/data/schedule.json`;
+    // Get the correct base URL for GitHub Pages deployment
+    const isDev = import.meta.env.DEV;
+    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+    const mapUrl = `${baseUrl}/assets/data/map.json`;
+    const scheduleUrl = `${baseUrl}/assets/data/schedule.json`;
     
-    // Alternative URL construction that works better with HashRouter
-    // Use window.location.origin to get the protocol, hostname, and port
-    // Then add the path to our application and data file
-    const origin = window.location.origin;
-    const altMapUrl = `${origin}${baseUrl}assets/data/map.json`;
-    const altScheduleUrl = `${origin}${baseUrl}assets/data/schedule.json`;
-    
-    console.log('Fetching from URLs:', altMapUrl, altScheduleUrl);
+    console.log('Fetching from URLs:', mapUrl, scheduleUrl);
     
     // Fetch map data
-    const fetchMapData = fetch(altMapUrl)
+    const fetchMapData = fetch(mapUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -38,7 +32,7 @@ export default function Map() {
       });
     
     // Fetch schedule data
-    const fetchScheduleData = fetch(altScheduleUrl)
+    const fetchScheduleData = fetch(scheduleUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

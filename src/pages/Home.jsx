@@ -7,29 +7,23 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // Determine the base URL based on the environment - moved outside useEffect
-  const baseUrl = import.meta.env.DEV ? '/' : '/TechFamilyFunFair/';
-  
   useEffect(() => {
     console.log('Fetching vendors data...');
     
-    // Base URL already defined above
-    const dataUrl = `${baseUrl}assets/data/vendors.json`;
+    // Get the correct base URL for GitHub Pages deployment
+    const isDev = import.meta.env.DEV;
+    const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+    const dataUrl = `${baseUrl}/assets/data/vendors.json`;
     
-    // Alternative URL construction that works better with HashRouter
-    // Use window.location.origin to get the protocol, hostname, and port
-    // Then add the path to our application and data file
-    const origin = window.location.origin;
-    const altDataUrl = `${origin}${baseUrl}assets/data/vendors.json`;
-    
-    console.log('Fetching from URL:', altDataUrl);
+    console.log('Fetching from URL:', dataUrl);
     
     // Fetch the vendors data
-    fetch(altDataUrl)
+    fetch(dataUrl)
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          console.error('Failed to fetch vendors data:', response);
+          throw new Error(`HTTP error! Status: ${response.status}, URL: ${dataUrl}`);
         }
         return response.json();
       })
@@ -43,7 +37,8 @@ export default function Home() {
       })
       .catch(error => {
         console.error('Error loading vendors:', error);
-        setError(error.message);
+        // Show more detailed error information
+        setError(`${error.message} - Please check browser console for details`);
         setLoading(false);
       });
   }, []);
