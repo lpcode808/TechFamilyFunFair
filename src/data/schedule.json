@@ -1,0 +1,130 @@
+[
+  {
+    "id": "schedule-1",
+    "time": "9:00 AM",
+    "title": "Doors Open & Check-in",
+    "description": "Arrive, check in, and grab your event map. First 100 families receive a special welcome gift!",
+    "location": "Main Entrance",
+    "type": "general"
+  },
+  {
+    "id": "schedule-2",
+    "time": "9:30 AM",
+    "title": "Welcome Ceremony",
+    "description": "Opening remarks from La Pietra Head of School and special guests. Overview of the day's activities.",
+    "location": "Main Stage",
+    "type": "ceremony"
+  },
+  {
+    "id": "schedule-3",
+    "time": "10:00 AM",
+    "title": "All Experiences Open",
+    "description": "All interactive stations, demonstrations, and activities are now available. Explore at your own pace!",
+    "location": "Throughout Venue",
+    "type": "general"
+  },
+  {
+    "id": "schedule-4",
+    "time": "10:30 AM",
+    "title": "Robotics Competition Demo",
+    "description": "Watch our award-winning robotics team demonstrate their competition robot and challenge techniques.",
+    "location": "Main Stage",
+    "type": "performance"
+  },
+  {
+    "id": "schedule-5",
+    "time": "11:00 AM",
+    "title": "Coding Workshop for Kids",
+    "description": "Beginner-friendly coding session led by MIT App Inventor team. Create your first app! Limited to 20 participants.",
+    "location": "Tech Corner",
+    "type": "workshop"
+  },
+  {
+    "id": "schedule-6",
+    "time": "11:30 AM",
+    "title": "HPD K9 Unit Demonstration",
+    "description": "Meet the Honolulu Police Department's K9 officers and watch an exciting demonstration of their skills.",
+    "location": "Main Stage",
+    "type": "performance"
+  },
+  {
+    "id": "schedule-7",
+    "time": "12:00 PM",
+    "title": "Lunch Break",
+    "description": "Food vendors in full operation. Grab lunch and relax before the afternoon activities. All experiences remain open.",
+    "location": "Food Court",
+    "type": "general"
+  },
+  {
+    "id": "schedule-8",
+    "time": "12:30 PM",
+    "title": "VR Gaming Tournament",
+    "description": "Compete in our VR gaming challenge! Top scores win prizes. Sign up at the VR station.",
+    "location": "VR Zone",
+    "type": "competition"
+  },
+  {
+    "id": "schedule-9",
+    "time": "1:00 PM",
+    "title": "Drone Flying Workshop",
+    "description": "Learn to fly drones with expert instructors. Safety briefing followed by hands-on practice. Ages 10+",
+    "location": "Outdoor Area",
+    "type": "workshop"
+  },
+  {
+    "id": "schedule-10",
+    "time": "1:30 PM",
+    "title": "Laser Cutting Live Demo",
+    "description": "Watch as we create custom designs in real-time. Submit your ideas for a chance to have yours made!",
+    "location": "Maker Lab Station",
+    "type": "demonstration"
+  },
+  {
+    "id": "schedule-11",
+    "time": "2:00 PM",
+    "title": "Career Panel: Tech in Hawaii",
+    "description": "Industry professionals share their career journeys and advice. Q&A session follows. Great for teens and adults.",
+    "location": "Main Stage",
+    "type": "talk"
+  },
+  {
+    "id": "schedule-12",
+    "time": "2:30 PM",
+    "title": "Flight Simulator Challenge",
+    "description": "Test your piloting skills! Smoothest landing wins a prize. All ages welcome to try.",
+    "location": "Flight Sim Station",
+    "type": "competition"
+  },
+  {
+    "id": "schedule-13",
+    "time": "3:00 PM",
+    "title": "360° Photo Session",
+    "description": "Last call for family 360° photos! Get your digital copy via QR code to share on social media.",
+    "location": "Photo Station",
+    "type": "activity"
+  },
+  {
+    "id": "schedule-14",
+    "time": "3:30 PM",
+    "title": "Prize Raffle Drawing",
+    "description": "Grand prize raffle! Must be present to win. Prizes include tech gadgets, gift cards, and more.",
+    "location": "Main Stage",
+    "type": "ceremony"
+  },
+  {
+    "id": "schedule-15",
+    "time": "4:00 PM",
+    "title": "Closing Remarks & Thank You",
+    "description": "Final announcements and appreciation to all vendors, volunteers, and attendees. See you next year!",
+    "location": "Main Stage",
+    "type": "ceremony"
+  },
+  {
+    "id": "schedule-16",
+    "time": "4:30 PM",
+    "title": "Event Ends",
+    "description": "Thank you for attending! Safe travels home. Don't forget to take your raffle prizes and any purchases.",
+    "location": "All Areas",
+    "type": "general"
+  }
+]

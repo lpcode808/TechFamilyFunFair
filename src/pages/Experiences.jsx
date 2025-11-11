@@ -1,58 +1,100 @@
-import { useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import experienceData from '../assets/data/experiences.json';
-import BackButton from '../components/BackButton';
+import { FunnelIcon } from '@heroicons/react/24/outline';
+import Card from '../components/Card';
+import experienceData from '../data/experiences.json';
 
-export default function Experiences() {
-  // Filter to single items for duplicate categories and sort alphabetically
-  const filteredExperiences = useMemo(() => {
-    const keepIds = [
-      'vr-1', 'flight-sim-1', 'claw-1', 'hpd-keiki', 'hawaii-jobs',
-      'hpu', 'looopsie', 'lp-laser', 'lp-robotics', 'mit-lenovo', 'racing-sim'
-    ];
-    
-    return experienceData
-      .filter(exp => keepIds.includes(exp.id))
-      .sort((a, b) => a.title.localeCompare(b.title));
+const ExperienceCard = memo(({ experience }) => (
+  <Link
+    to={`/experience/${experience.id}`}
+    className="card hover:shadow-md transition-shadow flex items-start"
+  >
+    <div className="text-3xl mr-3">{experience.icon}</div>
+    <div className="flex-1 min-w-0">
+      <h3 className="font-semibold text-la-pietra-blue">{experience.title}</h3>
+      <p className="text-sm text-gray-600 mt-1">{experience.provider}</p>
+      <span className={`badge ${getCategoryColor(experience.category)} mt-2`}>
+        {experience.category}
+      </span>
+    </div>
+  </Link>
+));
+
+ExperienceCard.displayName = 'ExperienceCard';
+
+function getCategoryColor(category) {
+  const colors = {
+    vr: 'badge-purple',
+    simulation: 'badge-blue',
+    interactive: 'badge-green',
+    educational: 'bg-orange-100 text-orange-800'
+  };
+  return colors[category] || 'bg-gray-100 text-gray-800';
+}
+
+const Experiences = memo(() => {
+  const [filterCategory, setFilterCategory] = useState('all');
+
+  // Get unique categories
+  const categories = useMemo(() => {
+    const cats = [...new Set(experienceData.map(exp => exp.category))];
+    return ['all', ...cats];
   }, []);
 
+  // Filter and sort experiences
+  const filteredExperiences = useMemo(() => {
+    let filtered = experienceData;
+    if (filterCategory !== 'all') {
+      filtered = experienceData.filter(exp => exp.category === filterCategory);
+    }
+    return filtered.sort((a, b) => a.title.localeCompare(b.title));
+  }, [filterCategory]);
+
   return (
-    <div className="container mx-auto px-4 py-8 pb-20">
-      <BackButton to="/" label="Back to Home" />
-      
-      <h1 className="text-2xl font-bold text-[#004299] mb-6">All Experiences</h1>
-      
-      {/* Experience list */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="section-title">Experiences</h1>
+
+      {/* Filter Controls */}
+      <Card className="mb-6">
+        <div className="flex items-center mb-3">
+          <FunnelIcon className="w-5 h-5 text-la-pietra-blue mr-2" />
+          <span className="font-semibold text-gray-700">Filter by category:</span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setFilterCategory(category)}
+              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                filterCategory === category
+                  ? 'bg-la-pietra-blue text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </button>
+          ))}
+        </div>
+      </Card>
+
+      {/* Experience Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredExperiences.map((experience) => (
-          <Link
-            key={experience.id}
-            to={`/experience/${experience.id}`}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow p-4 flex items-start"
-          >
-            <div className="text-3xl mr-3">{experience.icon}</div>
-            <div>
-              <h3 className="font-semibold text-[#004299]">{experience.title}</h3>
-              <p className="text-sm text-gray-600">{experience.provider}</p>
-              <p className="text-xs text-gray-500 mt-1">
-                {experience.location}
-              </p>
-            </div>
-          </Link>
+          <ExperienceCard key={experience.id} experience={experience} />
         ))}
       </div>
 
-      {/* Note: Map functionality is commented out due to limited space
-      <div className="mt-8 text-center">
-        <Link 
-          to="/map" 
-          className="inline-flex items-center justify-center px-4 py-2 bg-[#004299] text-white rounded-md hover:bg-[#00306d] transition-colors"
-        >
-          <MapIcon className="w-5 h-5 mr-2" />
-          View on Interactive Map
-        </Link>
-      </div>
-      */}
+      {filteredExperiences.length === 0 && (
+        <Card>
+          <p className="text-gray-500 text-center py-8">
+            No experiences found in this category.
+          </p>
+        </Card>
+      )}
     </div>
   );
-} 
+});
+
+Experiences.displayName = 'Experiences';
+
+export default Experiences; 

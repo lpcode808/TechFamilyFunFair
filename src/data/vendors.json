@@ -1,0 +1,122 @@
+[
+  {
+    "id": "vendor-pizza",
+    "name": "Island Pizza Company",
+    "emoji": "🍕",
+    "category": "food",
+    "description": "Fresh pizza by the slice featuring local ingredients. Pepperoni, Hawaiian, and veggie options available.",
+    "location": "Food Court - Station 1",
+    "phone": "808-555-PIZZA",
+    "website": null
+  },
+  {
+    "id": "vendor-shave-ice",
+    "name": "Aloha Shave Ice",
+    "emoji": "🍧",
+    "category": "food",
+    "description": "Authentic Hawaiian shave ice with over 20 flavors. Add ice cream or sweet cream for the ultimate treat!",
+    "location": "Food Court - Station 2",
+    "phone": "808-555-SHAVE",
+    "website": null
+  },
+  {
+    "id": "vendor-tacos",
+    "name": "Taco Paradise",
+    "emoji": "🌮",
+    "category": "food",
+    "description": "Fresh Mexican cuisine with fish tacos, chicken tacos, and vegetarian options. Made to order with authentic spices.",
+    "location": "Food Court - Station 3",
+    "phone": "808-555-TACO",
+    "website": null
+  },
+  {
+    "id": "vendor-poke",
+    "name": "Fresh Island Poke",
+    "emoji": "🐟",
+    "category": "food",
+    "description": "Traditional Hawaiian poke bowls with fresh ahi tuna, salmon, or tofu. Build your own with premium toppings.",
+    "location": "Food Court - Station 4",
+    "phone": "808-555-POKE",
+    "website": null
+  },
+  {
+    "id": "vendor-burgers",
+    "name": "Koa Burger Grill",
+    "emoji": "🍔",
+    "category": "food",
+    "description": "Juicy burgers with locally-sourced beef. Includes vegetarian and gluten-free options. Hand-cut fries available.",
+    "location": "Food Court - Station 5",
+    "phone": "808-555-BURG",
+    "website": null
+  },
+  {
+    "id": "vendor-malasadas",
+    "name": "Sweet Aloha Bakery",
+    "emoji": "🍩",
+    "category": "food",
+    "description": "Fresh malasadas and Portuguese pastries. Try our signature guava or haupia filled varieties!",
+    "location": "Food Court - Station 6",
+    "phone": "808-555-SWEET",
+    "website": null
+  },
+  {
+    "id": "vendor-drinks",
+    "name": "Tropical Refreshments",
+    "emoji": "🥤",
+    "category": "food",
+    "description": "Fresh fruit smoothies, acai bowls, and cold beverages. All natural ingredients with no artificial flavors.",
+    "location": "Food Court - Station 7",
+    "phone": "808-555-COOL",
+    "website": null
+  },
+  {
+    "id": "merch-tshirts",
+    "name": "La Pietra Spirit Wear",
+    "emoji": "👕",
+    "category": "merchandise",
+    "description": "Official La Pietra t-shirts, hoodies, and accessories. Commemorative Fun Fair edition items available.",
+    "location": "Merchandise Area - Table 1",
+    "phone": null,
+    "website": null
+  },
+  {
+    "id": "merch-tech",
+    "name": "Tech Gadgets Hawaii",
+    "emoji": "📱",
+    "category": "merchandise",
+    "description": "Phone accessories, cables, portable chargers, and tech gadgets. Screen protectors installed on-site.",
+    "location": "Merchandise Area - Table 2",
+    "phone": "808-555-TECH",
+    "website": "techgadgetshawaii.com"
+  },
+  {
+    "id": "merch-toys",
+    "name": "Island Toy & Game Shop",
+    "emoji": "🎮",
+    "category": "merchandise",
+    "description": "Board games, educational toys, and STEM kits. Perfect gifts for curious minds of all ages.",
+    "location": "Merchandise Area - Table 3",
+    "phone": "808-555-TOYS",
+    "website": null
+  },
+  {
+    "id": "merch-art",
+    "name": "Local Artist Collective",
+    "emoji": "🎨",
+    "category": "merchandise",
+    "description": "Original artwork, prints, and crafts from Hawaii artists. Unique pieces celebrating island culture and technology.",
+    "location": "Merchandise Area - Table 4",
+    "phone": null,
+    "website": "localhawaiianart.com"
+  },
+  {
+    "id": "merch-books",
+    "name": "STEM Book Corner",
+    "emoji": "📚",
+    "category": "merchandise",
+    "description": "Curated selection of science, technology, engineering, and math books for all reading levels.",
+    "location": "Merchandise Area - Table 5",
+    "phone": null,
+    "website": null
+  }
+]

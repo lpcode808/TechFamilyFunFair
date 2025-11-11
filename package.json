@@ -1,0 +1,31 @@
+{
+  "name": "tech-family-fun-fair",
+  "version": "1.0.0",
+  "description": "La Pietra Tech & Family Fun Fair - Interactive Event Guide",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@heroicons/react": "^2.1.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.1.1",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10",
+    "vite": "^5.4.2",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-pwa": "^0.20.1"
+  },
+  "homepage": "https://lpcode808.github.io/TechFamilyFunFair"
+}
