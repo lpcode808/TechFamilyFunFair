@@ -1260,3 +1260,159 @@ We've expanded the application's media capabilities with video content integrati
   - Added user note explaining loading behavior
 
 These enhancements provide rich media content to showcase the event while maintaining performance and respecting user privacy. The video gallery offers prospective attendees a visual preview of what to expect at the Tech & Family Fun Fair.
+
+## 2025-03-10 14:30:00 HST - GitHub Pages Deployment Issues & Fixes
+
+After deploying to GitHub Pages, we discovered several critical issues that prevented the site from working correctly:
+
+### JSON File Loading Issues
+- Data files (vendors.json, experiences.json, etc.) were returning 404 errors
+- Added debugging console logs to track URL construction
+- Fixed Vite configuration to properly handle data files:
+  ```js
+  // Update assetFileNames configuration to preserve data files
+  assetFileNames: (assetInfo) => {
+    // Keep data files in their original path without hashing
+    if (assetInfo.name && assetInfo.name.includes('data/') && assetInfo.name.endsWith('.json')) {
+      return assetInfo.name;
+    }
+    // Apply hashing to other assets
+    return 'assets/[name].[hash].[ext]';
+  }
+  ```
+- Added explicit plugin to copy JSON files during build
+
+### SPA Routing on GitHub Pages
+- Fixed the 404.html redirect file to properly handle GitHub Pages limitations
+- Ensured the file is properly included in the build output
+- Added improved styling and error handling to the 404 page
+- Enhanced the redirect script to better handle repository paths
+
+### Path Construction & URL Issues
+- Fixed inconsistent URL construction across the application:
+  - Consolidated path building logic for both development and production
+  - Ensured proper base path is used in all asset references
+  - Standardized code for fetching data files across all components
+- Added clear deployment timestamp to quickly identify successful deployments
+- Preserved console logs in production to help with debugging
+
+### Development-to-Production Transition
+- Added safety mechanisms for consistent path construction:
+  - Used consistent approach to determine environment (DEV vs PROD)
+  - Added more robust error handling for fetch operations
+  - Ensured proper timing for loading assets and initializing components
+- Maintained HashRouter for reliable GitHub Pages routing
+
+## 2025-03-10 15:30:00 HST - GitHub Pages Deployment Postmortem
+
+After successfully resolving our GitHub Pages deployment issues, we've compiled a comprehensive postmortem analysis to document the problems, solutions, and recommended approaches for future projects.
+
+### What Went Wrong
+
+1. **Asset Path Construction**
+   - Relative paths to assets worked locally but failed on GitHub Pages due to base path differences
+   - JSON data files were being processed by Vite with hashed filenames, breaking predictable paths
+   - The `baseUrl` variable was inconsistently used across components
+
+2. **SPA Routing Issues**
+   - GitHub Pages doesn't natively support client-side routing for SPAs
+   - Deep links and page refreshes resulted in 404 errors
+   - The 404.html redirect approach wasn't properly configured for our repository structure
+
+3. **Build Process Problems**
+   - Critical JSON data files weren't consistently included in the final build output
+   - Some paths were hardcoded without considering the production environment
+   - Inconsistent approach to path construction across different components
+
+4. **Deployment Visibility**
+   - No clear indicator of when a new deployment was live
+   - Difficult to distinguish between caching issues and actual deployment problems
+   - Limited feedback on successful deployment process
+
+### How We Fixed It
+
+1. **Asset Path Handling**
+   - Modified Vite's `assetFileNames` configuration to preserve data file paths without hashing
+   - Created a custom plugin to ensure JSON files are copied to the correct location
+   - Implemented a predeploy script to verify data files are correctly included
+   ```js
+   // In package.json
+   "predeploy": "npm run build && mkdir -p dist/assets/data && cp -f public/assets/data/*.json dist/assets/data/"
+   ```
+
+2. **SPA Routing Solution**
+   - Implemented HashRouter instead of BrowserRouter for reliable GitHub Pages compatibility
+   - Enhanced the 404.html page with better redirect logic and styling
+   - Added proper handling of the repository path segment in URL construction
+
+3. **Build and Environment Config**
+   - Created a consistent approach to environment detection:
+   ```js
+   const isDev = import.meta.env.DEV;
+   const baseUrl = isDev ? '' : '/TechFamilyFunFair';
+   ```
+   - Standardized data URL construction across all components
+   - Disabled console log removal in production for better debugging
+   - Enhanced error handling for all data fetching operations
+
+4. **Deployment Verification**
+   - Added a visible timestamp on the home page to verify deployment success
+   - Implemented console logging of build timestamp for debugging
+   - Created detailed error messages with specific guidance for remediation
+
+### How We Would Architect From Scratch
+
+If building a similar React application for GitHub Pages from the beginning, we would follow these best practices:
+
+1. **Project Structure & Data Management**
+   - Keep all static data files in the `public/assets/data` directory
+   - Implement a centralized data fetching service with proper path handling
+   - Create a dedicated configuration file for environment-specific settings
+   - Add comprehensive README files documenting data structures and update procedures
+
+2. **Routing & Navigation**
+   - Use HashRouter from the beginning for GitHub Pages compatibility
+   - Implement standardized navigation components with consistent routing logic
+   - Create a centralized route configuration with proper path construction
+   - Add robust error handling for navigation failures
+
+3. **Build Configuration**
+   - Configure Vite with explicit rules for handling different asset types:
+   ```js
+   // Example Vite config optimized for GitHub Pages
+   export default defineConfig({
+     base: process.env.NODE_ENV === 'production' ? '/repository-name/' : '/',
+     build: {
+       rollupOptions: {
+         output: {
+           assetFileNames: (assetInfo) => {
+             // Special handling for data files
+             if (assetInfo.name && assetInfo.name.includes('data/')) {
+               return assetInfo.name;
+             }
+             return 'assets/[name].[hash].[ext]';
+           }
+         }
+       }
+     },
+     // Additional optimized configuration
+   });
+   ```
+   - Create dedicated deployment validation scripts to verify build output
+   - Implement environment-specific variables for development vs. production
+
+4. **Testing & Verification**
+   - Add automated tests specifically for path construction and asset loading
+   - Implement a pre-deployment checklist and verification process
+   - Create a staging environment that mirrors GitHub Pages constraints
+   - Add tools for validating the build output before deployment
+
+5. **Documentation & Process**
+   - Document common GitHub Pages deployment issues and solutions
+   - Create a standardized deployment process with validation steps
+   - Add clear indicators of deployment status and timestamp
+   - Implement a post-deployment verification workflow
+
+By following these practices from the beginning, we would avoid many of the issues encountered in this project while creating a more maintainable and robust application architecture that works reliably on GitHub Pages.
+
+This experience has provided valuable insights into the specific requirements and limitations of GitHub Pages deployment for React SPAs, which will be invaluable for future projects.

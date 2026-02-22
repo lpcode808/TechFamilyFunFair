@@ -1,32 +1,25 @@
 import { Link } from 'react-router-dom';
 import { CalendarIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { lazy, Suspense, useState, useEffect } from 'react';
+import { EVENT_CONFIG, getAssetUrl, getDataUrl } from '../config/event';
+import LazyYouTube from '../components/LazyYouTube';
+import SocialButton from '../components/SocialButton';
 
 export default function Home() {
   const [foodVendors, setFoodVendors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // Define baseUrl at the component level so it can be used throughout the component
-  const isDev = import.meta.env.DEV;
   // Check if we're in the staging environment
   const isStaging = window.location.pathname.includes('/staging/');
-  // Make sure baseUrl has no trailing slash
-  const baseUrl = isDev 
-    ? '' 
-    : isStaging ? '/TechFamilyFunFair/staging' : '/TechFamilyFunFair';
   
-  // Add a build timestamp to verify deployment time
+  // Build timestamp for deployment verification
   const buildTimestamp = new Date().toISOString();
-  console.log('Build timestamp:', buildTimestamp);
-  console.log('Environment:', isDev ? 'Development' : (isStaging ? 'Staging' : 'Production'));
-  console.log('Base URL:', baseUrl);
   
   useEffect(() => {
     console.log('Fetching vendors data...');
     
-    // Be consistent with the URL construction
-    const dataUrl = `${baseUrl}/assets/data/vendors.json`;
+    const dataUrl = getDataUrl('vendors.json');
     
     console.log('Fetching from URL:', dataUrl);
     
@@ -56,40 +49,6 @@ export default function Home() {
       });
   }, []);
 
-  // Social media button component with text
-  const SocialButton = ({ type, url = "#" }) => {
-    // Default URLs
-    const defaultUrls = {
-      google: "#",
-      yelp: "#",
-      instagram: "#"
-    };
-    
-    // Label text for each platform
-    const labels = {
-      google: "Google",
-      yelp: "Yelp",
-      instagram: "Instagram"
-    };
-    
-    return (
-      <a 
-        href={url || defaultUrls[type]} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="px-4 py-2 rounded-lg bg-[#004299] dark:bg-dark-primary text-white dark:text-white text-sm font-medium 
-          hover:bg-[#003580] dark:hover:bg-[#2563EB] 
-          hover:text-white dark:hover:text-white
-          hover:shadow-md hover:scale-105 
-          transition-all duration-200 ease-in-out
-          inline-block text-center min-w-[90px]"
-        title={`Visit ${type} page`}
-      >
-        {labels[type]}
-      </a>
-    );
-  };
-
   return (
     <div className="container mx-auto px-4 pb-20">
       {/* Staging Environment Banner */}
@@ -104,35 +63,37 @@ export default function Home() {
       
       {/* Hero Section */}
       <div className={`pt-12 py-8 text-center ${isStaging ? 'mt-8' : ''}`}>
-        <h1 className="text-3xl font-bold text-[#004299] dark:text-white">Tech & Family Fun Fair</h1>
+        <h1 className="text-3xl font-bold text-hsg-navy dark:text-white">{EVENT_CONFIG.name}</h1>
         <p className="mt-2 text-gray-600 dark:text-gray-300">
-          <a href="https://www.lapietra.edu" target="_blank" rel="noopener noreferrer" className="hover:underline">
-            La Pietra Hawai'i School for Girls
+          <a href={EVENT_CONFIG.venueUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
+            {EVENT_CONFIG.venue}
           </a>
         </p>
-        <p className="text-gray-600 dark:text-gray-300">Saturday, March 8, 2025 • 11am - 7pm</p>
+        <p className="text-gray-600 dark:text-gray-300">{EVENT_CONFIG.date} • {EVENT_CONFIG.time}</p>
         {/* Hidden timestamp for deployment verification */}
         <p className="text-xs text-gray-400 mt-2 opacity-50">Last updated: {buildTimestamp}</p>
       </div>
       
-      {/* Map PDF Button - Moved up */}
-      <div className="mb-6">
-        <a 
-          href="https://www.lapietra.edu/uploads/files/la-pietra-tfff-map-2025.pdf?v=1741044934751"
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block w-full py-4 px-6 bg-[#004299] hover:bg-[#003580] dark:bg-dark-primary dark:hover:bg-dark-primary-hover transition-all duration-300 
-                     text-white dark:text-white text-center text-xl font-bold rounded-lg shadow-lg 
-                     hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
-        >
-          <div className="flex items-center justify-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-            <span className="dark:text-white">Event Map</span>
-          </div>
-        </a>
-      </div>
+      {/* Map PDF Button - Only show if URL is available */}
+      {EVENT_CONFIG.mapPdfUrl && (
+        <div className="mb-6">
+          <a 
+            href={EVENT_CONFIG.mapPdfUrl}
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block w-full py-4 px-6 bg-hsg-navy hover:bg-hsg-navy-hover dark:bg-dark-primary dark:hover:bg-dark-primary-hover transition-all duration-300 
+                       text-white dark:text-white text-center text-xl font-bold rounded-lg shadow-lg 
+                       hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <div className="flex items-center justify-center space-x-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+              <span className="dark:text-white">Event Map</span>
+            </div>
+          </a>
+        </div>
+      )}
       
       {/* Event Details - header removed */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
@@ -140,7 +101,7 @@ export default function Home() {
           Join us for a day of technology, fun, and learning! Explore interactive exhibits, 
           try out VR experiences, enjoy delicious food, and connect with tech enthusiasts. 
         <br />
-          <a href="https://www.lapietra.edu/giving/tech-family-fun-fair/" className="text-blue-600 dark:text-blue-400 hover:underline">Register</a> to stay updated on Technology at La Pietra.
+          <a href={EVENT_CONFIG.registrationUrl} className="text-blue-600 dark:text-blue-400 hover:underline">Register</a> to stay updated on Technology at La Pietra.
         </p>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* <div>
@@ -163,7 +124,7 @@ export default function Home() {
       {/* Food Vendors Section */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Food Vendors</h2>
+          <h2 className="text-xl font-bold text-hsg-navy dark:text-white">Food Vendors</h2>
         </div>
         
         {loading && (
@@ -247,7 +208,7 @@ export default function Home() {
       {/* Merchandise Section - Now first */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Merchandise</h2>
+          <h2 className="text-xl font-bold text-hsg-navy dark:text-white">Merchandise</h2>
         </div>
         <p className="text-gray-700 dark:text-gray-300">
           Shop for tech gadgets, educational toys, and unique merchandise from our vendors.
@@ -257,7 +218,7 @@ export default function Home() {
       {/* Experiences Section - Now first */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Experiences</h2>
+          <h2 className="text-xl font-bold text-hsg-navy dark:text-white">Experiences</h2>
         </div>
         <p className="text-gray-700 dark:text-gray-300">
           Explore interactive tech experiences including VR, robotics, laser cutting, 
@@ -267,21 +228,12 @@ export default function Home() {
 
       {/* FEATURED IMAGE SECTION */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-[#004299] dark:text-white"></h2>
-        </div>
         <div className="flex justify-center">
           <picture>
-            {/* Use the exact same format for constructing URLs as used for data files */}
-            <source srcSet={isDev 
-              ? '/assets/images/tech-fair-highlight.webp'
-              : '/TechFamilyFunFair/assets/images/tech-fair-highlight.webp'} 
-              type="image/webp" />
+            <source srcSet={getAssetUrl(EVENT_CONFIG.images.heroWebp)} type="image/webp" />
             <img 
-              src={isDev 
-                ? '/assets/images/tech-fair-highlight.jpg'
-                : '/TechFamilyFunFair/assets/images/tech-fair-highlight.jpg'} 
-              alt="Tech & Family Fun Fair Highlight" 
+              src={getAssetUrl(EVENT_CONFIG.images.hero)} 
+              alt={`${EVENT_CONFIG.name} Highlight`}
               className="rounded-lg max-w-full h-auto shadow-md"
               width="800"
               height="450"
@@ -289,84 +241,35 @@ export default function Home() {
             />
           </picture>
         </div>
-        <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 text-center">
-        </p>
       </div>
       
-      {/* YOUTUBE EMBEDS SECTION */}
-      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Featured Videos</h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
-          <div>
-            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Robotics Overview</h3>
-            <div className="relative" style={{ paddingBottom: "56.25%" }}>
-              <iframe 
-                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
-                src="https://www.youtube-nocookie.com/embed/LYXsFgiDduc?rel=0" 
-                title="Tech Fair Overview"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Get a quick overview of what to expect at this year's Tech & Family Fun Fair.
-            </p>
+      {/* YOUTUBE EMBEDS SECTION - Lazy loaded for performance */}
+      {EVENT_CONFIG.videos.length > 0 && (
+        <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-hsg-navy dark:text-white">Featured Videos</h2>
           </div>
           
-          <div>
-            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Last Year's Highlights</h3>
-            <div className="relative" style={{ paddingBottom: "56.25%" }}>
-              <iframe 
-                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
-                src="https://www.youtube-nocookie.com/embed/2JK4ypL39fk?rel=0" 
-                title="Last Year's Highlights"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              See the excitement and fun from our previous Tech & Family Fun Fair event.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">TechZone innovation space</h3>
-            <div className="relative" style={{ paddingBottom: "56.25%" }}>
-              <iframe 
-                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
-                src="https://www.youtube-nocookie.com/embed/hEebBBtDL-U?rel=0" 
-                title="DIY Robot Workshop"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-Learn about our space that empowers learning            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {EVENT_CONFIG.videos.map((video) => (
+              <LazyYouTube 
+                key={video.id}
+                videoId={video.id}
+                title={video.title}
+                description={video.description}
+              />
+            ))}
           </div>
         </div>
-        
-        <div className="text-center mt-2">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-          </p>
-        </div>
-      </div>
+      )}
       
       {/* Simplified Help Section */}
       <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-xl font-bold text-[#004299] dark:text-white">Need Help?</h2>
+          <h2 className="text-xl font-bold text-hsg-navy dark:text-white">Need Help?</h2>
         </div>
         <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#004299] dark:text-dark-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-hsg-navy dark:text-dark-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p>

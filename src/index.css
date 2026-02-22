@@ -9,22 +9,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles to match La Pietra website */
+/* HSG Brand Style Guide 2025 */
 :root {
-  /* La Pietra brand colors - adjust these to your preference */
-  --primary-blue: #004299;
-  --secondary-blue: #0056c7;
-  --dark-blue: #003580;
-  --gray-nav: #3D4055;
-  --black: #333333;
+  /* HSG Brand Colors */
+  --hsg-navy: #003571;
+  --hsg-navy-hover: #002855;
+  --hsg-teal: #07a8a8;
+  --hsg-teal-hover: #069090;
+  --hsg-orange: #c8531d;
+  --hsg-lime: #afcd53;
+  --hsg-cream: #fff7eb;
+  --hsg-midnight: #001329;
+  
+  /* Light mode semantic colors */
+  --primary: var(--hsg-navy);
+  --primary-hover: var(--hsg-navy-hover);
+  --secondary: var(--hsg-teal);
+  --accent: var(--hsg-orange);
+  --success: var(--hsg-lime);
+  --text-primary: var(--hsg-midnight);
+  --text-secondary: #4a5568;
+  --background: var(--hsg-cream);
+  --card-bg: #ffffff;
   
   /* Dark mode colors */
-  --dark-bg: #121628;
-  --dark-card: #1E293B;
-  --dark-text: #E2E8F0;
-  --dark-primary: #3B82F6;
-  --dark-primary-hover: #60A5FA;
-  --dark-secondary: #374151;
+  --dark-bg: var(--hsg-midnight);
+  --dark-card: #0a2240;
+  --dark-card-hover: #0f2d4d;
+  --dark-text: var(--hsg-cream);
+  --dark-text-secondary: #94a3b8;
+  --dark-primary: var(--hsg-teal);
+  --dark-primary-hover: #08bfbf;
+  --dark-border: #1a3a5c;
   
   /* Font families */
   --heading-font: 'Montserrat', sans-serif;
@@ -34,8 +50,8 @@
   min-height: 100vh;
   font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
-  color: #333;
-  background-color: #ffffff;
+  color: var(--hsg-midnight);
+  background-color: var(--hsg-cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +69,7 @@
 
 a {
   font-weight: 500;
-  color: #004299; /* La Pietra blue */
+  color: var(--hsg-teal);
   text-decoration: inherit;
   transition: color 0.2s;
 }
@@ -63,7 +79,7 @@ a {
 }
 
 a:hover {
-  color: #0056c7;
+  color: var(--hsg-teal-hover);
 }
 
 .dark a:hover {
@@ -72,7 +88,7 @@ a:hover {
 
 body {
   margin: 0;
-  @apply text-gray-800 bg-gray-50;
+  @apply text-hsg-midnight bg-hsg-cream;
   font-family: var(--body-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -92,29 +108,45 @@ h1 {
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
-  color: #333;
+  color: var(--hsg-navy);
   margin-bottom: 1rem;
+}
+
+.dark h1 {
+  color: var(--hsg-cream);
 }
 
 h2 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #004299;
+  color: var(--hsg-navy);
   margin-bottom: 0.75rem;
+}
+
+.dark h2 {
+  color: var(--hsg-teal);
 }
 
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #333;
+  color: var(--hsg-midnight);
   margin-bottom: 0.5rem;
+}
+
+.dark h3 {
+  color: var(--hsg-cream);
 }
 
 h4 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #004299;
+  color: var(--hsg-teal);
   margin-bottom: 0.5rem;
+}
+
+.dark h4 {
+  color: var(--hsg-teal);
 }
 
 p {
@@ -124,25 +156,35 @@ p {
 
 button {
   border-radius: 8px;
-  border: 1px solid #004299;
+  border: 1px solid var(--hsg-navy);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #004299;
+  background-color: var(--hsg-navy);
   color: white;
   cursor: pointer;
   transition: background-color 0.25s, border-color 0.25s;
 }
 
 button:hover {
-  background-color: #0056c7;
-  border-color: #0056c7;
+  background-color: var(--hsg-navy-hover);
+  border-color: var(--hsg-navy-hover);
+}
+
+.dark button {
+  background-color: var(--hsg-teal);
+  border-color: var(--hsg-teal);
+}
+
+.dark button:hover {
+  background-color: var(--hsg-teal-hover);
+  border-color: var(--hsg-teal-hover);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 3px solid rgba(0, 66, 153, 0.3);
+  outline: 3px solid rgba(7, 168, 168, 0.3);
 }
 
 ul {
@@ -151,10 +193,10 @@ ul {
   margin-bottom: 1rem;
 }
 
-/* La Pietra styles for components */
+/* HSG Brand component styles */
 @layer components {
   .btn {
-    @apply px-4 py-2 bg-[#004299] text-white rounded hover:bg-[#0056c7] transition-colors font-medium;
+    @apply px-4 py-2 bg-hsg-navy text-white rounded hover:bg-hsg-navy-hover transition-colors font-medium;
   }
   
   .dark .btn {
@@ -166,7 +208,7 @@ ul {
   }
   
   .dark .section-divider {
-    @apply bg-dark-secondary;
+    @apply bg-dark-card;
   }
 
   .content-card {
@@ -174,11 +216,11 @@ ul {
   }
   
   .dark .content-card {
-    @apply bg-dark-card border-dark-secondary;
+    @apply bg-dark-card border-gray-700;
   }
 
   .event-header {
-    @apply text-2xl font-bold text-center text-[#004299] mb-1;
+    @apply text-2xl font-bold text-center text-hsg-navy mb-1;
   }
   
   .dark .event-header {
@@ -190,83 +232,84 @@ ul {
   }
   
   .dark .event-subheader {
-    @apply text-gray-300;
+    @apply text-dark-text-secondary;
   }
 
   /* Enhanced card styles with top border accent */
-  .la-pietra-card {
-    @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4 border-t-4 border-t-[#004299];
+  .hsg-card {
+    @apply bg-white rounded-lg shadow border border-gray-200 p-6 mb-4 border-t-4 border-t-hsg-teal;
   }
   
-  .dark .la-pietra-card {
+  .dark .hsg-card {
     @apply bg-dark-card border-gray-700 border-t-dark-primary;
   }
   
-  /* Button styles that match La Pietra site */
-  .la-pietra-button {
-    @apply inline-block py-2 px-6 bg-[#004299] text-white text-center font-medium rounded 
-           hover:bg-[#0056c7] transition-colors shadow-sm;
+  /* Button styles - HSG Brand */
+  .hsg-button {
+    @apply inline-block py-2 px-6 bg-hsg-navy text-white text-center font-medium rounded 
+           hover:bg-hsg-navy-hover transition-colors shadow-sm;
   }
   
-  .dark .la-pietra-button {
+  .dark .hsg-button {
     @apply bg-dark-primary hover:bg-dark-primary-hover;
+  }
+  
+  /* Secondary button with teal */
+  .hsg-button-secondary {
+    @apply inline-block py-2 px-6 bg-hsg-teal text-white text-center font-medium rounded 
+           hover:bg-hsg-teal-hover transition-colors shadow-sm;
   }
 }
 
-/* Shadow for text on dark backgrounds */
-.text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+/* HSG navigation styles */
+.hsg-nav {
+  @apply bg-hsg-midnight text-white py-2;
 }
 
-/* La Pietra navigation styles */
-.la-pietra-nav {
-  @apply bg-[#3D4055] text-white py-2;
-}
-
-.la-pietra-nav-item {
+.hsg-nav-item {
   @apply px-3 py-1 text-sm font-medium hover:underline;
 }
 
-/* Custom header with the correct blue tone */
-.la-pietra-header {
-  @apply bg-[#004299] text-white py-4;
+/* Custom header - HSG Brand */
+.hsg-header {
+  @apply bg-hsg-navy text-white py-4;
 }
 
-.dark .la-pietra-header {
-  @apply bg-dark-secondary;
+.dark .hsg-header {
+  @apply bg-dark-card;
 }
 
 /* Dark mode styles for active navigation */
 .nav-item-active {
-  @apply bg-[#004299] text-white rounded-md;
+  @apply bg-hsg-teal text-white rounded-md;
 }
 
 .dark .nav-item-active {
   @apply bg-dark-primary;
 }
 
-/* Custom container width to match La Pietra site */
-.la-pietra-container {
+/* Custom container width */
+.hsg-container {
   @apply mx-auto px-4 max-w-6xl;
 }
 
 /* Sidebar styles */
 .sidebar-link {
-  @apply block py-2 px-1 border-b border-gray-200 text-[#004299] 
-         hover:text-[#0056c7] transition-colors;
+  @apply block py-2 px-1 border-b border-gray-200 text-hsg-teal 
+         hover:text-hsg-teal-hover transition-colors;
 }
 
 .dark .sidebar-link {
-  @apply border-dark-secondary text-dark-primary hover:text-dark-primary-hover;
+  @apply border-gray-700 text-dark-primary hover:text-dark-primary-hover;
 }
 
-/* Footer styles similar to La Pietra site */
-.la-pietra-footer {
-  @apply bg-[#3D4055] text-white py-6;
+/* Footer styles - HSG Brand */
+.hsg-footer {
+  @apply bg-hsg-midnight text-white py-6;
 }
 
-.dark .la-pietra-footer {
-  @apply bg-dark-secondary;
+.dark .hsg-footer {
+  @apply bg-dark-card;
 }
 
 /* Header sizing adjustments for mobile */
@@ -294,39 +337,27 @@ ul {
 
 /* Text shadow utility */
 .text-shadow {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* La Pietra branded content cards */
+/* HSG branded content cards - alternate definitions */
 @layer components {
-  .la-pietra-card {
-    @apply bg-white rounded-sm shadow-sm p-4 border-t-4 border-t-[#004299];
+  /* Alert/accent styling using burnt orange */
+  .hsg-alert {
+    @apply bg-hsg-orange/10 border-l-4 border-hsg-orange text-hsg-midnight p-4 rounded;
   }
   
-  .la-pietra-button {
-    @apply py-1.5 px-4 bg-[#004299] text-white text-center font-medium rounded text-sm 
-           hover:bg-[#0056c7] transition-colors focus:outline-none focus:ring-2 
-           focus:ring-[#004299] focus:ring-opacity-50;
+  .dark .hsg-alert {
+    @apply bg-hsg-orange/20 text-dark-text;
   }
   
-  .la-pietra-header {
-    @apply bg-[#004299] text-white text-center;
+  /* Success styling using lime green */
+  .hsg-success {
+    @apply bg-hsg-lime/10 border-l-4 border-hsg-lime text-hsg-midnight p-4 rounded;
   }
   
-  .la-pietra-nav {
-    @apply bg-[#3D4055] text-white py-1 shadow-md;
-  }
-  
-  .la-pietra-nav-item {
-    @apply px-2 py-1 hover:underline whitespace-nowrap text-xs font-medium;
-  }
-  
-  .sidebar-link {
-    @apply text-[#004299] hover:text-[#0056c7] border-b border-gray-200 pb-1 block;
-  }
-  
-  .la-pietra-footer {
-    @apply bg-[#3D4055] text-white py-4;
+  .dark .hsg-success {
+    @apply bg-hsg-lime/20 text-dark-text;
   }
 }
 
@@ -343,11 +374,6 @@ ul {
   max-width: 100%;
 }
 
-/* Content card improvements */
-.content-card {
-  @apply bg-white rounded-sm shadow-sm mb-4;
-}
-
 /* Navigation styling for bottom nav */
 .nav-item {
   @apply flex flex-col items-center justify-center text-xs;
@@ -359,9 +385,17 @@ ul {
 
 /* Active nav indicator */
 .active-nav {
-  @apply text-blue-600;
+  @apply text-hsg-teal;
+}
+
+.dark .active-nav {
+  @apply text-dark-primary;
 }
 
 .nav-item.active svg {
-  @apply text-blue-600;
+  @apply text-hsg-teal;
+}
+
+.dark .nav-item.active svg {
+  @apply text-dark-primary;
 }

@@ -107,10 +107,10 @@ export default function ExperienceDetail() {
     <div className="container mx-auto px-4 py-8 pb-20">
       <BackButton to="/experiences" label="Back to Experiences" />
       
-      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border-t-4 border-t-[#004299] dark:border-t-dark-primary dark:border-gray-700">
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border-t-4 border-t-hsg-teal dark:border-t-dark-primary dark:border-gray-700">
         <div className="flex items-center mb-4">
           <div className="text-4xl mr-3">{experience.icon}</div>
-          <h1 className="text-2xl font-bold text-[#004299] dark:text-dark-primary">{experience.title}</h1>
+          <h1 className="text-2xl font-bold text-hsg-navy dark:text-dark-primary">{experience.title}</h1>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -119,7 +119,7 @@ export default function ExperienceDetail() {
               <p className="text-gray-800 dark:text-gray-200">{experience.description}</p>
             </div>
             
-            <h2 className="text-lg font-semibold text-[#004299] dark:text-dark-primary mb-2">Details</h2>
+            <h2 className="text-lg font-semibold text-hsg-navy dark:text-dark-primary mb-2">Details</h2>
             <ul className="space-y-2 mb-6">
               {experience.provider && (
                 <li className="flex items-start">
@@ -198,7 +198,7 @@ export default function ExperienceDetail() {
         </div>
         
         <div className="mt-6 pt-6 border-t border-gray-200">
-          <h3 className="font-semibold text-[#004299] mb-3">You might also be interested in</h3>
+          <h3 className="font-semibold text-hsg-navy mb-3">You might also be interested in</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {filteredExperiences
               .filter(exp => exp.id !== id)

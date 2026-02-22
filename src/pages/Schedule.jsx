@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getDataUrl } from '../config/event';
 
 export default function Schedule() {
   const [schedule, setSchedule] = useState([]);
@@ -8,10 +9,7 @@ export default function Schedule() {
   useEffect(() => {
     console.log('Fetching schedule data...');
     
-    // Be consistent with the URL construction
-    const dataUrl = import.meta.env.DEV 
-      ? '/assets/data/schedule.json' 
-      : '/TechFamilyFunFair/assets/data/schedule.json';
+    const dataUrl = getDataUrl('schedule.json');
     
     console.log('Fetching from URL:', dataUrl);
     
@@ -112,7 +110,7 @@ export default function Schedule() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Stage 1 Section */}
             <div>
-              <h2 className="text-xl font-bold text-[#004299] dark:text-white mb-4 pb-2 border-b dark:border-gray-700">
+              <h2 className="text-xl font-bold text-hsg-navy dark:text-white mb-4 pb-2 border-b dark:border-gray-700">
                 Stage 1 (Gym)
               </h2>
               {stage1Events.length > 0 ? (
@@ -126,7 +124,7 @@ export default function Schedule() {
             
             {/* Stage 2 Section */}
             <div>
-              <h2 className="text-xl font-bold text-[#004299] dark:text-white mb-4 pb-2 border-b dark:border-gray-700">
+              <h2 className="text-xl font-bold text-hsg-navy dark:text-white mb-4 pb-2 border-b dark:border-gray-700">
                 Stage 2 (Great Lawn)
               </h2>
               {stage2Events.length > 0 ? (

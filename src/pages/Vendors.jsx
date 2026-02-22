@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
+import { getDataUrl } from '../config/event';
 
 export default function Vendors() {
   // Flag to control displaying available items - set to false to hide items
@@ -12,10 +13,7 @@ export default function Vendors() {
   useEffect(() => {
     console.log('Fetching vendors data...');
     
-    // Be consistent with the URL construction
-    const dataUrl = import.meta.env.DEV 
-      ? '/assets/data/vendors.json' 
-      : '/TechFamilyFunFair/assets/data/vendors.json';
+    const dataUrl = getDataUrl('vendors.json');
     
     console.log('Fetching from URL:', dataUrl);
     

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import { compression } from 'vite-plugin-compression2'
 import { resolve } from 'path'
 import fs from 'fs'
 
@@ -19,6 +20,8 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
+      compression({ algorithm: 'gzip' }),
+      compression({ algorithm: 'brotliCompress' }),
       {
         name: 'copy-data-files',
         buildStart() {

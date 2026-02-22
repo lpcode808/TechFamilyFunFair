@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getDataUrl } from '../config/event';
 
 export default function Experiences() {
   const [experienceData, setExperienceData] = useState([]);
@@ -9,10 +10,7 @@ export default function Experiences() {
   useEffect(() => {
     console.log('Fetching experiences data...');
     
-    // Be consistent with the URL construction
-    const dataUrl = import.meta.env.DEV 
-      ? '/assets/data/experiences.json' 
-      : '/TechFamilyFunFair/assets/data/experiences.json';
+    const dataUrl = getDataUrl('experiences.json');
     
     console.log('Fetching from URL:', dataUrl);
     
@@ -90,7 +88,7 @@ export default function Experiences() {
         <div className="flex items-start mb-2">
           <div className="text-3xl mr-3">{experience.icon}</div>
           <div>
-            <h3 className="font-semibold text-[#004299] dark:text-dark-primary">{experience.title}</h3>
+            <h3 className="font-semibold text-hsg-navy dark:text-dark-primary">{experience.title}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">{experience.provider}</p>
           </div>
         </div>
@@ -146,7 +144,7 @@ export default function Experiences() {
         <div className="space-y-10">
           {/* Prospective Families Section - Moved to top */}
           <div>
-            <h2 className="text-2xl font-bold text-[#004299] dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
+            <h2 className="text-2xl font-bold text-hsg-navy dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
               Prospective Families
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -212,7 +210,7 @@ export default function Experiences() {
           
           {/* Tech Exhibits Section */}
           <div>
-            <h2 className="text-2xl font-bold text-[#004299] dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
+            <h2 className="text-2xl font-bold text-hsg-navy dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
               Tech Exhibits
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -230,7 +228,7 @@ export default function Experiences() {
           
           {/* Games & Activities Section */}
           <div>
-            <h2 className="text-2xl font-bold text-[#004299] dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
+            <h2 className="text-2xl font-bold text-hsg-navy dark:text-white mb-6 pb-2 border-b dark:border-gray-700">
               Games & Activities
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

@@ -46,8 +46,9 @@ coverage
 
 # Project specific
 data/
-tech-family-fun-fair/dist/
-tech-family-fun-fair/node_modules/
+
+# School brand guide (not for public repo)
+HSG_markdown.md
 
 # Large media files - consider using Git LFS for these if needed
 *.mp4
@@ -73,6 +74,10 @@ tech-family-fun-fair/node_modules/
 !public/images/**/*.png
 !public/images/**/*.jpg
 !public/images/**/*.svg
+!public/assets/images/**/*.jpg
+!public/assets/images/**/*.webp
+!public/assets/images/**/*.png
+!public/assets/images/**/*.svg
 !src/assets/images/**/*.png
 !src/assets/images/**/*.jpg
 !src/assets/images/**/*.svg

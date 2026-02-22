@@ -8,8 +8,8 @@ const NavItem = memo(({ to, icon: Icon, label, end = false }) => (
     {({ isActive }) => (
       <div className={`flex flex-col items-center py-3 px-3 sm:px-4 rounded-t-md transition-colors duration-200 ${
         isActive 
-          ? 'bg-[#004299] dark:bg-dark-primary text-white' 
-          : 'text-gray-600 dark:text-gray-300 hover:text-[#004299] dark:hover:text-dark-primary'
+          ? 'bg-hsg-teal dark:bg-dark-primary text-white' 
+          : 'text-gray-600 dark:text-gray-300 hover:text-hsg-teal dark:hover:text-dark-primary'
       }`}>
         <Icon className={`w-6 h-6 ${
           isActive ? 'text-white' : 'text-current'

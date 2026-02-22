@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import BottomNav from './components/BottomNav';
 import ThemeToggle from './components/ThemeToggle';
@@ -15,7 +15,7 @@ const ExperienceDetail = lazy(() => import('./pages/ExperienceDetail'));
 // Loading fallback
 const LoadingFallback = () => (
   <div className="flex justify-center items-center min-h-[70vh]">
-    <div className="animate-pulse text-[#004299] dark:text-dark-primary text-lg">Loading...</div>
+    <div className="animate-pulse text-hsg-navy dark:text-dark-primary text-lg">Loading...</div>
   </div>
 );
 
